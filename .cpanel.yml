@@ -1,5 +1,7 @@
 ---
 deployment:
   tasks:
+    - export DEPLOYPATH=/home4/ajaymaur/registrationwala/
+    - /bin/cp -R * $DEPLOYPATH
     - export DEPLOYPATH=/home/cagauravbansal/registrationwala/
     - /bin/cp -R * $DEPLOYPATH
