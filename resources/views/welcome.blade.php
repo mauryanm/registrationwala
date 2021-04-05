@@ -11,7 +11,7 @@
     <div class="row no-gutters">
       <div class="col-md-3"> <img src="images/hero-left.png" class="img-fluid  d-none d-lg-block" alt="Hero left"> </div>
       <div class="col-md-6">
-        <h1 class="text-center h2 mb-0 mt-2 ">One Portal , Complete Legal Solution</h1>
+        <h1 class="text-center h2 mb-0 mt-2 ">One Portal , Complete Legal Solution.</h1>
         <div class="pt-2 pl-5 pr-5 pb-2 pt-0">
           <div class="row no-gutters">
             <div class="col-md-12">
