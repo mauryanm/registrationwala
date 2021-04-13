@@ -105,10 +105,18 @@
 </div>
 <div class="sticky-social">
   <ul class="social">
-    <li class="fb"><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-    <li class="yout"><a href="#"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
-    <li class="twitter"><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-    <li class="link"><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+    @if(setting('site.facebook_link'))
+    <li class="fb"><a href="{{site.facebook_link}}" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+    @endif
+    @if(setting('site.youtube_link'))
+    <li class="yout"><a href="{{site.youtube_link}}" target="_blank"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
+    @endif
+    @if(setting('site.twitter_link'))
+    <li class="twitter"><a href="{{site.twitter_link}}" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+    @endif
+    @if(setting('site.linkedin_link'))
+    <li class="link"><a href="{{site.linkedin_link}}" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+    @endif
   </ul>
 </div>
 <header class="bg-white">
