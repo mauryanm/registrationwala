@@ -130,16 +130,16 @@
             <li class="list-inline-item mr-4"><a  href="tel:{{str_replace(' ','',str_replace('-','',setting('site.mobile')))}}" title="" data-toggle="tooltip" data-original-title="Call us {{setting('site.mobile')}} OR Contact with us @ support@registrationwala.com"><i class="fa fa-mobile mobile"></i> {{setting('site.mobile')}}</a></li>
             @endif
             @if(setting('site.facebook_link'))
-            <li class="list-inline-item"><a href="{{setting('site.facebook_link')}}"  class="d-none d-lg-block"><i class="fa wp-icon fa-facebook-f"></i></a></li>
+            <li class="list-inline-item"><a href="{{setting('site.facebook_link')}}" target="_blank" class="d-none d-lg-block"><i class="fa wp-icon fa-facebook-f"></i></a></li>
             @endif
             @if(setting('site.youtube_link'))
-            <li class="list-inline-item"><a href="{{setting('site.youtube_link')}}"   class="d-none d-lg-block"><i class="fa wp-icon fa-youtube "></i></a></li>
+            <li class="list-inline-item"><a href="{{setting('site.youtube_link')}}" target="_blank"  class="d-none d-lg-block"><i class="fa wp-icon fa-youtube "></i></a></li>
             @endif
             @if(setting('site.twitter_link'))
-            <li  class="list-inline-item"><a href="{{setting('site.twitter_link')}}"   class="d-none d-lg-block"><i class="fa wp-icon fa-twitter"></i></a></li>
+            <li  class="list-inline-item"><a href="{{setting('site.twitter_link')}}" target="_blank"  class="d-none d-lg-block"><i class="fa wp-icon fa-twitter"></i></a></li>
             @endif
             @if(setting('site.linkedin_link'))
-            <li class="list-inline-item"><a href="{{setting('site.linkedin_link')}}"   class="d-none d-lg-block"><i class="fa wp-icon fa-linkedin"></i></a></li>
+            <li class="list-inline-item"><a href="{{setting('site.linkedin_link')}}" target="_blank"  class="d-none d-lg-block"><i class="fa wp-icon fa-linkedin"></i></a></li>
             @endif
         
           </ul>
