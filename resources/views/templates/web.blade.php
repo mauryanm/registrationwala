@@ -121,9 +121,6 @@
         <div class="col-md-3">
           <h4>Follow Us</h4>
           <ul class="list-inline mt-4">
-            @if(setting('site.mobile'))
-            <li class="list-inline-item mr-4"><a  href="tel:{{str_replace(' ','',str_replace('-','',setting('site.mobile')))}}" title="" data-toggle="tooltip" data-original-title="Call us {{setting('site.mobile')}} OR Contact with us @ support@registrationwala.com"><i class="fa fa-mobile mobile"></i> {{setting('site.mobile')}}</a></li>
-            @endif
             @if(setting('site.facebook_link'))
             <li class="list-inline-item"><a href="{{setting('site.facebook_link')}}" target="_blank" class="d-none d-lg-block"><i class="fa wp-icon fa-facebook-f"></i></a></li>
             @endif
