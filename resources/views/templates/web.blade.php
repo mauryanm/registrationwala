@@ -152,7 +152,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-            <p class="text-center">2020 © Monetic Corp Consultants Private Limited - U74999DL2013PTC261819 </p>
+            <p class="text-center">{{setting('site.copyright')}}</p>
           </div>
         </div>
       </div>
