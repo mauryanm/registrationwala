@@ -57,13 +57,13 @@ class WebController extends Controller
     	$wcu = Choose::where('status',1)->orderBy('created_at','DESC')->get();
     	$data = collect();
         // \Log::info($this->archivelist());
-    	$data->letest = Voyager::model('Post')->where('status','PUBLISHED')->orderBy('created_at','DESC')->take(9)->with('category')->with('service:title,slug,id')->get();
+    	$data->letest = Voyager::model('Post')->where('status','PUBLISHED')->orderBy('created_at','DESC')->take(9)->with('category')->with('service:title,blog_slug as slug,id')->get();
     	$data->seo_title = 'Registrationwala';
     	$data->meta_description = '';
     	$data->meta_keywords = '';
     	$categoryList = $this->categorylist();
     	$categoryPost = Voyager::model('Category')->has('posts')->with(array('catposts' => function($query) {
-           $query->with('service:title,slug,id');
+           $query->with('service:title,blog_slug as slug,id');
         }))->get();
 
     	return Voyager::view('blog')->with(compact('data','wcu','categoryList','categoryPost'));
@@ -80,10 +80,10 @@ class WebController extends Controller
 	    	$data->meta_keywords = '';
 	    	$categoryList = $this->categorylist();
 	    	// $categoryPost = Voyager::model('Category')->where('id',$catId)->has('posts')->with(array('catposts' => function($query) {
-	     //       $query->with('service:title,slug,id');
+	     //       $query->with('service:title,blog_slug  as slug,id');
 	     //    }))->get();
 	    	$categoryPost = Voyager::model('Category')->where('id',$catId)->with(array('services' => function($query) {
-	           $query->select('title','slug','category_id','id')->has('posts')->with('posts');
+	           $query->select('title','blog_slug as slug','category_id','id')->has('posts')->with('posts');
 	        }))->first();
 		    }else{
 		    	abort(404, 'Page not found.');
@@ -94,7 +94,7 @@ class WebController extends Controller
     public function rwpostservice($category_url,$service_url){
     	$wcu = Choose::where('status',1)->orderBy('created_at','DESC')->get();
     	$data = collect();
-    	$catQuery = Voyager::model('Service')->where('slug',$service_url);
+    	$catQuery = Voyager::model('Service')->where('blog_slug',$service_url);
     	if($catQuery->count()>0){
     		$catData = $catQuery->with('category')->first();
 	    	
@@ -111,7 +111,7 @@ class WebController extends Controller
     	return Voyager::view('blogSubCategory')->with(compact('data','wcu','categoryList','catData','posts'));
     }
     public function rwpost($category_url,$service_url, $url){
-    	$data = Voyager::model('Post')->where('slug',$url)->published()->with('service:title,slug,id')->with('category')->first();
+    	$data = Voyager::model('Post')->where('slug',$url)->published()->with('service:title,blog_slug as slug,id')->with('category')->first();
     	if($data){
     	    $categoryList = $this->categorylist();
     	    return Voyager::view('blogDetail')->with(compact('data','categoryList'));
@@ -123,7 +123,7 @@ class WebController extends Controller
     private function categorylist(){
     	// return Voyager::model('Category')->has('posts')->with('services:title,slug,category_id')->get();
     	return Voyager::model('Category')->has('catposts')->with(array('services' => function($query) {
-           $query->select('title','slug','category_id')->has('posts');
+           $query->select('title','blog_slug as slug','category_id')->has('posts');
         }))->get();
 
     }
@@ -134,7 +134,7 @@ class WebController extends Controller
     ->groupBy('month')
     ->orderBy('year', 'desc')
     ->orderBy('month', 'desc')
-    ->with('service:title,slug,id')
+    ->with('service:title,blog_slug as slug,id')
     ->with('category')
     ->get();
     // ->select('*',\DB::raw('YEAR(created_at) year, MONTH(created_at) month, MONTHNAME(created_at) month_name, COUNT(*) post_count'))
