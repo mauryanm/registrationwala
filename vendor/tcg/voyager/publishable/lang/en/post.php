@@ -18,8 +18,8 @@ return [
     'status_pending'   => 'pending',
     'status_published' => 'published',
     'title'            => 'Post Title',
-    'title_sub'        => 'The title for your post',
+    'title_sub'        => 'Knowledge Base',
     'update'           => 'Update Post',
-    'post_slug'        => 'post/',
-    'post_title'        => 'Blog',
+    'post_slug'        => 'knowledge-base/',
+    'post_title'        => 'Knowledge Base',
 ];

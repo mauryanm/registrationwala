@@ -19,6 +19,13 @@ class WebController extends Controller
 				$value->icon = json_decode($value->image,true)[0]['download_link'];
 			}
 			if($data){
+                $pageWasRefreshed = isset($_SERVER['HTTP_CACHE_CONTROL']) && $_SERVER['HTTP_CACHE_CONTROL'] === 'max-age=0';
+
+                if($pageWasRefreshed ) {
+                   //do something because page was refreshed;
+                } else {
+                    $data->increment('hits');
+                }
 				return Voyager::view('service')->with(compact('data','wcu'));
 			}else{
 				abort(403, 'Page not found.');
@@ -113,6 +120,14 @@ class WebController extends Controller
     public function rwpost($category_url,$service_url, $url){
     	$data = Voyager::model('Post')->where('slug',$url)->published()->with('service:title,blog_slug as slug,id')->with('category')->first();
     	if($data){
+            $pageWasRefreshed = isset($_SERVER['HTTP_CACHE_CONTROL']) && $_SERVER['HTTP_CACHE_CONTROL'] === 'max-age=0';
+
+            if($pageWasRefreshed ) {
+               //do something because page was refreshed;
+            } else {
+                $data->increment('hits');
+            }
+
     	    $categoryList = $this->categorylist();
     	    return Voyager::view('blogDetail')->with(compact('data','categoryList'));
     	}else{

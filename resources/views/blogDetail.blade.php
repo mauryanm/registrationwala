@@ -57,7 +57,7 @@
    
    <hr>
    <div class="row">
-   <div class="col-md-6"><span class="badge badge-info"><i class="fa fa-eye" aria-hidden="true"></i> <strong>120 Views</strong></span></div>
+   <div class="col-md-6"><span class="badge badge-info"><i class="fa fa-eye" aria-hidden="true"></i> <strong>{{$data->hits}} Views</strong></span></div>
       <div class="col-md-6"><ul class="list-inline text-center text-md-right mb-0">
             
             <li class="list-inline-item mr-2"><strong>Share This Post</strong></li>

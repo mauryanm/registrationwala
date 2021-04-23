@@ -18,10 +18,10 @@ use Illuminate\Support\Facades\Route;
 // });
 Route::get('/', 'App\Http\Controllers\HomeController@index');
 Route::get('/service-list', 'App\Http\Controllers\WebController@servicelist');
-Route::get('/post/{category_url}/{Service_url}/{url}', 'App\Http\Controllers\WebController@rwpost');
-Route::get('/post/{category_url}/{Service_url}', 'App\Http\Controllers\WebController@rwpostservice');
-Route::get('/post/{category_url}', 'App\Http\Controllers\WebController@rwpostcategory');
-Route::get('/post', 'App\Http\Controllers\WebController@rwposts');
+Route::get('/'.__('voyager::post.post_slug').'{category_url}/{Service_url}/{url}', 'App\Http\Controllers\WebController@rwpost');
+Route::get('/'.__('voyager::post.post_slug').'{category_url}/{Service_url}', 'App\Http\Controllers\WebController@rwpostservice');
+Route::get('/'.__('voyager::post.post_slug').'{category_url}', 'App\Http\Controllers\WebController@rwpostcategory');
+Route::get('/'.__('voyager::post.post_slug'), 'App\Http\Controllers\WebController@rwposts');
 Route::post('/lead-form', 'App\Http\Controllers\WebController@leadfrom');
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
