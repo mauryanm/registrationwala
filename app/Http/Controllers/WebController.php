@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use TCG\Voyager\Facades\Voyager;
 use \App\Choose;
 use \App\lead;
+use \App\City;
 
 
 class WebController extends Controller
@@ -26,9 +27,24 @@ class WebController extends Controller
                 } else {
                     $data->increment('hits');
                 }
+                if($city){
+                    $citydata = City::where('slug',$city)->where('status',1)->first();
+                    if($citydata){
+                        $data->heading =$data->heading .' in '.$citydata->name;
+                        $data->sub_heading = str_ireplace('in India','in '.$citydata->name,$data->sub_heading);
+                        $data->body = str_ireplace('in India','in '.$citydata->name,$data->body);
+                        $data->section_1_body = str_ireplace('in India','in '.$citydata->name,$data->section_1_body);
+                        $data->section_2_body = str_ireplace('in India','in '.$citydata->name,$data->section_2_body);
+                        $data->section_3_body = str_ireplace('in India','in '.$citydata->name,$data->section_3_body);
+                        $data->section_4_body = str_ireplace('in India','in '.$citydata->name,$data->section_4_body);
+                        $data->section_5_body = str_ireplace('in India','in '.$citydata->name,$data->section_5_body);
+                    }else{
+                        abort(404, 'Page not found.');
+                    }
+                }
 				return Voyager::view('service')->with(compact('data','wcu'));
 			}else{
-				abort(403, 'Page not found.');
+				abort(404, 'Page not found.');
 			}
 		}
 		

@@ -63,7 +63,7 @@
       <div class="col-md-12">
         <ol class="breadcrumb radius-0 bg-transparent pt-3  pb-3 m-0">
           <li class="breadcrumb-item"><a href="/">Home</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Full Fledge Money Changer License</li>
+          <li class="breadcrumb-item active" aria-current="page">{{$data->title}}</li>
         </ol>
       </div>
     </div>
