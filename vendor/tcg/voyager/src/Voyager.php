@@ -32,10 +32,11 @@ use TCG\Voyager\Models\Setting;
 use TCG\Voyager\Models\Translation;
 use TCG\Voyager\Models\User;
 use TCG\Voyager\Traits\Translatable;
-use TCG\Voyager\Traits\Client;
-use TCG\Voyager\Traits\PeopleSay;
-use TCG\Voyager\Traits\Lead;
-use TCG\Voyager\Traits\Choose;
+use TCG\Voyager\Models\Client;
+use TCG\Voyager\Models\PeopleSay;
+use TCG\Voyager\Models\Lead;
+use TCG\Voyager\Models\Choose;
+use TCG\Voyager\Models\HomeService;
 
 class Voyager
 {
@@ -76,6 +77,7 @@ class Voyager
         'Lead'        => Lead::class,
         'PeopleSay'   => PeopleSay::class,
         'Choose'      => Choose::class,
+        'HomeService' => HomeService::class,
     ];
 
     public $setting_cache = null;

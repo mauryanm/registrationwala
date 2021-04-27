@@ -92,110 +92,44 @@
   </div>
 </div>
 <!--Service section -->
-<section class="section servicebg">
+@if($hmsr)
+<section class="section servicebg pb-0">
   <div class="container">
     <div class="row">
       <div class="col-md-12  text-center">
         <h2 class="main-heading h3">Our Services</h2>
       </div>
     </div>
-    <div class="row justify-content-center align-items-center mt-3">
-      <div class="col-md-3">
-        <h2 class="h4 mb-4">Start Your Business in the Telecom Industry</h2>
-        <h4 class="main-heading-5 hvr-sweep-to-right"><a href="#">IP 1 Registration</a></h4>
-        <div class="divider-1"> <span></span></div>
-        <h4 class="main-heading-5 hvr-sweep-to-right"><a href="#">Ul VNO Licensing </a></h4>
-        <div class="divider-1"> <span></span></div>
-        <h4 class="main-heading-5 hvr-sweep-to-right"><a href="#">UL ISP Registration</a></h4>
-        <div class="divider-1"> <span></span></div>
-        <h4 class="main-heading-5 hvr-sweep-to-right"><a href="#">ETA approval</a></h4>
-        <div class="divider-1"> <span></span></div>
-      </div>
-      <div class="col-md-6">
-        <div class="service-text-ovelay"> <img src="images/serices-section.png" class="img-fluid" alt="serices"> 
-          <!--<h2> Start your Business<br> in the Telecom Industry</h2>--> 
-        </div>
-      </div>
-      <div class="col-md-3">
-        <h2 class="h4 mb-4">Manufacture products under  BIS certification</h2>
-        <h4 class="main-heading-5 hvr-sweep-to-right"><a href="#">BIS certification for toys</a></h4>
-        <div class="divider-1"> <span></span></div>
-        <h4 class="main-heading-5 hvr-sweep-to-right"><a href="#">BIS certification for Electronics</a></h4>
-        <div class="divider-1"> <span></span></div>
-        <h4 class="main-heading-5 hvr-sweep-to-right"><a href="#">BIS Certification CGHS</a></h4>
-        <div class="divider-1"> <span></span></div>
-        <h4 class="main-heading-5 hvr-sweep-to-right"><a href="#">BIS product certification</a></h4>
-        <div class="divider-1"> <span></span></div>
-      </div>
-    </div>
+    
   </div>
 </section>
-<section class="section servicebg1">
+@foreach($hmsr as $service)
+<section class="section {{(($loop->iteration%2==0)?'servicebg1':'servicebg')}}">
   <div class="container">
     <div class="row justify-content-center align-items-center mt-3">
-      <div class="col-md-3">
-        <h2 class="h4 mb-4">Start your insurance business by getting licensed by IRDA </h2>
-        <h4 class="main-heading-5 hvr-sweep-to-right"><a href="#">Insurance Web Aggregator</a></h4>
+      <div class="col-md-3 order-2">
+        <h2 class="h4 mb-4">{{$service->heading}}</h2>
+        @foreach($service->servicesl as $ser)
+        <h4 class="main-heading-5 hvr-sweep-to-right"><a href="{{url($ser->slug)}}">{{$ser->title}}</a></h4>
         <div class="divider-1"> <span></span></div>
-        <h4 class="main-heading-5 hvr-sweep-to-right"><a href="#">Insurance marketing license</a></h4>
-        <div class="divider-1"> <span></span></div>
-        <h4 class="main-heading-5 hvr-sweep-to-right"><a href="#">Insurance Broker License</a></h4>
-        <div class="divider-1"> <span></span></div>
-        <h4 class="main-heading-5 hvr-sweep-to-right"><a href="#">Insurance Company Setup</a></h4>
-        <div class="divider-1"> <span></span></div>
+        @endforeach
       </div>
-      <div class="col-md-3">
-        <h2 class="h4 mb-4">Business licenses for your customized businesses </h2>
-        <h4 class="main-heading-5 hvr-sweep-to-right"><a href="#">Payment Gateway License</a></h4>
-        <div class="divider-1"> <span></span></div>
-        <h4 class="main-heading-5 hvr-sweep-to-right"><a href="#">FFMC License</a></h4>
-        <div class="divider-1"> <span></span></div>
-        <h4 class="main-heading-5 hvr-sweep-to-right"><a href="#">RNI Registration</a></h4>
-        <div class="divider-1"> <span></span></div>
-        <h4 class="main-heading-5 hvr-sweep-to-right"><a href="#">ERP certification</a></h4>
-        <div class="divider-1"> <span></span></div>
-      </div>
-      <div class="col-md-6">
-        <div class="service-text-ovelay"> <img src="images/serices-section1.png" alt="serices" class="img-fluid"> 
-          <!-- <h2> Get licensed by IRDA</h2>--> 
+      <div class="col-md-6 @if($service->side=='LEFT')order-1 @endif @if($service->side=='CENTER')order-3 @endif @if($service->side=='RIGHT')order-5 @endif">
+        <div class="service-text-ovelay"> <img src="{{Voyager::image($service->image)}}" alt="{{$service->heading}}" class="img-fluid"> 
         </div>
+      </div>
+      <div class="col-md-3 order-4">
+        <h2 class="h4 mb-4">{{$service->heading2}}</h2>
+        @foreach($service->servicesr as $ser)
+        <h4 class="main-heading-5 hvr-sweep-to-right"><a href="{{url($ser->slug)}}">{{$ser->title}}</a></h4>
+        <div class="divider-1"> <span></span></div>
+        @endforeach
       </div>
     </div>
   </div>
 </section>
-<section class="section servicebg">
-  <div class="container">
-    <div class="row justify-content-center align-items-center mt-3">
-      <div class="col-md-3">
-        <h2 class="h4 mb-4">Setup Your Business Entity</h2>
-        <h4 class="main-heading-5 hvr-sweep-to-right"><a href="#">Company Registration</a></h4>
-        <div class="divider-1"> <span></span></div>
-        <h4 class="main-heading-5 hvr-sweep-to-right"><a href="#">Private Limited Company </a></h4>
-        <div class="divider-1"> <span></span></div>
-        <h4 class="main-heading-5 hvr-sweep-to-right"><a href="#">One Person Company</a></h4>
-        <div class="divider-1"> <span></span></div>
-        <h4 class="main-heading-5 hvr-sweep-to-right"><a href="#">Sole Proprietorship </a></h4>
-        <div class="divider-1"> <span></span></div>
-      </div>
-      <div class="col-md-6">
-        <div class="service-text-ovelay"> <img src="images/serices-section3.png" alt="serices" class="img-fluid"> 
-          <!--<h2> Start your Business<br> in the Telecom Industry</h2>--> 
-        </div>
-      </div>
-      <div class="col-md-3">
-        <h2 class="h4 mb-4">Care for Regulatory Compliances</h2>
-        <h4 class="main-heading-5 hvr-sweep-to-right"><a href="#">GST Return Filing</a></h4>
-        <div class="divider-1"> <span></span></div>
-        <h4 class="main-heading-5 hvr-sweep-to-right"><a href="#">Annual Return Filing</a></h4>
-        <div class="divider-1"> <span></span></div>
-        <h4 class="main-heading-5 hvr-sweep-to-right"><a href="#">TDS Return Filing </a></h4>
-        <div class="divider-1"> <span></span></div>
-        <h4 class="main-heading-5 hvr-sweep-to-right"><a href="#">Audit Of The Business </a></h4>
-        <div class="divider-1"> <span></span></div>
-      </div>
-    </div>
-  </div>
-</section>
+@endforeach
+@endif
 <section class="section bg-light">
   <div class="container">
     <div class="row">
@@ -276,87 +210,67 @@
   </div>
 </section>
 
-@if($letestBlog)
+
 <section class="section bg-light">
   <div class="container">
+    @if($hmpt)
     <div class="row">
       <div class="col-md-12 text-center">
         <h2 class="main-heading h3">Enhance your knowledge </h2>
         <p class="subhead mb-5">Enhance your knowledge about business licenses through these digestible articles</p>
       </div>
     </div>
+    @foreach($hmpt as $post)
     <div class="row mb-4">
 
       <div class="col-12 col-sm-8 col-md-6 col-lg-4">
         <div class="card bloghome h-100 justify-content-center align-items-center">
           
-          <img src="images/telecom.png" alt="telecom" /> 
-          <div class="h2"> <strong>Telecom</strong></div> 
-             <a class="cbtn btn-4 text-white  w-50 text-center mb-2">View All</a>
+          <img src="images/telecom.png" alt="telecom" />
+          <div class="h2"> <strong>{{$post->catl}}</strong></div> 
+             <a class="cbtn btn-4 text-white  w-50 text-center mb-2" href="{{url( __('voyager::post.post_slug').$post->catlslug)}}">View All</a>
         </div>
       </div>
+      @foreach($post->servicesl as $data)
       <div class="col-12 col-sm-8 col-md-6 col-lg-4">
         <div class="card bloghome h-100">
-          <div class="card-img tag-overlay"> <a href=""><img class="card-img" src="images/pmwani.jpg" alt="pmwani"></a> <a href="#" class="btn btn-dark btn-sm">Telecom</a> </div>
+          <div class="card-img tag-overlay"> <a href="{{url( __('voyager::post.post_slug').$data->category->slug.'/'.$data->service->slug.'/'.$data->slug)}}"><img class="card-img" src="{{Voyager::image($data->image)}}" alt="{{$data->title}}"></a> <a href="{{url( __('voyager::post.post_slug').$data->category->slug.'/'.$data->service->slug)}}" class="btn btn-dark btn-sm">{{$data->service->title}}</a> </div>
           <div class="card-body pt-2">
-            <h4 class="card-title"> <a href="#">What is PM WANI Scheme & what you need to know about it? </a></h4>
-            <small class="text-muted cat"> <i class="fa fa-calendar "></i> December 23, 2020 <span class="pull-right"> <i class="fa fa-user-o "></i> Registrationwala</span> </small>
-<!--            <p class="card-text">When it comes to the concept of digital India, it’s the presence of Wi-Fi connection and the access that comes...</p>
--->            <a href="#" class="btn btn-sm btn-outline-dark  center-block w-50 mt-2">Read more</a> </div>
+            <h4 class="card-title"> <a href="{{url( __('voyager::post.post_slug').$data->category->slug.'/'.$data->service->slug.'/'.$data->slug)}}">{{$data->title}} </a></h4>
+            <small class="text-muted cat"> <i class="fa fa-calendar "></i> {{date('F d, Y',strtotime($data->created_at))}} <span class="pull-right"> <i class="fa fa-user-o "></i> Registrationwala</span> </small>
+            <a href="{{url( __('voyager::post.post_slug').$data->category->slug.'/'.$data->service->slug.'/'.$data->slug)}}" class="btn btn-sm btn-outline-dark  center-block w-50 mt-2">Read more</a> </div>
         </div>
       </div>
-      <div class="col-12 col-sm-8 col-md-6 col-lg-4">
-        <div class="card bloghome h-100">
-          <div class="card-img tag-overlay"> <a href=""><img class="card-img" src="images/pmwani.jpg" alt="pmwani"></a> <a href="#" class="btn btn-dark btn-sm">Telecom</a> </div>
-          <div class="card-body pt-2">
-            <h4 class="card-title"> <a href="#">What is PM WANI Scheme & what you need to know about it? </a></h4>
-            <small class="text-muted cat"> <i class="fa fa-calendar "></i> December 23, 2020 <span class="pull-right"> <i class="fa fa-user-o "></i> Registrationwala</span> </small>
-<!--            <p class="card-text">When it comes to the concept of digital India, it’s the presence of Wi-Fi connection and the access that comes...</p>
--->            <a href="#" class="btn btn-sm btn-outline-dark  center-block w-50 mt-2">Read more</a> </div>
-        </div>
-      </div>
+      @endforeach
     </div>
     <hr />
-    
-     <div class="row mb-4 ">
-      
+    <div class="row mb-4">
+
+      @foreach($post->servicesr as $data)
       <div class="col-12 col-sm-8 col-md-6 col-lg-4">
         <div class="card bloghome h-100">
-          <div class="card-img tag-overlay"> <a href=""><img class="card-img" src="images/bis.jpg" alt="bis"></a> <a href="#" class="btn btn-dark btn-sm">BIS Certification
-</a> </div>
+          <div class="card-img tag-overlay"> <a href="{{url( __('voyager::post.post_slug').$data->category->slug.'/'.$data->service->slug.'/'.$data->slug)}}"><img class="card-img" src="{{Voyager::image($data->image)}}" alt="{{$data->title}}"></a> <a href="{{url( __('voyager::post.post_slug').$data->category->slug.'/'.$data->service->slug)}}" class="btn btn-dark btn-sm">{{$data->service->title}}</a> </div>
           <div class="card-body pt-2">
-            <h4 class="card-title"> <a href="#">What is BIS for toys and why you should care about it? </a></h4>
-            <small class="text-muted cat"> <i class="fa fa-calendar "></i> December 23, 2020 <span class="pull-right"> <i class="fa fa-user-o "></i> Registrationwala</span> </small>
-<!--            <p class="card-text">When it comes to the concept of digital India, it’s the presence of Wi-Fi connection and the access that comes...</p>
--->            <a href="#" class="btn btn-sm btn-outline-dark  center-block w-50 mt-2">Read more</a> </div>
+            <h4 class="card-title"> <a href="{{url( __('voyager::post.post_slug').$data->category->slug.'/'.$data->service->slug.'/'.$data->slug)}}">{{$data->title}} </a></h4>
+            <small class="text-muted cat"> <i class="fa fa-calendar "></i> {{date('F d, Y',strtotime($data->created_at))}} <span class="pull-right"> <i class="fa fa-user-o "></i> Registrationwala</span> </small>
+            <a href="{{url( __('voyager::post.post_slug').$data->category->slug.'/'.$data->service->slug.'/'.$data->slug)}}" class="btn btn-sm btn-outline-dark  center-block w-50 mt-2">Read more</a> </div>
         </div>
       </div>
-      
-      
-      
-      <div class="col-12 col-sm-8 col-md-6 col-lg-4">
-        <div class="card bloghome h-100">
-          <div class="card-img tag-overlay"> <a href=""><img class="card-img" src="images/bis.jpg" alt="bis"></a> <a href="#" class="btn btn-dark btn-sm">BIS Certification
-</a> </div>
-          <div class="card-body pt-2">
-            <h4 class="card-title"> <a href="#">What is BIS for toys and why you should care about it? </a></h4>
-            <small class="text-muted cat"> <i class="fa fa-calendar "></i> December 23, 2020 <span class="pull-right"> <i class="fa fa-user-o "></i> Registrationwala</span> </small>
-<!--            <p class="card-text">When it comes to the concept of digital India, it’s the presence of Wi-Fi connection and the access that comes...</p>
--->            <a href="#" class="btn btn-sm btn-outline-dark  center-block w-50 mt-2">Read more</a> </div>
-        </div>
-      </div>
-      
+      @endforeach
       <div class="col-12 col-sm-8 col-md-6 col-lg-4">
         <div class="card bloghome h-100 justify-content-center align-items-center">
           
-          <img src="images/bis-logo.png" alt="bis" />
-          <div class="h3"> <strong>BIS Certification</strong></div> 
-             <a class="cbtn btn-4 w-50 text-white text-center mb-2">View All</a>
+          <img src="{{Voyager::image($post->image)}}" alt="telecom" />
+          <div class="h2"> <strong>{{$post->catr}}</strong></div> 
+             <a class="cbtn btn-4 text-white  w-50 text-center mb-2" href="{{url( __('voyager::post.post_slug').$post->catrslug)}}">View All</a>
         </div>
       </div>
     </div>
     <hr />
     
+    @endforeach
+    @endif
+  @if($letestBlog)  
   <div class="row">
       <div class="col-md-12">
       <h2 class="h4 text-bold"> What's latest in Registration</h2>
@@ -377,8 +291,9 @@
       
     </div>
   </div>
+  @endif
 </section>
-@endif
+
 @if($wps)
 <section class="testimonials section">
   <div class="container">
