@@ -230,7 +230,7 @@
       @foreach($data->posts as $lsb)
       <div class="col-12 col-sm-8 col-md-6 col-lg-4">
         <div class="card bloghome h-100">
-          <div class="card-img tag-overlay"> <a href="{{url( __('voyager::post.post_slug').$data->category->slug.'/'.$data->slug.'/'.$lsb->slug)}}"> <img class="card-img" src="{{Voyager::image($lsb->image)}}" alt="{{$lsb->title}}"></a> <a href="{{url( __('voyager::post.post_slug').$data->category->slug)}}" class="btn btn-dark btn-sm">{{$data->category->nane}}</a> </div>
+          <div class="card-img tag-overlay"> <a href="{{url( __('voyager::post.post_slug').$data->category->slug.'/'.$data->slug.'/'.$lsb->slug)}}"> <img class="card-img" src="{{Voyager::image($lsb->image)}}" alt="{{$lsb->title}}"></a> <a href="{{url( __('voyager::post.post_slug').$data->category->slug)}}" class="btn btn-dark btn-sm">{{$data->category->name}}</a> </div>
           <div class="card-body pt-2">
             <h4 class="card-title"> <a href="{{url( __('voyager::post.post_slug').$data->category->slug.'/'.$data->slug.'/'.$lsb->slug)}}">{{$lsb->heading}}</a></h4>
             <small class="text-muted cat"> <i class="fa fa-calendar "></i> {{date('F d, Y',strtotime($lsb->publish_date))}} <span class="pull-right"> <i class="fa fa-user-o "></i> Registrationwala</span> </small>
