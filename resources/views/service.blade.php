@@ -217,7 +217,7 @@
 @include('includes.otherServices')
 @endif
 @include('includes.ourClients')
-@if($data->posts)
+@if($data->posts->count()>0)
 <section class="section bg-light">
   <div class="container">
     <div class="row">
