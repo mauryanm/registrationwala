@@ -14,8 +14,14 @@ class WebController extends Controller
 	public function index($url=null, $city=null)
 	{
 		if($url){
-			$data = Voyager::model('Service')->where('slug',$url)->first();
+			$data = Voyager::model('Service')->where('slug',$url)->with('category')->with([
+                'posts' => function($query) {
+                     $query->take(3);
+                }
+            ])->first();
 			$wcu = Choose::where('status',1)->orderBy('created_at','DESC')->get();
+            $otherservices =  Voyager::model('Service')->select('id','title','heading','price','slug','page_image')->where('category_id',$data->category_id)->where('status',1)->orderBy('created_at','DESC')->limit(5)->get();
+            
 			foreach ($wcu as $key => $value) {
 				$value->icon = json_decode($value->image,true)[0]['download_link'];
 			}
@@ -42,7 +48,7 @@ class WebController extends Controller
                         abort(404, 'Page not found.');
                     }
                 }
-				return Voyager::view('service')->with(compact('data','wcu'));
+				return Voyager::view('service')->with(compact('data','wcu','otherservices'));
 			}else{
 				abort(404, 'Page not found.');
 			}
@@ -80,7 +86,7 @@ class WebController extends Controller
     	$wcu = Choose::where('status',1)->orderBy('created_at','DESC')->get();
     	$data = collect();
         // \Log::info($this->archivelist());
-    	$data->letest = Voyager::model('Post')->where('status','PUBLISHED')->orderBy('created_at','DESC')->take(9)->with('category')->with('service:title,blog_slug as slug,id')->get();
+    	$data->letest = Voyager::model('Post')->where('status','PUBLISHED')->orderBy('created_at','DESC')->take(9)->with('category')->with('service:title,blog_slug as slug,id')->get()->makeHidden(['body','meta_description','meta_keywords']);
     	$data->seo_title = 'Registrationwala';
     	$data->meta_description = '';
     	$data->meta_keywords = '';
@@ -88,6 +94,7 @@ class WebController extends Controller
     	$categoryPost = Voyager::model('Category')->has('posts')->with(array('catposts' => function($query) {
            $query->with('service:title,blog_slug as slug,id');
         }))->get();
+
 
     	return Voyager::view('blog')->with(compact('data','wcu','categoryList','categoryPost'));
     }

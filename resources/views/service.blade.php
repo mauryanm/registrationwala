@@ -7,7 +7,7 @@
 @include('templates.header')
 
 <!--Header form section-->
-<div class="service-section overlay">
+<div class="service-section overlay" style="background-image: url({{Voyager::image($data->image)}});">
   <div class="border-bottom ">
     <div class="container">
       <div class="row no-gutters align-items-center">
@@ -213,6 +213,35 @@
   </div>
 </section>
 
+@if($otherservices)
+@include('includes.otherServices')
+@endif
+@include('includes.ourClients')
+@if($data->posts)
+<section class="section bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h2 class="font-weight-bold mb-1 h3">What's Latest in  {{$data->title}} </h2>
+        <div class="divider-1"> <span></span></div>
+      </div>
+    </div>
+    <div class="row">
+      @foreach($data->posts as $lsb)
+      <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+        <div class="card bloghome h-100">
+          <div class="card-img tag-overlay"> <a href="{{url( __('voyager::post.post_slug').$data->category->slug.'/'.$data->slug.'/'.$lsb->slug)}}"> <img class="card-img" src="{{Voyager::image($lsb->image)}}" alt="{{$lsb->title}}"></a> <a href="{{url( __('voyager::post.post_slug').$data->category->slug)}}" class="btn btn-dark btn-sm">{{$data->category->nane}}</a> </div>
+          <div class="card-body pt-2">
+            <h4 class="card-title"> <a href="{{url( __('voyager::post.post_slug').$data->category->slug.'/'.$data->slug.'/'.$lsb->slug)}}">{{$lsb->heading}}</a></h4>
+            <small class="text-muted cat"> <i class="fa fa-calendar "></i> {{date('F d, Y',strtotime($lsb->publish_date))}} <span class="pull-right"> <i class="fa fa-user-o "></i> Registrationwala</span> </small>
+            <a href="{{url( __('voyager::post.post_slug').$data->category->slug.'/'.$data->slug.'/'.$lsb->slug)}}" class="btn btn-sm btn-outline-dark  center-block w-50 mt-2">Read more</a> </div>
+        </div>
+      </div>
+      @endforeach
+    </div>
+  </div>
+</section>
+@endif
 @endsection
 
 @section('script')

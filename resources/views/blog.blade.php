@@ -41,7 +41,7 @@
                 <div class="blog-content"> <a href="{{url(__('voyager::post.post_slug').$row->category->slug)}}"><span class="home-blog-tag"><i class="fa fa-star" aria-hidden="true"></i> {{$row->category->name}}</span></a>
                   <h2> <a href="{{url(__('voyager::post.post_slug').$row->category->slug.'/'.$row->service->slug.'/'.$row->slug)}}" class="text-white">{{$row->title}} </a></h2>
                   <ul class="list-inline text-white small text-left mb-0">
-                    <li class="list-inline-item"><i class="fa fa-calendar" aria-hidden="true"></i> {{date('F d, Y',strtotime($row->created_at))}}</li>
+                    <li class="list-inline-item"><i class="fa fa-calendar" aria-hidden="true"></i> {{date('F d, Y',strtotime($row->publish_date))}}</li>
                     <li class="list-inline-item"><i class="fa fa-user-o" aria-hidden="true"></i> Registrationwala</li>
                   </ul>
                 </div>
@@ -82,7 +82,7 @@
                       <span class="badge custom-badge"><i class="fa fa-star" aria-hidden="true"></i> Latest News</span> </div>
                     <div class="card-footer">
                       <ul class="list-inline text-muted small mb-0">
-                        <li class="list-inline-item"><i class="fa fa-calendar" aria-hidden="true"></i> {{date('F d, Y',strtotime($row->created_at))}}</li>
+                        <li class="list-inline-item"><i class="fa fa-calendar" aria-hidden="true"></i> {{date('F d, Y',strtotime($row->publish_date))}}</li>
                         <li class="list-inline-item pull-right"><i class="fa fa-user-o" aria-hidden="true"></i> Registrationwala</li>
                       </ul>
                     </div>
@@ -117,7 +117,7 @@
                 <a href="{{url( __('voyager::post.post_slug').$post->category->slug.'/'.$post->service->slug)}}"> <span class="badge custom-badge"><i class="fa fa-star" aria-hidden="true"></i> {{$post->service->title}} </span></a>
                 <p class="mb-0 ellipsis1" >{{$post->excerpt}}</p>
                 <ul class="list-inline text-muted small mb-0 mt-1">
-                  <li class="list-inline-item"><i class="fa fa-calendar" aria-hidden="true"></i>  {{date('F d, Y',strtotime($post->created_at))}}</li>
+                  <li class="list-inline-item"><i class="fa fa-calendar" aria-hidden="true"></i>  {{date('F d, Y',strtotime($post->publish_date))}}</li>
                   <li class="list-inline-item pull-right"><i class="fa fa-user-o" aria-hidden="true"></i> Registrationwala</li>
                 </ul>
               </div>

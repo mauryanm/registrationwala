@@ -28,4 +28,9 @@ class Service extends Model
     {
         return $this->belongsTo(self::class);
     }
+
+    public function category()
+    {
+        return $this->belongsTo(Voyager::modelClass('Category'));
+    }
 }

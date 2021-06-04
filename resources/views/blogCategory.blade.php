@@ -38,7 +38,7 @@
                     <p class="mb-0 mt-1 ellipsis2 text-justify" >{{$post->excerpt}}</p>
 
                     <ul class="list-inline text-muted small mb-0 mt-1">
-                      <li class="list-inline-item"><i class="fa fa-calendar" aria-hidden="true"></i> {{date('F d, Y',strtotime($post->created_at))}}</li>
+                      <li class="list-inline-item"><i class="fa fa-calendar" aria-hidden="true"></i> {{date('F d, Y',strtotime($post->publish_date))}}</li>
                       <li class="list-inline-item pull-right"><i class="fa fa-user-o" aria-hidden="true"></i> Registrationwala</li>
                     </ul>
                   </div>

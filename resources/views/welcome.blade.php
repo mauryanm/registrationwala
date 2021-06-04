@@ -237,7 +237,7 @@
           <div class="card-img tag-overlay"> <a href="{{url( __('voyager::post.post_slug').$data->category->slug.'/'.$data->service->slug.'/'.$data->slug)}}"><img class="card-img" src="{{Voyager::image($data->image)}}" alt="{{$data->title}}"></a> <a href="{{url( __('voyager::post.post_slug').$data->category->slug.'/'.$data->service->slug)}}" class="btn btn-dark btn-sm">{{$data->service->title}}</a> </div>
           <div class="card-body pt-2">
             <h4 class="card-title"> <a href="{{url( __('voyager::post.post_slug').$data->category->slug.'/'.$data->service->slug.'/'.$data->slug)}}">{{$data->title}} </a></h4>
-            <small class="text-muted cat"> <i class="fa fa-calendar "></i> {{date('F d, Y',strtotime($data->created_at))}} <span class="pull-right"> <i class="fa fa-user-o "></i> Registrationwala</span> </small>
+            <small class="text-muted cat"> <i class="fa fa-calendar "></i> {{date('F d, Y',strtotime($data->publish_date))}} <span class="pull-right"> <i class="fa fa-user-o "></i> Registrationwala</span> </small>
             <a href="{{url( __('voyager::post.post_slug').$data->category->slug.'/'.$data->service->slug.'/'.$data->slug)}}" class="btn btn-sm btn-outline-dark  center-block w-50 mt-2">Read more</a> </div>
         </div>
       </div>
@@ -252,7 +252,7 @@
           <div class="card-img tag-overlay"> <a href="{{url( __('voyager::post.post_slug').$data->category->slug.'/'.$data->service->slug.'/'.$data->slug)}}"><img class="card-img" src="{{Voyager::image($data->image)}}" alt="{{$data->title}}"></a> <a href="{{url( __('voyager::post.post_slug').$data->category->slug.'/'.$data->service->slug)}}" class="btn btn-dark btn-sm">{{$data->service->title}}</a> </div>
           <div class="card-body pt-2">
             <h4 class="card-title"> <a href="{{url( __('voyager::post.post_slug').$data->category->slug.'/'.$data->service->slug.'/'.$data->slug)}}">{{$data->title}} </a></h4>
-            <small class="text-muted cat"> <i class="fa fa-calendar "></i> {{date('F d, Y',strtotime($data->created_at))}} <span class="pull-right"> <i class="fa fa-user-o "></i> Registrationwala</span> </small>
+            <small class="text-muted cat"> <i class="fa fa-calendar "></i> {{date('F d, Y',strtotime($data->publish_date))}} <span class="pull-right"> <i class="fa fa-user-o "></i> Registrationwala</span> </small>
             <a href="{{url( __('voyager::post.post_slug').$data->category->slug.'/'.$data->service->slug.'/'.$data->slug)}}" class="btn btn-sm btn-outline-dark  center-block w-50 mt-2">Read more</a> </div>
         </div>
       </div>
@@ -283,7 +283,7 @@
           <div class="card-img tag-overlay"> <a href="{{url( __('voyager::post.post_slug').$blog->category->slug.'/'.$blog->service->slug.'/'.$blog->slug)}}"><img class="card-img" src="{{Voyager::image($blog->thumbnail('medium'))}}" alt="{{$blog->title}}"></a> <a href="{{url( __('voyager::post.post_slug').$blog->category->slug.'/'.$blog->service->slug)}}" class="btn btn-dark btn-sm">{{$blog->service->title}}</a> </div>
           <div class="card-body pt-2">
             <h4 class="card-title"> <a href="{{url( __('voyager::post.post_slug').$blog->category->slug.'/'.$blog->service->slug.'/'.$blog->slug)}}">{{$blog->title}}</a></h4>
-            <small class="text-muted cat"> <i class="fa fa-calendar "></i> {{date('F d, Y',strtotime($blog->created_at))}} <span class="pull-right"> <i class="fa fa-user-o "></i> Registrationwala</span> </small>
+            <small class="text-muted cat"> <i class="fa fa-calendar "></i> {{date('F d, Y',strtotime($blog->publish_date))}} <span class="pull-right"> <i class="fa fa-user-o "></i> Registrationwala</span> </small>
             <a href="{{url( __('voyager::post.post_slug').$blog->category->slug.'/'.$blog->service->slug.'/'.$blog->slug)}}" class="btn btn-sm btn-outline-dark  center-block w-50 mt-2">Read more</a> </div>
         </div>
       </div>

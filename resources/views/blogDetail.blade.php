@@ -25,7 +25,7 @@
       <div class="col-md-12 ">
         <h1 class="font-weight-bold h3 mt-3 mb-2 font-weight-bold">{{$data->title}}</h1>
         <ul class="list-inline  small text-left mb-3">
-          <li class="list-inline-item"><i class="fa fa-calendar" aria-hidden="true"></i> {{date('F d, Y',strtotime($data->created_at))}}</li>
+          <li class="list-inline-item"><i class="fa fa-calendar" aria-hidden="true"></i> {{date('F d, Y',strtotime($data->publish_date))}}</li>
           <li class="list-inline-item"><i class="fa fa-user-o" aria-hidden="true"></i> Registrationwala</li>
         </ul>
       </div>
