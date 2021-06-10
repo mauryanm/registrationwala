@@ -113,7 +113,7 @@ class WebController extends Controller
 	     //       $query->with('service:title,blog_slug  as slug,id');
 	     //    }))->get();
 	    	$categoryPost = Voyager::model('Category')->where('id',$catId)->with(array('services' => function($query) {
-	           $query->select('title','blog_slug as slug','category_id','id')->has('posts')->with('posts');
+	           $query->select('title','blog_slug as slug','category_id','id')->has('posts');
 	        }))->first();
 		    }else{
 		    	abort(404, 'Page not found.');

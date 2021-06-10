@@ -219,6 +219,7 @@ function storeformdata(form,btn){
             },
             error: function(data)
             {
+              console.log(data)
               $('html').css('cursor', 'default');
               $(btn).prop('disabled', false);
 
