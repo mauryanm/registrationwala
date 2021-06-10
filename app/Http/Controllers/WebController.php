@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use TCG\Voyager\Facades\Voyager;
 use \App\Choose;
-use \App\lead;
+use \App\Lead;
 use \App\City;
 
 
@@ -69,7 +69,7 @@ class WebController extends Controller
 
         $data = $request->except('_token','_method');
         $data['status'] = 0;
-        $insData = lead::create($data); 
+        $insData = Lead::create($data); 
 
 		$msg = ['Your request submitted successfully!'];
         $type = 'success';
