@@ -19,7 +19,6 @@ class WebController extends Controller
                      $query->take(3);
                 }
             ])->first();
-            Log::info($url);
 			$wcu = Choose::where('status',1)->orderBy('created_at','DESC')->get();
             $otherservices =  Voyager::model('Service')->select('id','title','heading','price','slug','page_image')->where('category_id',$data->category_id)->where('status',1)->where('id','!=',$data->id)->orderBy('created_at','DESC')->limit(5)->get();
             
