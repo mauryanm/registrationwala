@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+
 Route::get('/', 'App\Http\Controllers\HomeController@index');
 Route::get('/service-list', 'App\Http\Controllers\WebController@servicelist');
 ############# Other pages ###############
@@ -30,4 +31,8 @@ Route::post('/lead-form', 'App\Http\Controllers\WebController@leadfrom');
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
+###################### Other service pages ##########
+
+
+Route::get('/copyright-registration/{url?}/{city?}', 'App\Http\Controllers\WebController@index');
 Route::get('/{url?}/{city?}', 'App\Http\Controllers\WebController@index');
