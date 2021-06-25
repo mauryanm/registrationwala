@@ -28,6 +28,7 @@ Route::get('/'.__('voyager::post.post_slug').'{category_url}/{Service_url}', 'Ap
 Route::get('/'.__('voyager::post.post_slug').'{category_url}', 'App\Http\Controllers\WebController@rwpostcategory');
 Route::get('/'.__('voyager::post.post_slug'), 'App\Http\Controllers\WebController@rwposts');
 Route::post('/lead-form', 'App\Http\Controllers\WebController@leadfrom');
+Route::post('/lead-form', 'App\Http\Controllers\MailController@sendmail');
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });

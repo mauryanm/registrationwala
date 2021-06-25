@@ -7,7 +7,9 @@ use TCG\Voyager\Facades\Voyager;
 use \App\Choose;
 use \App\Lead;
 use \App\City;
-
+use Mail;
+use Config;
+use Illuminate\Support\Str;
 
 class WebController extends Controller
 {
@@ -184,5 +186,9 @@ class WebController extends Controller
     // ->with('category')
     // ->get();
     return $links;
+    }
+
+    private function sendMail(){
+        
     }
 }
