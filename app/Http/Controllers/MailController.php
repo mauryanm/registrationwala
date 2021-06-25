@@ -15,7 +15,7 @@ class MailController extends Controller {
     {
       // ini_set('max_execution_time', 0);
       
-       Config::set('mail.driver', 'sendmail');
+       // Config::set('mail.mailer', 'sendmail');
        // Config::set('mail.host', $request->input('txt_smtp_server'));
        // Config::set('mail.username', $request->input('txt_username'));
        // Config::set('mail.password', $request->input('txt_password'));

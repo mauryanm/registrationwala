@@ -204,6 +204,7 @@ function storeformdata(form,btn){
             data: $(form).serialize(),
             success: function(data)
             {
+              console.log(data)
               $('html').css('cursor', 'default');
               $(btn).prop('disabled', false);
               var upara = '';

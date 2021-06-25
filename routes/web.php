@@ -23,6 +23,8 @@ Route::get('/service-list', 'App\Http\Controllers\WebController@servicelist');
 Route::get('/privacy-policy', 'App\Http\Controllers\PageController@pages');
 
 ############ End Other Pages ############
+
+############ Blog Pages ############
 Route::get('/'.__('voyager::post.post_slug').'{category_url}/{Service_url}/{url}', 'App\Http\Controllers\WebController@rwpost');
 Route::get('/'.__('voyager::post.post_slug').'{category_url}/{Service_url}', 'App\Http\Controllers\WebController@rwpostservice');
 Route::get('/'.__('voyager::post.post_slug').'{category_url}', 'App\Http\Controllers\WebController@rwpostcategory');

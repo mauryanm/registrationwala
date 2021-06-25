@@ -16,6 +16,7 @@ class WebController extends Controller
 	public function index($url=null, $city=null)
 	{
 		if($url){
+            if(Str::contains($url, '.map') || $url=='css' || $url=='js') return;
 			$data = Voyager::model('Service')->where('slug',$url)->with('category')->with([
                 'posts' => function($query) {
                      $query->take(3);
