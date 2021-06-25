@@ -46,7 +46,7 @@ class MailController extends Controller {
         $data['status'] = 0;
         $insData = Lead::create($data);
 
-            $response = array('type' => 'success',"title"=>"",'msg'=>'Test email sent successfully.');
+            $response = array('type' => 'success',"title"=>"",'msg'=>['Test email sent successfully.']);
             return response()->json($response);
 
          }catch(\Swift_TransportException $e){
