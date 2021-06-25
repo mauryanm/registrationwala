@@ -50,7 +50,7 @@ class MailController extends Controller {
             return response()->json($response);
 
          }catch(\Swift_TransportException $e){
-            $response = array('type' => 'error',"title"=>"",'msg'=>$this->customeresponce($e->getMessage()));
+            $response = array('type' => 'error',"title"=>"",'msg'=>$e->getMessage());
             return response()->json($response);
          }
 
