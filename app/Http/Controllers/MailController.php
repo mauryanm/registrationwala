@@ -24,7 +24,7 @@ class MailController extends Controller {
        // if($request->has('txt_ssl')) Config::set('mail.encryption', "ssl");
        // else Config::set('mail.encryption', "tls");
 
-       
+       mail("ajaymaurya.it@gmail.com","Registrationwala","Mail bhejat bani.");
        try{
             Mail::send([], [], function($message) use($request) {
             $message->to('ajaymaurya.it@gmail.com')->subject
