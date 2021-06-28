@@ -21,12 +21,12 @@
   </div>
 
   </div>
-<!--Header form section End-->
-<div class="bg-white">
+
+<div class="bg-white p-2 mt-0">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <ol class="breadcrumb radius-0 bg-transparent pt-3  pb-3 m-0">
+        <ol class="breadcrumb radius-0 bg-transparent p-0  m-0">
           <li class="breadcrumb-item"><a href="/">Home</a></li>
           <li class="breadcrumb-item active" aria-current="page">{{$data->excerpt}}</li>
         </ol>
