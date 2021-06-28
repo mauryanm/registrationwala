@@ -20,7 +20,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'App\Http\Controllers\HomeController@index');
 Route::get('/service-list', 'App\Http\Controllers\WebController@servicelist');
 ############# Other pages ###############
-Route::get('/privacy-policy', 'App\Http\Controllers\PageController@pages');
+Route::get('/privacy-policy', 'App\Http\Controllers\PageController@index')->name('privacy-policy');
+Route::get('/about-us', 'App\Http\Controllers\PageController@index')->name('about-us');
 
 ############ End Other Pages ############
 
