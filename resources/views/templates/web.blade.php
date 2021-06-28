@@ -61,8 +61,8 @@
   <div class="footer-middle">
     <div class="container">
       <div class="row">
-        <div class="col-md-3 col-sm-6"> 
-          <!--Column1-->
+        {{ menu('Footer', 'rwfooter') }}
+        <!-- <div class="col-md-3 col-sm-6"> 
           <div class="footer-pad">
             <h4> Start a Business</h4>
             <ul class="list-unstyled">
@@ -80,7 +80,6 @@
           </div>
         </div>
         <div class="col-md-3 col-sm-6"> 
-          <!--Column1-->
           <div class="footer-pad">
             <h4> Lisc & Registrations </h4>
             <ul class="list-unstyled">
@@ -89,19 +88,15 @@
               <li><a href="#">Packer License</a></li>
               <li><a href="#">Model Approval Certificate</a></li>
               <li><a href="#">Legal Metrology Certificate</a></li>
-              <li><a href="#">FFMC License
-</a></li>
+              <li><a href="#">FFMC License</a></li>
               <li><a href="#">Ayush Certificate</a></li>
               <li><a href="#">FEMA consultants</a></li>
-              <li><a href="#">BIS for Toys
-</a></li>
-              <li><a href="#">Payment Gateway License
-</a></li>
+              <li><a href="#">BIS for Toys</a></li>
+              <li><a href="#">Payment Gateway License</a></li>
             </ul>
           </div>
         </div>
         <div class="col-md-3 col-sm-6"> 
-          <!--Column1-->
           <div class="footer-pad">
             <h4> Other Link</h4>
             <ul class="list-unstyled">
@@ -117,7 +112,7 @@
               <li><a href="#">Contact us </a></li>
             </ul>
           </div>
-        </div>
+        </div> -->
         <div class="col-md-3">
           <h4>Follow Us</h4>
           <ul class="list-inline mt-4">
