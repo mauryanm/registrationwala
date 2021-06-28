@@ -22,6 +22,12 @@ Route::get('/service-list', 'App\Http\Controllers\WebController@servicelist');
 ############# Other pages ###############
 Route::get('/privacy-policy', 'App\Http\Controllers\PageController@index')->name('privacy-policy');
 Route::get('/about-us', 'App\Http\Controllers\PageController@index')->name('about-us');
+Route::get('/refund-policy', 'App\Http\Controllers\PageController@index')->name('refund-policy');
+Route::get('/cancellation', 'App\Http\Controllers\PageController@index')->name('cancellation');
+Route::get('/terms-condition', 'App\Http\Controllers\PageController@index')->name('terms-condition');
+Route::get('/our-coupon-partner', 'App\Http\Controllers\PageController@index')->name('our-coupon-partner');
+Route::get('/e-books', 'App\Http\Controllers\PageController@index')->name('e-books');
+Route::get('/videos', 'App\Http\Controllers\PageController@index')->name('videos');
 
 ############ End Other Pages ############
 
