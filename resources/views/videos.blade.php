@@ -1,7 +1,7 @@
 @extends('templates.web')
-@section('title', $data->title)
-@section('description', $data->meta_description)
-@section('keywords', $data->meta_keywords)
+@section('title', 'Our Videos - Registrationwala Videos')
+@section('description', 'Check out our vast video collection. Through youtube videos, Registrationwala aims to educate you about business licenses.')
+@section('keywords', 'Videos')
 @section('content')
 @include('templates.header')
 
