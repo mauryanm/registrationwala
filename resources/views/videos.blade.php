@@ -87,7 +87,7 @@
   
     <div class="row">
       @foreach($data['items'] as $item)
-      {{ $item['id']['videoId'] }}
+      {{$item['id']['videoId']}}
       <div class="col-md-4">
       <div class="embed-responsive radius20 border embed-responsive-16by9"><iframe allowfullscreen="" class="embed-responsive-item" src="https://www.youtube.com/embed/"></iframe></div>
       <div class="p-2 ">
