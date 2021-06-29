@@ -90,7 +90,7 @@
       @php
       $vid = $item['id'];
 print_r($vid);
-print_r($vid['videoid']);
+print_r($vid['videoId']);
       @endphp
       <div class="col-md-4">
       <div class="embed-responsive radius20 border embed-responsive-16by9"><iframe allowfullscreen="" class="embed-responsive-item" src="https://www.youtube.com/embed/"></iframe></div>
