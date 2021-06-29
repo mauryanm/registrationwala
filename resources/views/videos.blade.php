@@ -88,7 +88,9 @@
     <div class="row">
       @foreach($data['items'] as $item)
       @php
-print_r($item['id']['videoId']);
+      $vid = $item['id'];
+print_r($vid);
+print_r($vid['videoid']);
       @endphp
       <div class="col-md-4">
       <div class="embed-responsive radius20 border embed-responsive-16by9"><iframe allowfullscreen="" class="embed-responsive-item" src="https://www.youtube.com/embed/"></iframe></div>
