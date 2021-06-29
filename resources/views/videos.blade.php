@@ -91,6 +91,7 @@ print_r($data);
   
   
     <div class="row">
+      @foreach($data['items'] as $video)
       <div class="col-md-4">
       <div class="embed-responsive radius20 border embed-responsive-16by9"><iframe allowfullscreen="" class="embed-responsive-item" src="https://www.youtube.com/embed/oISVBSoeq1I"></iframe></div>
       <div class="p-2 ">
@@ -98,7 +99,8 @@ print_r($data);
       <p class="text-justify">BIS registration is not mandatory for toy manufacturers. The BIS certificate for toys can only be acquired once the BIS requirements are fulfilled as per the ..</p>
       </div>
     </div>
-          <div class="col-md-4">
+    @endforeach
+    <div class="col-md-4">
       <div class="embed-responsive radius20 border embed-responsive-16by9"><iframe allowfullscreen="" class="embed-responsive-item" src="https://www.youtube.com/embed/4I-F4YgP2VQ"></iframe></div>
       <div class="p-2 ">
      <h2 class="h6 ">How to get AYUSH License | How to apply for AYUSH License?</h2>
