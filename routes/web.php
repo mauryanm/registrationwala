@@ -27,7 +27,7 @@ Route::get('/cancellation', 'App\Http\Controllers\PageController@index')->name('
 Route::get('/terms-condition', 'App\Http\Controllers\PageController@index')->name('terms-condition');
 Route::get('/our-coupon-partner', 'App\Http\Controllers\PageController@index')->name('our-coupon-partner');
 Route::get('/e-books', 'App\Http\Controllers\PageController@index')->name('e-books');
-Route::get('/videos', 'App\Http\Controllers\PageController@index')->name('videos');
+Route::get('/videos', 'App\Http\Controllers\PageController@videos')->name('videos');
 
 ############ End Other Pages ############
 
