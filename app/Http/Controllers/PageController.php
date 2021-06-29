@@ -25,6 +25,9 @@ class PageController extends Controller {
         $response = Http::get('https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId=UC99xCarIiulzbP68z2VQPRg&maxResults=50&key=AIzaSyBCEK2zCWga931ug117VbwY9WAH_HaXU64');
 
         $data = $response->json();
+        $data->title = 'Our Videos - Registrationwala Videos';
+        $data->meta_description = 'Check out our vast video collection. Through youtube videos, Registrationwala aims to educate you about business licenses.';
+        $data->meta_keywords = 'Videos';
         return Voyager::view('videos')->with(compact('data')); 
 
 
