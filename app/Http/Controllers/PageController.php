@@ -48,7 +48,7 @@ class PageController extends Controller {
         } else {
             $videoList = json_decode($response);
         }
-        \Log::info(print_r($user, true));
+        \Log::info(print_r($videoList, true));
 
         $response = Http::get('https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId=UC99xCarIiulzbP68z2VQPRg&maxResults=50&key=AIzaSyBCEK2zCWga931ug117VbwY9WAH_HaXU64');
 
