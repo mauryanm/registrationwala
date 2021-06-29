@@ -87,6 +87,7 @@
   
     <div class="row">
       @foreach($data['items'] as $item)
+      @dd($item['id']['videoId'])
       @php
       $vid = $item['id'];
 print_r($vid);
