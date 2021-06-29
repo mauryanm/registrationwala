@@ -82,26 +82,21 @@
       </div>
       
     </div>
-  
-<pre>
-  @php
-print_r($data);
-  @endphp
-</pre>
+
   
   
     <div class="row">
-      @foreach($data['items'] as $video)
+      @foreach($data['items'] as $item)
       <div class="col-md-4">
-      <div class="embed-responsive radius20 border embed-responsive-16by9"><iframe allowfullscreen="" class="embed-responsive-item" src="https://www.youtube.com/embed/oISVBSoeq1I"></iframe></div>
+      <div class="embed-responsive radius20 border embed-responsive-16by9"><iframe allowfullscreen="" class="embed-responsive-item" src="https://www.youtube.com/embed/{{$item->id->videoId}}"></iframe></div>
       <div class="p-2 ">
-      <h2 class="h6 ">BIS Certificate for toys | process of getting BIS registration</h2>
-      <p class="text-justify">BIS registration is not mandatory for toy manufacturers. The BIS certificate for toys can only be acquired once the BIS requirements are fulfilled as per the ..</p>
+      <h2 class="h6 ">{{$item->snippet->title}}</h2>
+      <p class="text-justify">{{$item->snippet->description}}</p>
       </div>
     </div>
     @endforeach
     <div class="col-md-4">
-      <div class="embed-responsive radius20 border embed-responsive-16by9"><iframe allowfullscreen="" class="embed-responsive-item" src="https://www.youtube.com/embed/4I-F4YgP2VQ"></iframe></div>
+      <div class="embed-responsive radius20 border embed-responsive-16by9"><iframe allowfullscreen="" class="embed-responsive-item" src="https://www.youtube.com/embed/{{$item->id->videoId}}"></iframe></div>
       <div class="p-2 ">
      <h2 class="h6 ">How to get AYUSH License | How to apply for AYUSH License?</h2>
       <p class="text-justify">In this video, you'll know how to get AYUSH License. Know the answers to every question from how to apply for AYUSH License to the documents you need.</p>
