@@ -22,9 +22,9 @@ class PageController extends Controller {
 
     public function videos()
     {
-        $response = Http::get('https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId=UC99xCarIiulzbP68z2VQPRg&maxResults=50&key=AIzaSyBCEK2zCWga931ug117VbwY9WAH_HaXU64');
+        $data = Http::get('https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId=UC99xCarIiulzbP68z2VQPRg&maxResults=50&key=AIzaSyBCEK2zCWga931ug117VbwY9WAH_HaXU64');
 
-        $data = $response->json();
+        // $data = $response->json();
         return Voyager::view('videos')->with(compact('data')); 
 
 
