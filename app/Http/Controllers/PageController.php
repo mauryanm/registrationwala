@@ -25,7 +25,7 @@ class PageController extends Controller {
         $response = Http::get('https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId=UC99xCarIiulzbP68z2VQPRg&maxResults=50&key=AIzaSyBCEK2zCWga931ug117VbwY9WAH_HaXU64');
 
         $data = $response->json();
-        return Voyager::view('videis')->with(compact('data')); 
+        return Voyager::view('videos')->with(compact('data')); 
 
 
     }
