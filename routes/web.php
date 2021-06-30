@@ -28,7 +28,7 @@ Route::get('/terms-condition', 'App\Http\Controllers\PageController@index')->nam
 Route::get('/our-coupon-partner', 'App\Http\Controllers\PageController@index')->name('our-coupon-partner');
 Route::get('/e-books', 'App\Http\Controllers\PageController@index')->name('e-books');
 Route::get('/videos', 'App\Http\Controllers\PageController@videos')->name('videos');
-
+Route::get("/contact-us", function(){return view("contactus");});
 ############ End Other Pages ############
 
 ############ Blog Pages ############
