@@ -22,7 +22,7 @@
 
 <section class="pb-5 pt-2 bg-white">
   <div class="container">
-<div class="row">
+    <div class="row">
       <div class="col-md-12 text-center">
         <div class="contentbg">Our video gallery</div>
         <h1 class="h3 zindex  text-bold text-center mb-1">Our video gallery</h1>
@@ -34,7 +34,7 @@
   <div class="container">
   
   
-  <div class="row">
+  <!-- <div class="row">
       <div class="col-md-6">
         <div class="mb-5">
            <label class="font-weight-bold">Search Videos</label>
@@ -55,33 +55,33 @@
 
       
       <div class="form-group">
-  <label class="font-weight-bold">Category</label>
-  <select class="form-control" >
-    <option value="All">All </option>
-    <option value="AYUSH License ">AYUSH License </option>
-    <option value="BIS Certificate ">BIS Certificate  </option>
-    <option value="EPR Registration ">EPR Registration </option>
-    <option value=" BEE Certification"> BEE Certification </option>
-  </select>
-</div>
+        <label class="font-weight-bold">Category</label>
+        <select class="form-control" >
+          <option value="All">All </option>
+          <option value="AYUSH License ">AYUSH License </option>
+          <option value="BIS Certificate ">BIS Certificate  </option>
+          <option value="EPR Registration ">EPR Registration </option>
+          <option value=" BEE Certification"> BEE Certification </option>
+        </select>
+      </div>
       
       </div>
       <div class="col-md-3">
 
       
       <div class="form-group">
-  <label class="font-weight-bold">Archives</label>
-  <select class="form-control" id="sel1">
-    <option>2021</option>
-    <option>2020</option>
-    <option>2019</option>
-    <option>2018</option>
-  </select>
-</div>
+        <label class="font-weight-bold">Archives</label>
+        <select class="form-control" id="sel1">
+          <option>2021</option>
+          <option>2020</option>
+          <option>2019</option>
+          <option>2018</option>
+        </select>
+        </div>
       
       </div>
       
-    </div>
+    </div> -->
 
   
   
