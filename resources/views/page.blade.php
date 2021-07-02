@@ -6,7 +6,7 @@
 @include('templates.header')
 
 <!--Header form section-->
-@if($request->route()->getName()=='about-us')
+@if(Request::route()->getName()=='about-us')
 {!! $data->body !!}
 @else
 <div class="innerpages-bg">
