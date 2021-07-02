@@ -6,7 +6,9 @@
 @include('templates.header')
 
 <!--Header form section-->
-
+@if($request->route()->getName()=='about-us')
+{!! $data->body !!}
+@else
 <div class="innerpages-bg">
   <div class="container">
     <div class="row align-items-center h-100">
@@ -45,7 +47,7 @@
   {!! $data->body !!}
   </div>
 </section>
-
+@endif
 @endsection
 
 @section('script')
