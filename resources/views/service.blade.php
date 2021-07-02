@@ -2,7 +2,7 @@
 @section('title', $data->seo_title)
 @section('description', $data->meta_description)
 @section('keywords', $data->meta_keywords)
-@section('bodyData', 'data-spy=scrol" data-target=#side')
+@section('bodyData', 'data-spy=scrol data-target=#side')
 @section('content')
 @include('templates.header')
 

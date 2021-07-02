@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="{{ asset('/css/style.css') }}" crossorigin="anonymous" />
 
  </head>
- <body class="" @yield('bodyData')>
+ <body class="" data-spy="scroll" data-target="#side" @yield("bodyData")>
   @yield('content')
 </div>
 <section class="subscription bg-white pt-4">
