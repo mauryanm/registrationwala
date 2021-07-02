@@ -29,6 +29,7 @@ Route::get('/our-coupon-partner', 'App\Http\Controllers\PageController@index')->
 Route::get('/e-books', 'App\Http\Controllers\PageController@index')->name('e-books');
 Route::get('/videos', 'App\Http\Controllers\PageController@videos')->name('videos');
 Route::get("/contact-us", function(){return view("contactus");});
+Route::get('/our-coupon-partner', 'App\Http\Controllers\PageController@couponpartner')->name('our-coupon-partner');
 ############ End Other Pages ############
 
 ############ Blog Pages ############

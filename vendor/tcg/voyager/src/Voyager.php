@@ -37,6 +37,7 @@ use TCG\Voyager\Models\PeopleSay;
 use TCG\Voyager\Models\Lead;
 use TCG\Voyager\Models\Choose;
 use TCG\Voyager\Models\HomeService;
+use TCG\Voyager\Models\CouponPartner;
 
 class Voyager
 {
@@ -78,6 +79,7 @@ class Voyager
         'PeopleSay'   => PeopleSay::class,
         'Choose'      => Choose::class,
         'HomeService' => HomeService::class,
+        'CouponPartner'=>CouponPartner::class,
     ];
 
     public $setting_cache = null;

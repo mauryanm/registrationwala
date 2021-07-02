@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use TCG\Voyager\Facades\Voyager;
 use Illuminate\Support\Facades\Http;
+use App\CouponPartner;
 
 class PageController extends Controller {
     public function index(Request $request)
@@ -28,5 +29,10 @@ class PageController extends Controller {
         return Voyager::view('videos')->with(compact('data')); 
 
 
+    }
+    public function couponpartner()
+    {
+        $data = CouponPartner::where('status','ACTIVE')->get();
+        return Voyager::view('couponpartner')->with(compact('data')); 
     }
 }
