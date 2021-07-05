@@ -193,4 +193,50 @@ class WebController extends Controller
     private function sendMail(){
         
     }
+    public function searchcompany(Request $request, $city=null)
+    {
+        $url = $request->route()->getName();
+        if($url){
+            if(Str::contains($url, '.map') || $url=='css' || $url=='js') return;
+            $data = Voyager::model('Service')->where('slug',$url)->with('category')->with([
+                'posts' => function($query) {
+                     $query->take(3);
+                }
+            ])->first();
+            if(!$data){abort(404, 'Page not found.');}
+            $wcu = Choose::where('status',1)->orderBy('created_at','DESC')->get();
+            $otherservices =  Voyager::model('Service')->select('id','title','heading','price','slug','page_image')->where('category_id',$data->category_id)->where('status',1)->where('id','!=',$data->id)->orderBy('created_at','DESC')->limit(5)->get();
+            
+            foreach ($wcu as $key => $value) {
+                $value->icon = json_decode($value->image,true)[0]['download_link'];
+            }
+            if($data){
+                $pageWasRefreshed = isset($_SERVER['HTTP_CACHE_CONTROL']) && $_SERVER['HTTP_CACHE_CONTROL'] === 'max-age=0';
+
+                if($pageWasRefreshed ) {
+                   //do something because page was refreshed;
+                } else {
+                    $data->increment('hits');
+                }
+                if($city){
+                    $citydata = City::where('slug',$city)->where('status',1)->first();
+                    if($citydata){
+                        $data->heading =$data->heading .' in '.$citydata->name;
+                        $data->sub_heading = str_ireplace('in India','in '.$citydata->name,$data->sub_heading);
+                        $data->body = str_ireplace('in India','in '.$citydata->name,$data->body);
+                        $data->section_1_body = str_ireplace('in India','in '.$citydata->name,$data->section_1_body);
+                        $data->section_2_body = str_ireplace('in India','in '.$citydata->name,$data->section_2_body);
+                        $data->section_3_body = str_ireplace('in India','in '.$citydata->name,$data->section_3_body);
+                        $data->section_4_body = str_ireplace('in India','in '.$citydata->name,$data->section_4_body);
+                        $data->section_5_body = str_ireplace('in India','in '.$citydata->name,$data->section_5_body);
+                    }else{
+                        abort(404, 'Page not found.');
+                    }
+                }
+                return Voyager::view('services.searchcompany')->with(compact('data','wcu','otherservices'));
+            }else{
+                abort(404, 'Page not found.');
+            }
+        }
+    }
 }
