@@ -76,7 +76,7 @@
               </div>
               <div class="pricing-content">
                 {!! $data["section_{$loop->iteration}_body"] !!}
-                <a href="#" class="read">Select</a> </div>
+               </div>
             </div>
           </div>
           @endif
