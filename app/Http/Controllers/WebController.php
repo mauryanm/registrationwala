@@ -91,7 +91,8 @@ class WebController extends Controller
     public function rwposts(){
     	$wcu = Choose::where('status',1)->orderBy('created_at','DESC')->get();
     	$data = collect();
-        // \Log::info($this->archivelist());
+        $archivelists = $this->archivelist();
+        
     	$data->letest = Voyager::model('Post')->where('status','PUBLISHED')->orderBy('created_at','DESC')->take(9)->with('category')->with('service:title,blog_slug as slug,id')->get()->makeHidden(['body','meta_description','meta_keywords']);
     	$data->seo_title = 'Registrationwala';
     	$data->meta_description = '';
@@ -102,7 +103,7 @@ class WebController extends Controller
         }))->get();
 
 
-    	return Voyager::view('blog')->with(compact('data','wcu','categoryList','categoryPost'));
+    	return Voyager::view('blog')->with(compact('data','wcu','categoryList','categoryPost','archivelists'));
     }
     public function rwpostcategory($category_url){
     	$wcu = Choose::where('status',1)->orderBy('created_at','DESC')->get();
@@ -124,8 +125,9 @@ class WebController extends Controller
 		    }else{
 		    	abort(404, 'Page not found.');
 		    }
+            $archivelists = $this->archivelist();
 
-    	return Voyager::view('blogCategory')->with(compact('data','wcu','categoryList','categoryPost'));
+    	return Voyager::view('blogCategory')->with(compact('data','wcu','categoryList','categoryPost','archivelists'));
     }
     public function rwpostservice($category_url,$service_url){
     	$wcu = Choose::where('status',1)->orderBy('created_at','DESC')->get();
@@ -143,8 +145,9 @@ class WebController extends Controller
 		    }else{
 		    	abort(404, 'Page not found.');
 		    }
+            $archivelists = $this->archivelist();
 
-    	return Voyager::view('blogSubCategory')->with(compact('data','wcu','categoryList','catData','posts'));
+    	return Voyager::view('blogSubCategory')->with(compact('data','wcu','categoryList','catData','posts','archivelists'));
     }
     public function rwpost($category_url,$service_url, $url){
     	$data = Voyager::model('Post')->where('slug',$url)->published()->with('service:title,blog_slug as slug,id')->with('category')->first();
@@ -172,24 +175,24 @@ class WebController extends Controller
 
     }
     private function archivelist(){
-        $links = Voyager::model('Post')
-        ->selectRaw('YEAR(created_at) year, MONTH(created_at) month, MONTHNAME(created_at) month_name, COUNT(*) post_count')
-    ->groupBy('year')
-    ->groupBy('month')
-    ->orderBy('year', 'desc')
-    ->orderBy('month', 'desc')
+        $links = Voyager::model('Post')->select('id','title','slug','publish_date','category_id','service_id')
     ->with('service:title,blog_slug as slug,id')
     ->with('category')
+    ->orderBy('publish_date','DESC')
     ->get();
-    // ->select('*',\DB::raw('YEAR(created_at) year, MONTH(created_at) month, MONTHNAME(created_at) month_name, COUNT(*) post_count'))
-    // ->groupBy('year')
-    // ->groupBy('month')
-    // ->orderBy('year', 'desc')
-    // ->orderBy('month', 'desc')
-    // ->with('service:title,slug,id')
-    // ->with('category')
-    // ->get();
-    return $links;
+    if($links){
+        $ardata = array();
+            foreach($links as $row)
+            {
+                $year = date('Y', strtotime($row['publish_date']));
+                $month = date('F', strtotime($row['publish_date']));
+                
+                $ardata[$year][$month][] = $row;
+            }
+        return $ardata;
+    }else{
+        return $links;
+    }
     }
 
     private function sendMail(){

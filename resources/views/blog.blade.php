@@ -101,7 +101,7 @@
   </div>
 </section>
 @foreach($categoryPost as $cp)
-<section class="bg-white pt-5 pb-5">
+<section class="bg-{{ ($loop->iteration%2==0?'light':'white') }} pt-5 pb-5">
   <div class="container">
     <div class="row">
       <div class="col-md-12">

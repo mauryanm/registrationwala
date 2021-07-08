@@ -62,123 +62,37 @@ $ytscount=get_twitter_count("https://www.googleapis.com/youtube/v3/channels?part
                   </div>
                 </div>
               </div>
+              @if($archivelists)
               <h5 class="mb-0 mt-4"> Archive</h5>
               <hr>
               <div id="archive">
                 <div class="card">
-                  <div class="card-header"> <span class="icon-mb-0 text-bold"> <a role="button" data-toggle="collapse" href="#archive2021" aria-expanded="true"> 2021</a> </span> </div>
-                  <div id="archive2021" class="collapse show" data-parent="#archive">
-                  <div id="Jan">
-                      <div class="card-header"> <span class="icon-mb-0">
-                       <a class="collapsed" role="button" data-toggle="collapse" href="#Jan2021" aria-expanded="false"> January 2021 </a> </span> </div>
-                      <div id="Jan2021" class="collapse" data-parent="#Jan">
-                        <ul>
-                          <li><a  href="">Details you need to fill in the application for WPC Certificate </a></li>
-                          <li><a  href="">Details you need to fill in the application for WPC Certificate </a></li>
-                        </ul>
-                      </div>
-                    </div>
-                  
-                    <div id="February">
-                      <div class="card-header"> <span class="icon-mb-0">
-                       <a class="collapsed" role="button" data-toggle="collapse" href="#February2021" aria-expanded="false"> February 2021 </a> </span> </div>
-                      <div id="February2021" class="collapse" data-parent="#February">
-                        <ul>
-                          <li><a  href="">Details you need to fill in the application for WPC Certificate </a></li>
-                          <li><a  href="">Details you need to fill in the application for WPC Certificate </a></li>
-                        </ul>
-                      </div>
-                    </div>
+                  @foreach ($archivelists as $_year => $_months)
                     
-                     
-                    
+                  <div class="card-header"> <span class="icon-mb-0 text-bold"> <a role="button" data-toggle="collapse" href="#archive{{ $_year }}" aria-expanded="true"> {{ $_year }}</a> </span> </div>
+                  <div id="archive{{ $_year }}" class="collapse {{ ($loop->first?'show':'') }}" data-parent="#archive">
+                    @foreach ( $_months as $_month => $_entries )
+                      
+                    <div id="Jan">
+                        <div class="card-header"> <span class="icon-mb-0">
+                        <a class="collapsed" role="button" data-toggle="collapse" href="#{{ $_month.$_year }}" aria-expanded="false"> {{ $_month.' '.$_year }} </a> </span> </div>
+                        <div id="{{ $_month.$_year }}" class="collapse" data-parent="#Jan">
+                          <ul>
+                            @foreach($_entries as $_entry)
+                            @if(!isset($_entry->category->slug)) @dd($_entry) @endif
+                            @if(!isset($_entry->service->slug)) @dd($_entry) @endif
+                            <li><a  href="{{url( __('voyager::post.post_slug').$_entry->category->slug.'/'.$_entry->service->slug.'/'.$_entry->slug)}}">{{ $_entry->title }} </a></li>
+                            @endforeach
+                          </ul>
+                        </div>
+                      </div>
+                      @endforeach
                     
                   </div>
-                  <!--2020-->
-                  <div class="card-header"> <span class="icon-mb-0 text-bold"> 
-                  <a role="button" data-toggle="collapse" href="#archive2020" > 2020</a></span> 
-                  </div>
-                  <div id="archive2020" class="collapse" data-parent="#archive2020">
-                    <div id="January">
-                      <div class="card-header"> <span class="icon-mb-0"> <a class="collapsed" role="button" data-toggle="collapse" href="#January2020" aria-expanded="false"> January 2020 </a> </span> </div>
-                      <div id="January2020" class="collapse" data-parent="#January">
-                        <ul>
-                          <li><a  href="">Details you need to fill in the application for WPC Certificate </a></li>
-                          <li><a  href="">Details you need to fill in the application for WPC Certificate </a></li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <!--2020--> 
-                  <!--2019-->
-                  <div class="card-header"> <span class="icon-mb-0 text-bold"> 
-                  <a role="button" data-toggle="collapse" href="#archive2019" > 2019</a></span> 
-                  </div>
-                  <div id="archive2019" class="collapse" data-parent="#archive2019">
-                    <div id="January">
-                      <div class="card-header"> <span class="icon-mb-0"> <a class="collapsed" role="button" data-toggle="collapse" href="#January2019" aria-expanded="false"> January 2019 </a> </span> </div>
-                      <div id="January2019" class="collapse" data-parent="#January">
-                        <ul>
-                          <li><a  href="">Details you need to fill in the application for WPC Certificate </a></li>
-                          <li><a  href="">Details you need to fill in the application for WPC Certificate </a></li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <!--2019--> 
-                  
-                  <!--2018-->
-                  <div class="card-header"> <span class="icon-mb-0 text-bold"> 
-                  <a role="button" data-toggle="collapse" href="#archive2018" > 2018</a></span> 
-                  </div>
-                  <div id="archive2018" class="collapse" data-parent="#archive2018">
-                    <div id="January">
-                      <div class="card-header"> <span class="icon-mb-0"> <a class="collapsed" role="button" data-toggle="collapse" href="#January2018" aria-expanded="false"> January 2018 </a> </span> </div>
-                      <div id="January2018" class="collapse" data-parent="#January">
-                        <ul>
-                          <li><a  href="">Details you need to fill in the application for WPC Certificate </a></li>
-                          <li><a  href="">Details you need to fill in the application for WPC Certificate </a></li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <!--2018--> 
-                  
-                   <!--2017-->
-                  <div class="card-header"> <span class="icon-mb-0 text-bold"> 
-                  <a role="button" data-toggle="collapse" href="#archive2017" > 2017</a></span> 
-                  </div>
-                  <div id="archive2017" class="collapse" data-parent="#archive2017">
-                    <div id="January">
-                      <div class="card-header"> <span class="icon-mb-0"> <a class="collapsed" role="button" data-toggle="collapse" href="#January2017" aria-expanded="false"> January 2017 </a> </span> </div>
-                      <div id="January2017" class="collapse" data-parent="#January">
-                        <ul>
-                          <li><a  href="">Details you need to fill in the application for WPC Certificate </a></li>
-                          <li><a  href="">Details you need to fill in the application for WPC Certificate </a></li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <!--2017--> 
-                  
-                      <!--2016-->
-                  <div class="card-header"> <span class="icon-mb-0 text-bold"> 
-                  <a role="button" data-toggle="collapse" href="#archive2016" > 2016</a></span> 
-                  </div>
-                  <div id="archive2016" class="collapse" data-parent="#archive2016">
-                    <div id="January">
-                      <div class="card-header"> <span class="icon-mb-0"> <a class="collapsed" role="button" data-toggle="collapse" href="#January2016" aria-expanded="false"> January 2016 </a> </span> </div>
-                      <div id="January2016" class="collapse" data-parent="#January">
-                        <ul>
-                          <li><a  href="">Details you need to fill in the application for WPC Certificate </a></li>
-                          <li><a  href="">Details you need to fill in the application for WPC Certificate </a></li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <!--2016--> 
+                  @endforeach
                   
                   
                 </div>
               </div>
+              @endif
             </div>
