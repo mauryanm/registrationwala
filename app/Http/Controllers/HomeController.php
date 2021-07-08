@@ -22,14 +22,15 @@ class HomeController extends Controller
     		if($value->type=="POST"){
     			$value->servicesl = Voyager::model('Post')->where('service_id',(json_decode($value->service_id)[0]))->with('service:title,blog_slug as slug,id')->with('category')->limit(2)->orderBy('created_at','desc')->get();
     			$value->servicesr = Voyager::model('Post')->where('service_id',(json_decode($value->service2_id)[0]))->with('service:title,blog_slug as slug,id')->with('category')->limit(2)->orderBy('created_at','desc')->get();
-    			$value->catr = $value->servicesr[0]->service->title; 
-    			$value->catrslug = $value->servicesr[0]->category->slug.'/'.$value->servicesr[0]->service->slug;
-    			$value->catl = $value->servicesl[0]->service->title; 
-    			$value->catlslug = $value->servicesl[0]->category->slug.'/'.$value->servicesl[0]->service->slug; 
+    			// $value->catr = $value->servicesr[0]->service->title; 
+    			// $value->catrslug = $value->servicesr[0]->category->slug.'/'.$value->servicesr[0]->service->slug;
+    			// $value->catl = $value->servicesl[0]->service->title; 
+    			// $value->catlslug = $value->servicesl[0]->category->slug.'/'.$value->servicesl[0]->service->slug; 
     		}
     	}
     	$hmsr = $homeService->where('type','SERVICE')->all();
     	$hmpt = $homeService->where('type','POST')->all();
+		// dd($hmpt);
     	return Voyager::view('welcome')->with(compact('wps','letestBlog','hmsr','hmpt'));
     }
 }

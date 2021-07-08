@@ -260,7 +260,7 @@
       <div class="col-12 col-sm-8 col-md-6 col-lg-4">
         <div class="card bloghome h-100 justify-content-center align-items-center">
           
-          <img src="{{Voyager::image($post->image)}}" alt="telecom" />
+          <img src="{{Voyager::image($post->image2)}}" alt="{{ $data->service->title }}" />
           <div class="h2"> <strong>{{$post->catr}}</strong></div> 
              <a class="cbtn btn-4 text-white  w-50 text-center mb-2" href="{{url( __('voyager::post.post_slug').$post->catrslug)}}">View All</a>
         </div>
