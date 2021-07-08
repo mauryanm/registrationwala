@@ -47,10 +47,11 @@ $ytscount=get_twitter_count("https://www.googleapis.com/youtube/v3/channels?part
             <div class="fb-page" data-href="https://www.facebook.com/registrationwala" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false">
               <blockquote cite="https://www.facebook.com/registrationwala" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/registrationwala">Registrationwala</a></blockquote>
             </div>
-            <div class="side-bar"> <!-- <a href="javascript:popupwindow('https://www.facebook.com/registrationwala', 'Subscribe on Registrationwla', 600, 400)" class="btn btn-social btn-block btn-facebook text-right"><i class="fa fa-facebook"></i><strong class="pull-left">187,555</strong> Subscribe us on <strong>Facebook</strong></a> --> <a href="javascript:popupwindow('https://twitter.com/intent/follow?original_referer={{url('/')}}knowledge-base&region=follow_link&screen_name=Registrationwla', 'Follow up Registrationwla', 600, 400)" class="btn btn-social btn-block btn-twitter text-right" rel="nofollow"><i class="fa fa-twitter"></i><strong class="pull-left">
-              <?= ''#$twcount[0]->followers_count?>
-              </strong>Follow us on <strong>Twitter</strong></a> <a href="javascript:popupwindow('https://www.youtube.com/channel/UC99xCarIiulzbP68z2VQPRg?sub_confirmation=1', 'Subscribe on Registrationwla', 600, 400)" class="btn btn-social btn-block btn-youtube text-right"><i class="fa fa-youtube-play"></i><strong class="pull-left">
-              <?= ''#$ytscount->items[0]->statistics->subscriberCount?>
+            <div class="side-bar"> <!-- <a href="javascript:popupwindow('https://www.facebook.com/registrationwala', 'Subscribe on Registrationwla', 600, 400)" class="btn btn-social btn-block btn-facebook text-right"><i class="fa fa-facebook"></i><strong class="pull-left">187,555</strong> Subscribe us on <strong>Facebook</strong></a> -->
+              <a href="javascript:void(0)" onclick="popupwindow('https://twitter.com/intent/follow?original_referer={{url('/')}}knowledge-base&region=follow_link&screen_name=Registrationwla', 'Follow up Registrationwla', 600, 400)" class="btn btn-social btn-block btn-twitter text-right" rel="nofollow"><i class="fa fa-twitter"></i><strong class="pull-left">
+              <?= $twcount[0]->followers_count?>
+              </strong>Follow us on <strong>Twitter</strong></a> <a href="javascript:void(0)" onclick="popupwindow('https://www.youtube.com/channel/UC99xCarIiulzbP68z2VQPRg?sub_confirmation=1', 'Subscribe on Registrationwla', 600, 400)" class="btn btn-social btn-block btn-youtube text-right"><i class="fa fa-youtube-play"></i><strong class="pull-left">
+              <?= $ytscount->items[0]->statistics->subscriberCount?>
               </strong> Subscribe us on <strong>YouTube</strong></a>
               <div class="bg-white mb-5">
                 <h5 class="mb-0 mt-4">Blog Search</h5>
@@ -98,7 +99,7 @@ $ytscount=get_twitter_count("https://www.googleapis.com/youtube/v3/channels?part
             @section('script')
             <script>
               $(document).ready(function(){
-                $("#blogsearch").on('keyup',function(){
+                $("#blogsearch, #blogsearchbtn").on('keyup',function(){
                   $.ajax({
                     url: "/search-post",
                     dataType: 'json',
@@ -121,7 +122,13 @@ $ytscount=get_twitter_count("https://www.googleapis.com/youtube/v3/channels?part
                 });
                 })
               })
-              
+              function popupwindow(url, title, w, h) {
+                wLeft = window.screenLeft ? window.screenLeft : window.screenX;
+                wTop = window.screenTop ? window.screenTop : window.screenY;
+                var left = wLeft + (window.innerWidth / 2) - (w / 2);
+                var top = wTop + (window.innerHeight / 2) - (h / 2);
+                return window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+              }
             </script>
 
             @endsection
