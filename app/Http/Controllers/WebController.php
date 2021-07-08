@@ -245,4 +245,17 @@ class WebController extends Controller
             }
         }
     }
+    public function searchPost(Request $request)
+    {
+        $posts = Voyager::model('Post')
+                ->where('title','like',"%{$request->title}%")
+                ->select('id','title','slug','publish_date','category_id','service_id')
+                ->published()
+                ->with('service:title,blog_slug as slug,id')
+                ->with('category')
+                ->orderBy('publish_date','DESC')
+                ->take(10)
+                ->get();
+        return response()->json($posts); 
+    }
 }

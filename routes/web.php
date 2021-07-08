@@ -33,6 +33,7 @@ Route::get('/our-coupon-partner', 'App\Http\Controllers\PageController@couponpar
 ############ End Other Pages ############
 
 ############ Blog Pages ############
+Route::get('/search-post', 'App\Http\Controllers\WebController@searchPost');
 Route::get('/'.__('voyager::post.post_slug').'{category_url}/{Service_url}/{url}', 'App\Http\Controllers\WebController@rwpost');
 Route::get('/'.__('voyager::post.post_slug').'{category_url}/{Service_url}', 'App\Http\Controllers\WebController@rwpostservice');
 Route::get('/'.__('voyager::post.post_slug').'{category_url}', 'App\Http\Controllers\WebController@rwpostcategory');

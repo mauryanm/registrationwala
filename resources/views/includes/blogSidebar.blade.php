@@ -56,11 +56,12 @@ $ytscount=get_twitter_count("https://www.googleapis.com/youtube/v3/channels?part
                 <h5 class="mb-0 mt-4">Blog Search</h5>
                 <hr>
                 <div class="input-group">
-                  <input type="text" class="form-control" placeholder="Search this blog">
+                  <input type="search" id="blogsearch" class="form-control" placeholder="Search this blog">
                   <div class="input-group-append">
-                    <button class="btn btn-secondary" type="button"> <i class="fa fa-search"></i> </button>
+                    <button class="btn btn-secondary" id="blogsearchbtn" type="button"> <i class="fa fa-search"></i> </button>
                   </div>
                 </div>
+                <ul class="navbar-nav pl-3" id="blogsearchlist"></ul>
               </div>
               @if($archivelists)
               <h5 class="mb-0 mt-4"> Archive</h5>
@@ -94,3 +95,33 @@ $ytscount=get_twitter_count("https://www.googleapis.com/youtube/v3/channels?part
               </div>
               @endif
             </div>
+            @section('script')
+            <script>
+              $(document).ready(function(){
+                $("#blogsearch").on('keyup',function(){
+                  $.ajax({
+                    url: "/search-post",
+                    dataType: 'json',
+                    type: 'get',
+                    data: {title:$(this).val()},
+                    success: function(data)
+                    {
+                      $('#blogsearchlist').html("");
+                        $.each(data, function(key, value) {
+                          $('#blogsearchlist').append(
+                            '<li class="nav-item border-bottom"> <a class="nav-link" href="{{url( __('voyager::post.post_slug'))}}/'+value.category.slug+'/'+value.service.slug+'/'+value.slug+'">'+value.title+' </a> </li>'
+                          );
+                      });
+                    },
+                    error: function(data)
+                    {
+                      $('html').css('cursor', 'default');
+                      alert('Something went wrong.')
+                    }
+                });
+                })
+              })
+              
+            </script>
+
+            @endsection
