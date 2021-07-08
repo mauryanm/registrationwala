@@ -62,9 +62,9 @@
             
             <li class="list-inline-item mr-2"><strong>Share This Post</strong></li>
             <li class="list-inline-item"><a href="http://www.facebook.com/sharer.php?u={{url( __('voyager::post.post_slug').$data->category->slug.'/'.$data->service->slug.'/'.$data->slug)}}&p[title]={{$data->title}}" onclick="window.open(this.href, 'windowName', 'width=600, height=400, left=24, top=24, scrollbars, resizable'); return false;" rel="nofollow" target="_blank"><i class="fa wp-icon fa-facebook-f"></i></a></li>
-            <li class="list-inline-item"><a href="#"><i class="fa wp-icon fa-youtube "></i></a></li>
-            <li class="list-inline-item"><a href="#"><i class="fa wp-icon fa-twitter"></i></a></li>
-            <li class="list-inline-item"><a href="#"><i class="fa wp-icon fa-linkedin"></i></a></li>
+            {{-- <li class="list-inline-item"><a href="#"><i class="fa wp-icon fa-youtube "></i></a></li> --}}
+            <li class="list-inline-item"><a href="http://twitter.com/share?url={{url( __('voyager::post.post_slug').$data->category->slug.'/'.$data->service->slug.'/'.$data->slug)}}&amp;title=<?=urlencode($data->title)?>?text=<?=urlencode($data->title) ?>" onClick="window.open(this.href, 'windowName', 'width=600, height=400, left=24, top=24, scrollbars, resizable'); return false;" rel="nofollow" target="_blank"><i class="fa wp-icon fa-twitter"></i></a></li>
+            <li class="list-inline-item"><a href="http://www.linkedin.com/shareArticle?url={{url( __('voyager::post.post_slug').$data->category->slug.'/'.$data->service->slug.'/'.$data->slug)}}&amp;title={{ urlencode($data->title) }}" onClick="window.open(this.href, 'windowName', 'width=600, height=400, left=24, top=24, scrollbars, resizable'); return false;" rel="nofollow" target="_blank"><i class="fa wp-icon fa-linkedin"></i></a></li>
           </ul>
         </div>
    </div>      
