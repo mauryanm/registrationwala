@@ -45,6 +45,6 @@ Route::group(['prefix' => 'admin'], function () {
 ###################### Other service pages ##########
 
 
-Route::get('/copyright-registration/{url?}/{city?}', 'App\Http\Controllers\WebController@index');
+Route::get('/copyright-registration/{url}/{city?}', 'App\Http\Controllers\WebController@index');
 Route::get('/company-search/{city?}', 'App\Http\Controllers\WebController@searchcompany')->name('company-search');
 Route::get('/{url?}/{city?}', 'App\Http\Controllers\WebController@index');

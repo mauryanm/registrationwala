@@ -56,7 +56,9 @@ class WebController extends Controller
 			}else{
 				abort(404, 'Page not found.');
 			}
-		}
+		}else{
+            abort(404);
+        }
 		
 	}
 
