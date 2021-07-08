@@ -226,8 +226,8 @@
       <div class="col-12 col-sm-8 col-md-6 col-lg-4">
         <div class="card bloghome h-100 justify-content-center align-items-center">
           
-          <img src="images/telecom.png" alt="telecom" />
-          <div class="h2"> <strong>{{$post->catl}}</strong></div> 
+          <img src="{{ Voyager::image($post->image) }}" alt="{{ $post->heading }}" />
+          <div class="h2"> <strong>{{$post->heading}}</strong></div> 
              <a class="cbtn btn-4 text-white  w-50 text-center mb-2" href="{{url( __('voyager::post.post_slug').$post->catlslug)}}">View All</a>
         </div>
       </div>
@@ -259,9 +259,8 @@
       @endforeach
       <div class="col-12 col-sm-8 col-md-6 col-lg-4">
         <div class="card bloghome h-100 justify-content-center align-items-center">
-          
-          <img src="{{Voyager::image($post->image2)}}" alt="{{ $data->service->title }}" />
-          <div class="h2"> <strong>{{$post->catr}}</strong></div> 
+          <img src="{{Voyager::image($post->image2)}}" alt="{{ $post->heading2 }}" />
+          <div class="h2"> <strong>{{$post->heading2}}</strong></div> 
              <a class="cbtn btn-4 text-white  w-50 text-center mb-2" href="{{url( __('voyager::post.post_slug').$post->catrslug)}}">View All</a>
         </div>
       </div>
