@@ -141,7 +141,7 @@ class WebController extends Controller
 	    	$data->meta_keywords = '';
 	    	$categoryList = $this->categorylist();
 
-	    	$posts = Voyager::model('Post')->where('service_id',$catData->id)->paginate(10);
+	    	$posts = Voyager::model('Post')->where('service_id',$catData->id)->published()->paginate(10);
 		    }else{
 		    	abort(404, 'Page not found.');
 		    }
