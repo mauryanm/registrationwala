@@ -176,6 +176,7 @@ class WebController extends Controller
     }
     private function archivelist(){
         $links = Voyager::model('Post')->select('id','title','slug','publish_date','category_id','service_id')
+        ->published()
     ->with('service:title,blog_slug as slug,id')
     ->with('category')
     ->orderBy('publish_date','DESC')

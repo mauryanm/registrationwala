@@ -79,8 +79,6 @@ $ytscount=get_twitter_count("https://www.googleapis.com/youtube/v3/channels?part
                         <div id="{{ $_month.$_year }}" class="collapse" data-parent="#Jan">
                           <ul>
                             @foreach($_entries as $_entry)
-                            @if(!isset($_entry->category->slug)) @dd($_entry) @endif
-                            @if(!isset($_entry->service->slug)) @dd($_entry) @endif
                             <li><a  href="{{url( __('voyager::post.post_slug').$_entry->category->slug.'/'.$_entry->service->slug.'/'.$_entry->slug)}}">{{ $_entry->title }} </a></li>
                             @endforeach
                           </ul>
