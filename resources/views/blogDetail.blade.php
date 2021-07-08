@@ -75,6 +75,8 @@
 <div class="section bg-white border-bottom ">
 <div class="container">
 <div id="disqus_thread"></div>
+</div>
+</div>
 @endsection
 
 @section('script')
