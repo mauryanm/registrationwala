@@ -18,14 +18,18 @@
               <div class="input-group">
                 <input type="text" class="form-control radius0" id="search">
                 <div class="input-group-append">
-                  <button class="btn btn-secondary" type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
+                  <button class="btn btn-secondary" id="servicesearchbtn" type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
                 </div>
               </div>
+              <ul class="navbar-nav pl-3" id="servicelist"></ul>
+              <style>
+                #servicelist{position: absolute;background: #fff; width: 100%; z-index: 1;}
+              </style>
               <p class="mb-0 mt-1"> <span class="text-muted mb-1">Popular searches:</span> <a href="#"><span class="badge badge-info mb-1">FFMC License</span></a> <a href=""><span class="badge badge-info mb-1">IP 1 License </span></a> <a href=""><span class="badge badge-info mb-1">ISP License </span></a> <a href=""><span class="badge badge-info mb-1">VNO License</span></a> <a href=""><span class="badge badge-info mb-1">RNI Registration</span></a> </p>
             </div>
           </div>
           <div class="row no-gutters mt-2 ">
-            <div class="col-md-8 offset-md-3"> <a class="cbtn btn-3  mb-1" href=""> <i class="fa fa-play" aria-hidden="true"></i> Watch Video</a> <a class="cbtn btn-4 mb-1" href=""><i class="fa fa-phone" aria-hidden="true"></i> Contact us</a> </div>
+            <div class="col-md-8 offset-md-3"> <a class="cbtn btn-3  mb-1" target="_blank" href="https://www.youtube.com/c/registrationwala"> <i class="fa fa-play" aria-hidden="true"></i> Watch Video</a> <a class="cbtn btn-4 mb-1" href="{{ url('/contact-us') }}"><i class="fa fa-phone" aria-hidden="true"></i> Contact us</a> </div>
           </div>
         </div>
       </div>
@@ -325,5 +329,34 @@
 @endsection
 
 @section('script')
-
+<script>
+$(document).ready(function(){
+  $("#search, #servicesearchbtn").on('keyup',function(){
+    if($(this).val()==''){
+      $('#servicelist').html("");
+      return false;
+    }
+    $.ajax({
+      url: "/search-service",
+      dataType: 'json',
+      type: 'get',
+      data: {title:$(this).val()},
+      success: function(data)
+      {
+        $('#servicelist').html("");
+          $.each(data, function(key, value) {
+            $('#servicelist').append(
+              '<li class="nav-item border-bottom"> <a class="nav-link" href="{{url("/")}}/'+value.slug+'">'+value.title+' </a> </li>'
+            );
+        });
+      },
+      error: function(data)
+      {
+        $('html').css('cursor', 'default');
+        console.log('Something went wrong.')
+      }
+  });
+  })
+})
+</script>
 @endsection

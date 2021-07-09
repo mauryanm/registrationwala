@@ -32,4 +32,15 @@ class HomeController extends Controller
     	$hmpt = $homeService->where('type','POST')->all();
     	return Voyager::view('welcome')->with(compact('wps','letestBlog','hmsr','hmpt'));
     }
+	public function searchservice(Request $request)
+	{
+		$posts = Voyager::model('Service')
+                ->where('title','like',"%{$request->title}%")
+                ->orWhere('heading','like',"%{$request->title}%")
+                ->select('id','title','heading','slug')
+                ->orderBy('title','DESC')
+                ->take(10)
+                ->get();
+        return response()->json($posts);
+	}
 }
