@@ -192,8 +192,8 @@
           <ul class="list-inline text-center text-md-right mb-3 top-nav">
             <li class="list-inline-item"><a  href="{{ url("become-an-associate") }}"><i class="fa fa-user" aria-hidden="true"></i> Become an Associate</a></li>
             <li class="list-inline-item"><a href="" data-toggle="modal" data-target="#getaquote"><i class="fa fa-money" aria-hidden="true"></i> Get a Quote</a></li>
-            <li class="list-inline-item"><a href="javascript:void(0)"  data-toggle="modal" data-target="#loginModal"><i class="fa fa-sign-in" aria-hidden="true" ></i> Login</a></li>
-            <li class="list-inline-item"><a href="javascript:void(0)"  data-toggle="modal" data-target="#registerModal" > <i class="fa fa-user-plus" aria-hidden="true"></i> Register</a></li>
+            <li class="list-inline-item"><a href="{{route('dashboard.login')}}" ><i class="fa fa-sign-in" aria-hidden="true" ></i> Login</a></li>
+            <li class="list-inline-item"><a href="{{route('dashboard.register')}}" > <i class="fa fa-user-plus" aria-hidden="true"></i> Register</a></li>
           </ul>
           <ul class="list-inline text-center text-md-right mb-0">
             @if(setting('site.whatsaap'))
