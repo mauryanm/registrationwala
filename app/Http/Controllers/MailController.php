@@ -75,13 +75,14 @@ class MailController extends Controller {
     		);
         $this->send_mail($mail_arry);
         if($request->input('source')=='service'){
-          mail_arry=array(
+          $mail_enq=array(
           'to'=>$request->email,
           'from_name'=>setting('admin.title'),
           'from'=>setting('site.site_mail'),
           'subject'=>'We are happy to help you ! Registrationwala.com',
           'message'=>$this->serviceEnquiry($insData)
         );
+          $this->send_mail($mail_enq);
         }
       $response = array('type' => 'success',"title"=>"",'msg'=>['Your query has been submitted successfully.']);
         return response()->json($response);
