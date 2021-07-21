@@ -86,10 +86,10 @@ class MailController extends Controller {
       $EmailFromNmae = strip_tags($mailer_arr['from_name']);
       $EmailSubject = $mailer_arr['subject'];
       $EmailMessage = stripslashes($mailer_arr['message']);
-      $EmailCc = strip_tags($mailer_arr['cc']);
-      $EmailBcc = strip_tags($mailer_arr['bcc']);
-      $filepath = $mailer_arr['file_path'];
-      $filename = $mailer_arr['file_name'] ? $mailer_arr['file_name'] : basename($filepath);
+      $EmailCc = strip_tags((isset($mailer_arr['cc'])?$mailer_arr['cc']:''));
+      $EmailBcc = strip_tags((isset($mailer_arr['bcc'])?$mailer_arr['bcc']:''));
+      $filepath = (isset($mailer_arr['file_path'])?$mailer_arr['file_path']:'');
+      $filename = (isset($mailer_arr['file_name']) ? $mailer_arr['file_name'] : basename($filepath));
       $eol = PHP_EOL;
       $headers = "";
       if( !empty($EmailFromNmae) ){
