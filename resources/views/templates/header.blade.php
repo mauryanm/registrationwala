@@ -19,12 +19,11 @@
                 <form autocomplete="off" class="form validateform" method="post" id="getaquoteform">
                   @csrf
                   <input type="hidden" name="source" value="getaquote">
-                  <input type="hidden" name="page" value="@if(isset($data->title)) {{$data->title}} @endif">
-                  <input type="hidden" name="page_id" value="@if(isset($data->id)) {{$data->id}} @endif">
+                  <input type="hidden" name="page" value="" id="pagename">
                   <input type="hidden" name="from" value="header">      
                   <div class="form-group">
-                    <select class="form-control radius0" name="service_id" required>
-                        <option>Get a Quote for</option>
+                    <select class="form-control radius0" name="page_id" id="page_id" onchange="setpagename()" required>
+                        <option value="">Get a Quote for</option>
                         @foreach ($servicesdata as $hsr)
                         <option value="{{ $hsr->id }}">{{ $hsr->title }}</option>
                         @endforeach               
@@ -151,5 +150,8 @@
       }
      });
   })
-  
+  function setpagename(){
+    var text = $("#page_id option:selected").text();
+    $('#pagename').val(text);
+  }
 </script>
