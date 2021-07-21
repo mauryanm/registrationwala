@@ -1,7 +1,11 @@
 <div class="col-12 col-md-4 d-flex">
   <div class="user_sidebarbox w-100 align-items-stretch">
      <div class="pt-3  w-100 align-items-stretch">
-        <div class="text-center"> <img src="https://www.registrationwala.com/dashboard/user.jpg" class="img-fluid rounded-circle profile-user-img" alt=""> </div>
+      @if(\Storage::disk('public')->exists(\Auth::user()->image))
+        <div class="text-center"> <img src="{{Voyager::image(\Auth::user()->image)}}" class="img-fluid rounded-circle profile-user-img" alt=""> </div>
+        @else
+        <div class="text-center"> <img src="{{Voyager::image('images/user.jpg')}}" class="img-fluid rounded-circle profile-user-img" alt=""> </div>
+        @endif
         <h5 class="text-center mt-2">{{ \Auth::user()->name }} </h5>
         <hr>
      </div>

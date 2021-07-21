@@ -11,13 +11,11 @@ class SiteUser extends Authenticatable
 
     protected $table = 'site_users';
     protected $guard = 'siteuser';
+    protected $guarded = [];
 
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'phone',
-    ];
+    // protected $fillable = [
+    //     'name','email','password','phone',
+    // ];
 
     protected $hidden = [
         'password',

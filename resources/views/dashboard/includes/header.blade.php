@@ -4,7 +4,7 @@
           <div class="bg-white pt-2 pb-2 dashboard-header">
               <div class="row align-items-center h-100">
                   <div class="col-sm-12 col-md-12 col-lg-3 text-center">
-                      <a href="javascript:void(0);"><img src="../images/logo.png" alt="Logo" class="img-fluid" /></a>
+                      <a href="{{route('/')}}"><img src="../images/logo.png" alt="Logo" class="img-fluid" /></a>
                       <nav class="navbar navbar-expand-lg pull-right topnavbar">
                           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#top" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                               <i class="fa fa-bars" aria-hidden="true"></i>
@@ -29,8 +29,15 @@
 
                                   <li class="nav-item dropdown">
                                       <a class="nav-link dropdown-toggle" href="javascript:void(0);" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                          <img src="https://www.registrationwala.com/dashboard/user.jpg" alt="user" class="profile-pic rounded-circle" onclick="event.preventDefault();
-                                          document.getElementById('logout-form').submit();" />{{ \Auth::user()->name }}
+                                        @if(\Storage::disk('public')->exists(\Auth::user()->image))
+                                          <img src="{{Voyager::image(\Auth::user()->image)}}" alt="user" class="profile-pic rounded-circle" onclick="event.preventDefault();
+                                          document.getElementById('logout-form').submit();" />
+                                        @else
+                                          <img src="{{Voyager::image('images/user.jpg')}}" alt="user" class="profile-pic rounded-circle" onclick="event.preventDefault();
+                                          document.getElementById('logout-form').submit();" />
+                                        @endif
+
+                                          {{ \Auth::user()->name }}
                                       </a>
                                       <div class="dropdown-menu" aria-labelledby="navbarDropdown"><a class="dropdown-item" href="{{ route('dashboard.logout') }}">Logout</a></div>
                                       <form id="logout-form" action="{{ route('dashboard.logout') }}" method="POST" style="display: none;">

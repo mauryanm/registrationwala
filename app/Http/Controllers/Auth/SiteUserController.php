@@ -74,12 +74,12 @@ class SiteUserController extends DefaultLoginController
     public function logout(Request $request)
     {
         //$this->saveLogoutTime($request);
-        $this->clearPrevSession();
+        // $this->clearPrevSession();
 
         $this->guard()->logout();
         $request->session()->invalidate();
         //$request->session()->regenerateToken();
-        return $this->loggedOut($request) ?: redirect('/');
+        return $this->loggedOut($request) ?: redirect('/dashboard');
     }
 
     private function clearPrevSession(){

@@ -26,9 +26,10 @@ Route::namespace('')
         Route::get('login', 'App\Http\Controllers\Auth\SiteUserController@showLoginForm')->name('login');
         Route::post('login', 'App\Http\Controllers\Auth\SiteUserController@login')->name('login');
         Route::post('logout', 'App\Http\Controllers\Auth\SiteUserController@logout')->name('logout');
+        Route::get('logout', 'App\Http\Controllers\Auth\SiteUserController@logout')->name('logout');
         Route::get('register', 'App\Http\Controllers\Auth\SiteUserController@registration')->name('register');
         Route::post('register', 'App\Http\Controllers\Auth\SiteUserController@registeruser')->name('register');
-        Route::resource('/', 'App\Http\Controllers\SiteUserController');
+        Route::put('updateuser/{id}', 'App\Http\Controllers\SiteUserController@update')->name('updateuser');
         Route::get('/service-request', 'App\Http\Controllers\SiteUserController@servicerequest')->name('service-request');
         Route::get('/pay-now', 'App\Http\Controllers\SiteUserController@paynow')->name('pay-now');
         Route::get('/payment-history', 'App\Http\Controllers\SiteUserController@paymenthistory')->name('payment-history');
@@ -37,7 +38,7 @@ Route::namespace('')
  });
 
 
-Route::get('/', 'App\Http\Controllers\HomeController@index');
+Route::get('/', 'App\Http\Controllers\HomeController@index')->name('/');
 Route::get('/search-service', 'App\Http\Controllers\HomeController@searchservice');
 Route::get('/service-list', 'App\Http\Controllers\WebController@servicelist');
 ############# Other pages ###############
