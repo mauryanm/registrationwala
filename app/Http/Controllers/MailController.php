@@ -74,6 +74,15 @@ class MailController extends Controller {
     			'message'=>$this->welcome()
     		);
         $this->send_mail($mail_arry);
+        if($request->input('source')=='service'){
+          mail_arry=array(
+          'to'=>$request->email,
+          'from_name'=>setting('admin.title'),
+          'from'=>setting('site.site_mail'),
+          'subject'=>'We are happy to help you ! Registrationwala.com',
+          'message'=>$this->serviceEnquiry($insData)
+        );
+        }
       $response = array('type' => 'success',"title"=>"",'msg'=>['Your query has been submitted successfully.']);
         return response()->json($response);
 
@@ -184,6 +193,77 @@ class MailController extends Controller {
       </html>
       ';
       return $mailhtml;
+   }
+   private function serviceEnquiry($data){
+    $srhtml = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr><td>
+<table style="margin:auto; width:600px; font-size:16px; line-height:24px; font-family:Verdana, Geneva, sans-serif" cellpadding="0" cellspacing="0">
+<tr><td>
+<table width="100%" cellpadding="5" cellspacing="0">
+<tr><td><a href="https://www.registrationwala.com"><img src="https://www.registrationwala.com/images/emailer/logonrw.png" width="109" height="38" alt="Registrationwala.com" /></a></td>
+<td align="right"><a style="margin:0 5px;" href="https://www.facebook.com/registrationwala/" target="_blank"><img src="https://www.registrationwala.com/images/emailer/facebookc.png" width="27" height="27" alt="Like On Facebook" /></a><a style="margin:0 5px;" href="https://twitter.com/Registrationwla" target="_blank"><img src="https://www.registrationwala.com/images/emailer/twitterc.png" width="27" height="27" alt="Like On Twitter" /></a><a style="margin:0 5px;" href="https://plus.google.com/u/0/115063389280026230269/posts" target="_blank"><img src="https://www.registrationwala.com/images/emailer/g-plusc.png" width="27" height="27" alt="Like On Google plus" /></a></td></tr>
+</table>
+</td></tr>
+<tr><td>
+<table width="100%" cellpadding="15" cellspacing="0">
+<tr><td style="border:1px solid #ccc; background:url(https://www.registrationwala.com/images/emailer/drop-mark.png) no-repeat top left 10px;">
+<table width="100%" cellpadding="5" cellspacing="0">
+<tr><td style="padding:10px 20px;">
+<h1 style="margin:8px; padding-left:25px; font-size:40px; font-weight:300; text-transform:uppercase; color:#00293c; font-family:\'Times New Roman\', Times, serif">Inquiry Revert</h1>
+<p style="padding-left:25px; margin:8px; text-transform:uppercase; font-size:13px;">Thank You for contacting Registrationwala!</p>
+</td></tr>
+<tr><td style="padding:0">
+<img src="https://www.registrationwala.com/images/emailer/enquery.jpg" height="215" width="483" style="height:auto; width:100%" alt="Thank You for contacting Registrationwala!" />
+</td></tr>
+<tr><td style="padding:10px 20px; background-color:#00293c; color:#fff;" bgcolor="#00293c">
+<p style="padding-left:10px; margin:0">Dear '.$data->name.',</p>
+</td></tr>
+<tr><td>
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr><td style="padding:10px 20px;">
+<p style="margin:10px 0; text-align:justify;">We are delighted to have an opportunity of receiving a query from your end. The details of the query submitted by you are as follows-</p>
+</td></tr>
+<tr><td style="padding:0;">
+<table width="100%" cellpadding="8" cellspacing="0" border="1" style="border-color:rgba(255, 255, 255, 0.4);">
+<tr style="color:#fff"><td width="40%" bgcolor="#f52900">Ticket No</td><td bgcolor="#f52900" width="60%">RWI'.sprintf("%'05d", $data->id).'</td></tr>
+<tr><td width="40%" bgcolor="#d7d7d7">Service Name</td><td bgcolor="#d7d7d7" width="60%">'.$data->service->title.'</td></tr>
+</table>
+</td></tr>
+<tr><td style="padding:10px 20px;">
+<p style="margin:10px 0; color:#00293c; text-align:justify;">At registrationwala we have a team of experts like charted accountants, company secretaries, lawyers and cost accountants who can provide assistance to you regarding any query. One of our team members will get in touch with you shortly to provide you an expert opinion for the query submitted.</p>
+</td></tr>
+</table>
+
+</td></tr>
+<tr>
+<td style="padding:15px 10px; background-color:#00293c;">
+<h2 style="color:#fff; margin:0 0 20px 0; padding:0; font-size:18px; text-align:center; text-transform:uppercase;">FOR any guidance feel free to reach us</h2> 
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr>
+<td align="center"><a style="text-decoration:none; color:#fff;" href="mailto:support@registrationwala.com">support@registrationwala.com</a></td><td align="center"><a style="text-decoration:none; color:#fff;" href="tel:+918882580580">+91-888-2580-580</a></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>
+';
+return $srhtml;
    }
 
    
