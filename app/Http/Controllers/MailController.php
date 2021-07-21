@@ -73,7 +73,7 @@ class MailController extends Controller {
     			'subject'=>'We are happy to help you ! Registrationwala.com',
     			'message'=>$this->welcome()
     		);
-        $this->send_mail($mailer_arr);
+        $this->send_mail($mail_arry);
       $response = array('type' => 'success',"title"=>"",'msg'=>['Your query has been submitted successfully.']);
         return response()->json($response);
 
