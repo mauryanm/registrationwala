@@ -53,13 +53,28 @@ class MailController extends Controller {
       //       $response = array('type' => 'error',"title"=>"",'msg'=>$e->getMessage());
       //       return response()->json($response);
       //    }
+      $validator = \Validator::make($request->all(), [
+            'name'  => 'required',
+            'email' => 'required|email',
+            'phone' => 'nullable',
+        ]);
+        if ($validator->fails())
+        {
+            return response()->json(['type'=>'error',"title"=>"",'msg'=>$validator->errors()->all()]);
+        } 
+
+        $data = $request->except('_token','_method');
+        $data['status'] = 0;
+        $insData = Lead::create($data);
       $mail_arry=array(
-			'to'=>$request->email,
-			'from_name'=>(($fname)? setting('admin.title'),
-			'from'=>(($femail)?$femail:$PDO->getSingleresult("select email from #_setting where `pid`='1'")),
-			'subject'=>'We are happy to help you ! Registrationwala.com',
-			'message'=>enquiry($_POST['name'],$_POST['serviceName'],$udata['rwi'])
-		);
+  			'to'=>$request->email,
+  			'from_name'=>setting('admin.title'),
+  			'from'=>setting('site.site_mail'),
+  			'subject'=>'We are happy to help you ! Registrationwala.com',
+  			'message'=>$this->welcome()
+  		);
+      $response = array('type' => 'success',"title"=>"",'msg'=>['Your query has been submitted successfully.']);
+        return response()->json($response);
 
       
     }
