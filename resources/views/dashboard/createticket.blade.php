@@ -20,7 +20,7 @@
         @include('dashboard.includes.sidebar')
           <div class="col-12 col-md-8 d-flex">
              <div class="tabs-section-nav user_sidebarbox p-3 pt-0 w-100 align-items-stretch">
-                <form method="post" action="{{ route('dashboard.create-ticket.store') }}">
+                <form method="post" action="{{ route('dashboard.create-ticket') }}">
                     @csrf
                     <h5 >Raise  Ticket</h5>
                     <hr>

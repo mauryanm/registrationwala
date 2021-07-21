@@ -33,7 +33,8 @@ Route::namespace('')
         Route::get('/service-request', 'App\Http\Controllers\SiteUserController@servicerequest')->name('service-request');
         Route::get('/pay-now', 'App\Http\Controllers\SiteUserController@paynow')->name('pay-now');
         Route::get('/payment-history', 'App\Http\Controllers\SiteUserController@paymenthistory')->name('payment-history');
-        Route::resource('/create-ticket', 'App\Http\Controllers\CreateTicketController');
+        Route::get('/create-ticket', 'App\Http\Controllers\SiteUserController@ticket')->name('create-ticket');
+        Route::post('/create-ticket', 'App\Http\Controllers\SiteUserController@storeticket')->name('create-ticket');
         });
  });
 

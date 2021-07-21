@@ -18,7 +18,7 @@
         <li class="nav-item"><a  href="{{ url('/dashboard') }}" class="nav-link {{ (\Request::is('dashboard')?'active':'') }}"> My profile </a></li>
         <li class="nav-item"><a  href="{{ route('dashboard.pay-now') }}" class="nav-link {{ (\Request::is('dashboard/pay-now')?'active':'') }}"> Pay Now</a></li>
         <li class="nav-item"><a  href="{{ route('dashboard.payment-history') }}" class="nav-link {{ (\Request::is('dashboard/payment-history')?'active':'') }}"> Payment History</a></li>
-        <li class="nav-item"><a  href="{{ route('dashboard.create-ticket.index') }}" class="nav-link {{ (\Request::is('dashboard/create-ticket')?'active':'') }}"> Raise Ticket</a></li>
+        <li class="nav-item"><a  href="{{ route('dashboard.create-ticket') }}" class="nav-link {{ (\Request::is('dashboard/create-ticket')?'active':'') }}"> Raise Ticket</a></li>
         <li class="nav-item"><a  href="{{ route('dashboard.service-request') }}" class="nav-link {{ (\Request::is('dashboard/service-request')?'active':'') }}">  Services Request</a></li>
      </ul>
      <style>
