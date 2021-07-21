@@ -66,13 +66,14 @@ class MailController extends Controller {
         $data = $request->except('_token','_method');
         $data['status'] = 0;
         $insData = Lead::create($data);
-      $mail_arry=array(
-  			'to'=>$request->email,
-  			'from_name'=>setting('admin.title'),
-  			'from'=>setting('site.site_mail'),
-  			'subject'=>'We are happy to help you ! Registrationwala.com',
-  			'message'=>$this->welcome()
-  		);
+        $mail_arry=array(
+    			'to'=>$request->email,
+    			'from_name'=>setting('admin.title'),
+    			'from'=>setting('site.site_mail'),
+    			'subject'=>'We are happy to help you ! Registrationwala.com',
+    			'message'=>$this->welcome()
+    		);
+        $this->send_mail($mailer_arr);
       $response = array('type' => 'success',"title"=>"",'msg'=>['Your query has been submitted successfully.']);
         return response()->json($response);
 
@@ -109,8 +110,8 @@ class MailController extends Controller {
       $headers .= "Content-type: text/html".$eol;
       if(mail($EmailTo, $EmailSubject, $EmailMessage, $headers)) 
       return true;
-                     else 
-                     return false;
+       else 
+       return false;
       
       }
       $attachment = chunk_split( base64_encode(file_get_contents($filepath)) );
