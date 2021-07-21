@@ -25,7 +25,7 @@
               <style>
                 #servicelist{position: absolute;background: #fff; width: 100%; z-index: 1;}
               </style>
-              <p class="mb-0 mt-1"> <span class="text-muted mb-1">Popular searches:</span> <a href="#"><span class="badge badge-info mb-1">FFMC License</span></a> <a href=""><span class="badge badge-info mb-1">IP 1 License </span></a> <a href=""><span class="badge badge-info mb-1">ISP License </span></a> <a href=""><span class="badge badge-info mb-1">VNO License</span></a> <a href=""><span class="badge badge-info mb-1">RNI Registration</span></a> </p>
+              <p class="mb-0 mt-1"> <span class="text-muted mb-1">Popular searches:</span> <a href="{{url('ffmc-license')}}"><span class="badge badge-info mb-1">FFMC License</span></a> <a href="{{url('dot-ip-1-registration')}}"><span class="badge badge-info mb-1">IP 1 License </span></a> <a href="{{url('isp-license')}}"><span class="badge badge-info mb-1">ISP License </span></a> <a href="{{url('vno-license')}}"><span class="badge badge-info mb-1">VNO License</span></a> <a href="{{url('rni-registration')}}"><span class="badge badge-info mb-1">RNI Registration</span></a> </p>
             </div>
           </div>
           <div class="row no-gutters mt-2 ">
