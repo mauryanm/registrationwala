@@ -41,6 +41,7 @@ Route::namespace('')
 
 Route::get('/', 'App\Http\Controllers\HomeController@index')->name('/');
 Route::get('/search-service', 'App\Http\Controllers\HomeController@searchservice');
+Route::get('/become-an-associate', 'App\Http\Controllers\becomeAnAssociateController@index');
 Route::get('/service-list', 'App\Http\Controllers\WebController@servicelist');
 ############# Other pages ###############
 Route::get('/privacy-policy', 'App\Http\Controllers\PageController@index')->name('privacy-policy');
