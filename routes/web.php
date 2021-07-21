@@ -17,6 +17,26 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+Route::prefix('dashboard')
+        ->as('dashboard.')
+        ->group(function() {
+        Route::get('/', 'App\Http\Controllers\SiteUserController@index')->name('dashboard');
+Route::namespace('')
+        ->group(function() {
+        Route::get('login', 'App\Http\Controllers\Auth\SiteUserController@showLoginForm')->name('login');
+        Route::post('login', 'App\Http\Controllers\Auth\SiteUserController@login')->name('login');
+        Route::post('logout', 'App\Http\Controllers\Auth\SiteUserController@logout')->name('logout');
+        Route::get('register', 'App\Http\Controllers\Auth\SiteUserController@registration')->name('register');
+        Route::post('register', 'App\Http\Controllers\Auth\SiteUserController@registeruser')->name('register');
+        Route::resource('/', 'App\Http\Controllers\SiteUserController');
+        Route::get('/service-request', 'App\Http\Controllers\SiteUserController@servicerequest')->name('service-request');
+        Route::get('/pay-now', 'App\Http\Controllers\SiteUserController@paynow')->name('pay-now');
+        Route::get('/payment-history', 'App\Http\Controllers\SiteUserController@paymenthistory')->name('payment-history');
+        Route::resource('/create-ticket', 'App\Http\Controllers\CreateTicketController');
+        });
+ });
+
+
 Route::get('/', 'App\Http\Controllers\HomeController@index');
 Route::get('/search-service', 'App\Http\Controllers\HomeController@searchservice');
 Route::get('/service-list', 'App\Http\Controllers\WebController@servicelist');

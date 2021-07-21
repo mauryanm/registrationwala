@@ -46,6 +46,11 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+        'siteuser' => [
+            'redirectTo' => 'dashboard.index',
+            'driver' => 'session',
+            'provider' => 'siteuser',
+           ],
     ],
 
     /*
@@ -70,6 +75,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
+        'siteuser' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\SiteUser::class,
+           ],
 
         // 'users' => [
         //     'driver' => 'database',
