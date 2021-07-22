@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+Route::get('auth/facebook', 'App\Http\Controllers\Auth\SiteUserController@redirectToFB')->name('facebook');
+Route::get('facebook/callback', 'App\Http\Controllers\Auth\SiteUserController@handleCallback');
+
 Route::prefix('dashboard')
         ->as('dashboard.')
         ->group(function() {

@@ -11,6 +11,8 @@ use \App\Choose;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Socialite;
+use Exception;
 
 use App\Http\Controllers\Auth\LoginController as DefaultLoginController;
 
@@ -91,4 +93,42 @@ class SiteUserController extends DefaultLoginController
         \Auth::user()->invalide_attempt_count = 0;
         \Auth::user()->save();
     } 
+
+    public function redirectToFB()
+    {
+        \Log::info('fblogin');
+        return Socialite::driver('facebook')->redirect();
+    }
+    public function handleCallback()
+    {
+        try {
+     
+            $user = Socialite::driver('facebook')->user();
+      
+            $finduser = SiteUser::where('facebook_id', $user->id)->first();
+      
+            if($finduser){
+      
+                Auth::login($finduser);
+     
+                return redirect('/dashboard');
+      
+            }else{
+                $newUser = SiteUser::create([
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'facebook_id'=> $user->id,
+                    // 'social_type'=> 'facebook',
+                    'password' => encrypt('rw@123')
+                ]);
+     
+                Auth::login($newUser);
+      
+                return redirect('/dashboard');
+            }
+     
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        }
+    }
 }
