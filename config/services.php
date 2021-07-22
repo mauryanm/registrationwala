@@ -33,7 +33,7 @@ return [
     'facebook' => [
         'client_id' => '1085794198098224',
         'client_secret' => 'b881f9a6fe5c4b93558d54c95bf2b4fc',
-        'redirect' => 'http://my-laravel.com/facebook/callback',
+        'redirect' => 'https://cagauravbansal.com/facebook/callback',
     ],
 
 ];
