@@ -108,8 +108,9 @@ class SiteUserController extends DefaultLoginController
             \Log::info($finduser);
       
             if($finduser){
+
       
-                Auth::login($finduser);
+                Auth::guard('siteuser')->login($finduser);
      
                 return redirect('/dashboard');
       
