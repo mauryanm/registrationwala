@@ -43,8 +43,7 @@ class SiteUserController extends DefaultLoginController
         ]);
         $credentials = $request->only('email', 'password');
         if (Auth::guard('siteuser')->attempt($credentials)) {
-            return redirect()->intended('dashboard')
-                        ->withSuccess('Signed in');
+            return redirect()->intended('dashboard')->withSuccess('Signed in');
         }
         return redirect("/dashboard/login")->withSuccess('Login details are not valid');
     }
@@ -110,9 +109,8 @@ class SiteUserController extends DefaultLoginController
 
       
                 Auth::guard('siteuser')->login($finduser);
-     
-                return redirect('/dashboard');
-      
+                return redirect()->intended('dashboard')->withSuccess('Signed in');
+           
             }else{
                 $siteuser = SiteUser::where('email',$user->email)->first();
                 if($siteuser){
@@ -129,7 +127,7 @@ class SiteUserController extends DefaultLoginController
                 }
      
       
-                return redirect('/dashboard');
+                return redirect()->intended('dashboard')->withSuccess('Signed in');
             }
      
         } catch (Exception $e) {
