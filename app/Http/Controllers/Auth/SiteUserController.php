@@ -105,7 +105,6 @@ class SiteUserController extends DefaultLoginController
             $user = Socialite::driver('facebook')->user();
       
             $finduser = SiteUser::where('facebook_id', $user->id)->first();
-            \Log::info($finduser);
       
             if($finduser){
 
@@ -115,15 +114,19 @@ class SiteUserController extends DefaultLoginController
                 return redirect('/dashboard');
       
             }else{
-                $newUser = SiteUser::create([
-                    'name' => $user->name,
-                    'email' => $user->email,
-                    'facebook_id'=> $user->id,
-                    // 'social_type'=> 'facebook',
-                    'password' => encrypt('rw@123')
-                ]);
+                $siteuser = SiteUser::where('email',$user->email)->first();
+                if($siteuser){
+                    SiteUser::where('id',$siteuser->id)->update(['facebook_id'],$user->id)
+                }else{
+                    $newUser = SiteUser::create([
+                        'name' => $user->name,
+                        'email' => $user->email,
+                        'facebook_id'=> $user->id,
+                        'password' => encrypt('rw@123')
+                    ]);
+                }
      
-                Auth::login($newUser);
+                Auth::guard('siteuser')->login($finduser);
       
                 return redirect('/dashboard');
             }
