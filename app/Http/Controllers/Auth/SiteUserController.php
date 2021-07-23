@@ -105,7 +105,7 @@ class SiteUserController extends DefaultLoginController
             $user = Socialite::driver('facebook')->user();
       
             $finduser = SiteUser::where('facebook_id', $user->id)->first();
-            \Log::info($user);
+            \Log::info($finduser);
       
             if($finduser){
       
