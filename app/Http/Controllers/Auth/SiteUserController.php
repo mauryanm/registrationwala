@@ -56,29 +56,35 @@ class SiteUserController extends DefaultLoginController
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:site_users',
-            'password' => 'required|min:6',
+            'password' => 'required_if:type,siteuser|min:6',
         ]);
            
         $data = $request->all();
-        $check = $this->create($data);
-         
+
+        
+         if($request->input('type')=='associate'){
+            $data['password'] = 'rw@123';
+            $check = $this->create($data);
+            Auth::guard('siteuser')->login($check);
+            return redirect("dashboard/associate")->withSuccess('Hello '.$check->name.' You are just one step away from getting Onboarded to Registrationwala Associate Program. Your login password is rw@123, please remember.');
+         }
+         $check = $this->create($data);
         return redirect("dashboard")->withSuccess('You have signed-in');
     }
     public function create(array $data)
     {
-      return SiteUser::create([
-        'name' => $data['name'],
-        'email' => $data['email'],
-        'password' => Hash::make($data['password'])
-      ]);
+        $data['password'] = Hash::make($data['password']);
+      return SiteUser::create($data);
     }
     public function logout(Request $request)
     {
         //$this->saveLogoutTime($request);
         // $this->clearPrevSession();
 
-        $this->guard()->logout();
-        $request->session()->invalidate();
+        $sessionKey = $this->guard()->getName();
+        $this->guard('siteuser')->logout();
+        $request->session()->forget($sessionKey);
+        // $request->session()->invalidate();
         //$request->session()->regenerateToken();
         return $this->loggedOut($request) ?: redirect('/dashboard');
     }

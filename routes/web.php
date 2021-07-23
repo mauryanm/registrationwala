@@ -21,7 +21,7 @@ Route::get('auth/facebook', 'App\Http\Controllers\Auth\SiteUserController@redire
 Route::get('facebook/callback', 'App\Http\Controllers\Auth\SiteUserController@handleCallback');
 Route::get('auth/google', 'App\Http\Controllers\Auth\SiteUserController@redirectToGoogle')->name('google');
 Route::get('google/callback', 'App\Http\Controllers\Auth\SiteUserController@handleGoogleCallback');
-
+Route::get('/become-an-associate', 'App\Http\Controllers\becomeAnAssociateController@index');
 Route::prefix('dashboard')
         ->as('dashboard.')
         ->group(function() {
@@ -35,18 +35,20 @@ Route::namespace('')
         Route::get('register', 'App\Http\Controllers\Auth\SiteUserController@registration')->name('register');
         Route::post('register', 'App\Http\Controllers\Auth\SiteUserController@registeruser')->name('register');
         Route::put('updateuser/{id}', 'App\Http\Controllers\SiteUserController@update')->name('updateuser');
+        Route::group(['middleware' => 'checkusertype'], function () {
         Route::get('/service-request', 'App\Http\Controllers\SiteUserController@servicerequest')->name('service-request');
         Route::get('/pay-now', 'App\Http\Controllers\SiteUserController@paynow')->name('pay-now');
         Route::get('/payment-history', 'App\Http\Controllers\SiteUserController@paymenthistory')->name('payment-history');
         Route::get('/create-ticket', 'App\Http\Controllers\SiteUserController@ticket')->name('create-ticket');
         Route::post('/create-ticket', 'App\Http\Controllers\SiteUserController@storeticket')->name('create-ticket');
         });
+        Route::get('/associate', 'App\Http\Controllers\SiteUserController@associate')->name('associate');
+        });
  });
 
 
 Route::get('/', 'App\Http\Controllers\HomeController@index')->name('/');
 Route::get('/search-service', 'App\Http\Controllers\HomeController@searchservice');
-Route::get('/become-an-associate', 'App\Http\Controllers\becomeAnAssociateController@index');
 Route::get('/service-list', 'App\Http\Controllers\WebController@servicelist');
 ############# Other pages ###############
 Route::get('/privacy-policy', 'App\Http\Controllers\PageController@index')->name('privacy-policy');

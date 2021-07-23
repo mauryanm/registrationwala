@@ -4,7 +4,7 @@
 @section('keywords', "Become an Associate")
 @section('content')
 @include('templates.header')
-
+@include('dashboard.includes.error')
 <div class="associate-section ">
   <div class=" ">
     <div class="container">
@@ -16,29 +16,27 @@
             <div class="mt-5 mb-5 pt-4 pb-4  bg-white">
               <div class="card-body bg-white ">
                 <p class="text-center font-weight-bold h5 mb-3">Start Your Associate Journey</p>  
-                  <form autocomplete="off" class="form validateform" method="post" id="serviceform1">
+                  <form autocomplete="off" action="{{ route('dashboard.register') }}" class="form validateform" method="post" id="serviceform1">
                     @csrf
-                    <input type="hidden" name="source" value="becomeanassociate">
-                    <input type="hidden" name="page" value="Become an Associate">
-                    <input type="hidden" name="page_id" value="0">
+                    <input type="hidden" name="type" value="associate">
                     <div class="form-group">
-                      <input class="form-control" name="name" type="text" placeholder="Name">
+                      <input class="form-control" value="{{old('name')}}" name="name" type="text" placeholder="Name" required="">
                     </div>
                     
                        <div class="form-group">
-                      <input class="form-control" name="email" type="email" placeholder="Email ID">
+                      <input class="form-control"  value="{{old('email')}}" name="email" type="email" placeholder="Email ID" required="">
                     </div>
                     
                         <div class="form-group">
-                      <input class="form-control" name="phone" type="text" placeholder="Phone Number">
+                      <input class="form-control" value="{{old('phone')}}" name="phone" type="text" placeholder="Phone Number" required="">
                     </div>
                     <div class="form-group">
-                      <select class="form-control" name="from">
-                          <option>Select Profession</option>
-                          <option>CA</option>
-                          <option>CS</option>
-                          <option>Lawyers</option>
-                          <option>Others</option>
+                      <select class="form-control" name="profession" required="">
+                          <option value="">Select Profession</option>
+                          <option value="CA" {{old('profession')=='CA'?'selected':''}}>CA</option>
+                          <option value="CS" {{old('profession')=='CS'?'selected':''}}>CS</option>
+                          <option value="Lawyer" {{old('profession')=='Lawyer'?'selected':''}}>Lawyers</option>
+                          <option value="Others" {{old('profession')=='Others'?'selected':''}}>Others</option>
                           </select>
                     </div>         
                 
@@ -320,12 +318,12 @@ $testmonials = \App\PeopleSay::where('status',1)->get();
 
 @section('script')
 <script type="text/javascript">
-  $(document).ready(function(){
-    $("#serviceform1").validate({
-      submitHandler: function(form) {
-        storeformdata(form,'#submit-btn1')
-      }
-     });
-  })
+  // $(document).ready(function(){
+  //   $("#serviceform1").validate({
+  //     submitHandler: function(form) {
+  //       storeformdata(form,'#submit-btn1')
+  //     }
+  //    });
+  // })
 </script>
 @endsection

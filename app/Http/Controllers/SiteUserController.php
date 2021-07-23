@@ -15,6 +15,8 @@ class SiteUserController extends Controller
     }
     public function index()
     {
+        
+        if(\Auth::user()->type=='associate') return redirect('/dashboard/associate');
         return view('dashboard.index');
     }
     public function servicerequest(){
@@ -32,6 +34,21 @@ class SiteUserController extends Controller
     public function update(Request $request,$id)
     {
         $user = SiteUser::findOrFail(\Auth::user()->id);
+        \Log::info($user);
+        if($user->type == 'associate'){
+            $this->validate($request, [
+                'compname'  => 'required',
+                'address'   => 'required',
+                'experience'=> 'required',
+                'expertise' => 'required',
+            ],[
+                'compname.required'  =>'Name of the firm is required.',
+            ]);
+            $data = $request->except('_token','_method','profile');
+            $user->fill($data)->save();
+            return redirect('/dashboard/associate')->with('success', 'Congratulations Priyanka Gupta \n
+Thank you for signing up for Registrationwala’s Associate program. Here are your details:');
+        }
         if($request->input('profile')=="profile"){
             $data = $request->except('_token','_method','profile');
             $user->fill($data)->save();
@@ -93,5 +110,9 @@ class SiteUserController extends Controller
         $data['status'] = 0;
         $insdata = Ticket::create($data);
         return redirect('dashboard/create-ticket')->withSuccess('Ticket genrated successfully! your ticket number is RWT'.sprintf("%'05d", $insdata->id));
+    }
+    public function associate()
+    {
+        return view('dashboard.associate.index');
     }
 }
