@@ -100,14 +100,9 @@ class SiteUserController extends DefaultLoginController
     public function handleCallback()
     {
         try {
-     
             $user = Socialite::driver('facebook')->user();
-      
             $finduser = SiteUser::where('facebook_id', $user->id)->first();
-      
             if($finduser){
-
-      
                 Auth::guard('siteuser')->login($finduser);
                 return redirect()->intended('dashboard')->withSuccess('Signed in');
            
@@ -122,7 +117,7 @@ class SiteUserController extends DefaultLoginController
                         'name' => $user->name,
                         'email' => $user->email,
                         'facebook_id'=> $user->id,
-                        'password' => encrypt('rw@123')
+                        'password' => Hash::make('rw@123')
                     ]);
                     Auth::guard('siteuser')->login($newUser);
                 }
@@ -131,6 +126,39 @@ class SiteUserController extends DefaultLoginController
                 return redirect()->intended('dashboard')->withSuccess('Signed in');
             }
      
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        }
+    }
+    public function redirectToGoogle()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+    public function handleGoogleCallback()
+    {
+        try {
+            $user = Socialite::driver('google')->user();
+            $finduser = User::where('google_id', $user->id)->first();
+            if($finduser){
+                Auth::guard('siteuser')->login($finduser);
+                return redirect()->intended('dashboard')->withSuccess('Signed in');
+            }else{
+                $siteuser = SiteUser::where('email',$user->email)->first();
+                if($siteuser){
+                    $siteuser->facebook_id=$user->id;
+                    $siteuser->save();
+                    Auth::guard('siteuser')->login($siteuser);
+                }else{
+                    $newUser = User::create([
+                        'name' => $user->name,
+                        'email' => $user->email,
+                        'google_id'=> $user->id,
+                        'password' => Hash::make('rw@123')
+                    ]);
+                    Auth::guard('siteuser')->login($newUser);
+                }
+                return redirect()->intended('dashboard')->withSuccess('Signed in');
+            }
         } catch (Exception $e) {
             dd($e->getMessage());
         }

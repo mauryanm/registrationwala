@@ -41,4 +41,11 @@ return [
         'redirect' => 'https://cagauravbansal.com/facebook/callback',
     ],
 
+        'google' => [
+        'client_id' => '892703187235-bg49jtlfe1gmtffpgsrdqcdarumpsi72.apps.googleusercontent.com',
+        'client_secret' => 'QUx7A6nNnnphi_-VRIxQ-aSO',
+        'redirect' => 'https://cagauravbansal.com/google/callback',
+
+    ],
+
 ];

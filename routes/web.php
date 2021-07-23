@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('auth/facebook', 'App\Http\Controllers\Auth\SiteUserController@redirectToFB')->name('facebook');
 Route::get('facebook/callback', 'App\Http\Controllers\Auth\SiteUserController@handleCallback');
+Route::get('auth/google', 'App\Http\Controllers\Auth\SiteUserController@redirectToGoogle')->name('google');
+Route::get('auth/google/callback', 'App\Http\Controllers\Auth\SiteUserController@handleGoogleCallback');
 
 Route::prefix('dashboard')
         ->as('dashboard.')

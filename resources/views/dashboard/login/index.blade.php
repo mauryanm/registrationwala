@@ -63,7 +63,7 @@
 							<a href="{{ url('auth/facebook') }}" class="btn  btn-fb btn-sm btn-block mb-2 btn-round radius0 normal-text-size"> <span class="btn-label"><i class="icon fa fa-facebook"></i></span> Login with Facebook</a>
 						 </div>
 						 <div class="col-md-12">
-							<button type="button" class="btn btn-gm btn-sm btn-block  mb-2  btn-round radius0 normal-text-size "> <span class="btn-label"><i class="icon fa fa-google"></i></span> Login with Gmail</button>
+							<a href="{{ url('auth/google') }}" class="btn btn-gm btn-sm btn-block  mb-2  btn-round radius0 normal-text-size "> <span class="btn-label"><i class="icon fa fa-google"></i></span> Login with Gmail</a>
 						 </div>
 						 <div class="col-md-12">
 							<button type="button"  class="btn btn-fb btn-sm btn-block mb-2  btn-round radius0 normal-text-size "> <span class="btn-label"><i class="fa fa-users"></i></span> Associate Login</button>
