@@ -116,7 +116,8 @@ class SiteUserController extends DefaultLoginController
             }else{
                 $siteuser = SiteUser::where('email',$user->email)->first();
                 if($siteuser){
-                    SiteUser::where('id',$siteuser->id)->update(['facebook_id'],$user->id)
+                    SiteUser::where('id',$siteuser->id)->update(['facebook_id'],$user->id);
+                    Auth::guard('siteuser')->login($siteuser);
                 }else{
                     $newUser = SiteUser::create([
                         'name' => $user->name,
@@ -124,9 +125,9 @@ class SiteUserController extends DefaultLoginController
                         'facebook_id'=> $user->id,
                         'password' => encrypt('rw@123')
                     ]);
+                    Auth::guard('siteuser')->login($newUser);
                 }
      
-                Auth::guard('siteuser')->login($finduser);
       
                 return redirect('/dashboard');
             }
