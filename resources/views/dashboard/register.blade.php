@@ -40,10 +40,10 @@
                                 <input type="text" class="form-control" placeholder="Name" name="name">
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Emnail" name="email">
+                                <input type="text" class="form-control" placeholder="Email" name="email">
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Phone">
+                                <input type="text" class="form-control" placeholder="Phone" name="phone">
                             </div>
                             <div class="form-group">
                                 <input type="password" class="form-control" placeholder="Password" name="password">
