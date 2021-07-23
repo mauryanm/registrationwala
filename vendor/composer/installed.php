@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'c0cde63f091bf6134365ef711859dee755d6b587',
+    'reference' => '8c673ded96c59263ffbb013d78a76c7ac0ef1ff2',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -512,6 +512,24 @@
       ),
       'reference' => 'abbf18d5ab8367f96b3205ca3c89fb2fa598c69e',
     ),
+    'jaybizzle/crawler-detect' => 
+    array (
+      'pretty_version' => 'v1.2.106',
+      'version' => '1.2.106.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '78bf6792cbf9c569dc0bf2465481978fd2ed0de9',
+    ),
+    'jenssegers/agent' => 
+    array (
+      'pretty_version' => 'v2.6.4',
+      'version' => '2.6.4.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'daa11c43729510b3700bc34d414664966b03bffe',
+    ),
     'justinrainbow/json-schema' => 
     array (
       'pretty_version' => '5.2.10',
@@ -571,7 +589,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'c0cde63f091bf6134365ef711859dee755d6b587',
+      'reference' => '8c673ded96c59263ffbb013d78a76c7ac0ef1ff2',
     ),
     'laravel/sail' => 
     array (
@@ -644,6 +662,15 @@
       array (
       ),
       'reference' => '19a3ce488bb1547c906209e8293199ec34eaa5b1',
+    ),
+    'mobiledetect/mobiledetectlib' => 
+    array (
+      'pretty_version' => '2.8.37',
+      'version' => '2.8.37.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '9841e3c46f5bd0739b53aed8ac677fa712943df7',
     ),
     'mockery/mockery' => 
     array (

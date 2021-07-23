@@ -96,7 +96,6 @@ class SiteUserController extends DefaultLoginController
 
     public function redirectToFB()
     {
-        \Log::info('fblogin');
         return Socialite::driver('facebook')->redirect();
     }
     public function handleCallback()
@@ -106,6 +105,7 @@ class SiteUserController extends DefaultLoginController
             $user = Socialite::driver('facebook')->user();
       
             $finduser = SiteUser::where('facebook_id', $user->id)->first();
+            \Log::info($user);
       
             if($finduser){
       
