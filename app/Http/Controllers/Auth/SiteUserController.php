@@ -113,9 +113,9 @@ class SiteUserController extends DefaultLoginController
            
             }else{
                 $siteuser = SiteUser::where('email',$user->email)->first();
-                \Log::info($siteuser);
                 if($siteuser){
-                    SiteUser::where('id',$siteuser->id)->update(['facebook_id'],$user->id);
+                    $siteuser->facebook_id=$user->id;
+                    $siteuser->save();
                     Auth::guard('siteuser')->login($siteuser);
                 }else{
                     $newUser = SiteUser::create([
