@@ -138,7 +138,7 @@ class SiteUserController extends DefaultLoginController
     {
         try {
             $user = Socialite::driver('google')->user();
-            $finduser = User::where('google_id', $user->id)->first();
+            $finduser = SiteUser::where('google_id', $user->id)->first();
             if($finduser){
                 Auth::guard('siteuser')->login($finduser);
                 return redirect()->intended('dashboard')->withSuccess('Signed in');
@@ -149,7 +149,7 @@ class SiteUserController extends DefaultLoginController
                     $siteuser->save();
                     Auth::guard('siteuser')->login($siteuser);
                 }else{
-                    $newUser = User::create([
+                    $newUser = SiteUser::create([
                         'name' => $user->name,
                         'email' => $user->email,
                         'google_id'=> $user->id,
