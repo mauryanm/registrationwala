@@ -126,6 +126,10 @@
                                         {{ __('voyager::generic.download') }}
                                     </a>
                                 @endif
+                            @elseif($row->type == 'single_file')
+                                    <a target="_blank" href="{{ Storage::disk(config('voyager.storage.disk'))->url(json_decode($dataTypeContent->{$row->field})->download_link) ?: '' }}">
+                                        {{ __('voyager::generic.download') }}
+                                    </a>
                             @else
                                 @include('voyager::multilingual.input-hidden-bread-read')
                                 <p>{{ $dataTypeContent->{$row->field} }}</p>

@@ -13,6 +13,7 @@ use TCG\Voyager\Events\FileDeleted;
 use TCG\Voyager\Http\Controllers\ContentTypes\Checkbox;
 use TCG\Voyager\Http\Controllers\ContentTypes\Coordinates;
 use TCG\Voyager\Http\Controllers\ContentTypes\File;
+use TCG\Voyager\Http\Controllers\ContentTypes\SingleFile;
 use TCG\Voyager\Http\Controllers\ContentTypes\Image as ContentImage;
 use TCG\Voyager\Http\Controllers\ContentTypes\MultipleCheckbox;
 use TCG\Voyager\Http\Controllers\ContentTypes\MultipleImage;
@@ -94,6 +95,10 @@ abstract class Controller extends BaseController
 
                 // If the image upload is null and it has a current image keep the current image
                 if ($row->type == 'image' && is_null($request->input($row->field)) && isset($data->{$row->field})) {
+                    $content = $data->{$row->field};
+                }
+
+                if ($row->type == 'single_file' && is_null($request->input($row->field)) && isset($data->{$row->field})) {
                     $content = $data->{$row->field};
                 }
 
@@ -266,6 +271,9 @@ abstract class Controller extends BaseController
             /********** FILE TYPE **********/
             case 'file':
                 return (new File($request, $slug, $row, $options))->handle();
+            /********** SINGLE FILE TYPE **********/
+            case 'single_file':
+                return (new SingleFile($request, $slug, $row, $options))->handle();
             /********** MULTIPLE IMAGES TYPE **********/
             case 'multiple_images':
                 return (new MultipleImage($request, $slug, $row, $options))->handle();

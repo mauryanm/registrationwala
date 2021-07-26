@@ -613,7 +613,14 @@ class VoyagerBaseController extends Controller
 
                     $data->{$field} = null;
                 } else {
-                    throw new Exception(__('voyager::media.file_does_not_exist'), 400);
+                    $row = $dataType->rows->where('field', $field)->first();
+                    if (in_array($row->type, ['single_file']) && $filename == json_decode($data->{$field})->download_link) {
+                    $fileToRemove = json_decode($data->{$field})->download_link;
+
+                    $data->{$field} = null;
+                    }else{
+                        throw new Exception(__('voyager::media.file_does_not_exist'), 400);
+                    }
                 }
             }
 
