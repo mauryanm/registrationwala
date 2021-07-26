@@ -34,12 +34,11 @@ class SiteUserController extends Controller
     public function update(Request $request,$id)
     {
         $user = SiteUser::findOrFail(\Auth::user()->id);
-        \Log::info($user);
         if($user->type == 'associate'){
             $this->validate($request, [
                 'compname'  => 'required',
                 'address'   => 'required',
-                'experience'=> 'required',
+                'experience'=> 'required|integer|min:1',
                 'expertise' => 'required',
             ],[
                 'compname.required'  =>'Name of the firm is required.',
