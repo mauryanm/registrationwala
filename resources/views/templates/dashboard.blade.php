@@ -8,6 +8,7 @@
   <meta name="keywords" content="@yield('keywords')">
   <meta name="author" content="@yield('author')">
   <meta name="csrf-token" content="{{ csrf_token() }}">
+  <meta name="robots" content="noindex">
   @yield('og')
   <title>@yield('title',setting('site.title'))</title>
   <link rel="icon" href="{{ asset('/images/icon/favicon.png') }}" type="image/gif" >  
