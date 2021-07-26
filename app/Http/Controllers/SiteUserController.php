@@ -46,7 +46,7 @@ class SiteUserController extends Controller
             ]);
             $data = $request->except('_token','_method','profile');
             $user->fill($data)->save();
-            return redirect('/dashboard/associate')->with('success', 'Congratulations Priyanka Gupta \n
+            return redirect('/dashboard/associate')->with('success', 'Congratulations '.$user->name.'
 Thank you for signing up for Registrationwala’s Associate program. Here are your details:');
         }
         if($request->input('profile')=="profile"){

@@ -64,7 +64,7 @@
          <div class="row">
             <div class="col-12 col-md-4 d-flex">
                <div class="user_sidebarbox w-100 align-items-stretch">
-                  <div class="text-center mt-4"> <img src="https://www.registrationwala.com/uploaded_files/testimonials/84X84/1521186243_861.jpg" class="img-fluid rounded-circle profile-user-img" alt=""> </div>
+                  <!-- <div class="text-center mt-4"> <img src="https://www.registrationwala.com/uploaded_files/testimonials/84X84/1521186243_861.jpg" class="img-fluid rounded-circle profile-user-img" alt=""> </div> -->
                   <h5 class="text-center mt-2">{{ \Auth::user()->name }} </h5>
                   <ul class="list-unstyled p-3 user-sidebar bluebg">
                      <li> <i class="fa fa-envelope-o"></i> {{\Auth::user()->email}}</li>
