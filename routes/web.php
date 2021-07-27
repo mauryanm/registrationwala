@@ -48,7 +48,7 @@ Route::namespace('')
 
 
 Route::get('/', 'App\Http\Controllers\HomeController@index')->name('/');
-Route::get('/download', 'App\Http\Controllers\Controller@download')->name('download');
+Route::get('/download/{path}', 'App\Http\Controllers\Controller@download');
 Route::get('/search-service', 'App\Http\Controllers\HomeController@searchservice');
 Route::get('/service-list', 'App\Http\Controllers\WebController@servicelist');
 ############# Other pages ###############

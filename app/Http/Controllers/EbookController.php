@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use TCG\Voyager\Facades\Voyager;
 use App\Ebook;
+use App\Lead;
 
 class EbookController extends Controller
 {
@@ -21,17 +22,20 @@ class EbookController extends Controller
             'phone'             => 'required|digits_between:5,15', 
             'service'           => 'required',          
         ]);
+        $ebook = Ebook::findOrFail($request->input('page_id'));
+        $ebookpath = (json_decode($ebook->ebook))->download_link;
+        Lead::create($request->all());
          $mail_arry=array(
             'to'=>$request->input('email'),
             'from_name'=> setting('admin.title'),
             'from'=>setting('admin.email'),
             'subject'=>'E-Book | Registrationwala.com',
-            'message'=>$this->ebookfile($request)
+            'message'=>$this->ebookfile($request,$ebookpath)
         );
        $this->sendmail($mail_arry);
         return redirect()->back();
     }
-    private function ebookfile($data){
+    private function ebookfile($data,$path){
         $texts='<table width="100%" cellpadding="0" cellspacing="0">
         <tr><td>
         <table style="margin:auto; width:600px; font-size:16px; line-height:24px; font-family:Verdana, Geneva, sans-serif" cellpadding="0" cellspacing="0">
@@ -58,11 +62,11 @@ class EbookController extends Controller
         <tr><td>
         <table width="100%" cellpadding="0" cellspacing="0">
         <tr><td style="padding:10px 20px;">
-        <p style="margin:10px 0; text-align:justify; color:#030000; line-height:24px;">Thanks for requesting your E-Book on '.$data->source.'. Click below link to download your E-book.</p>
+        <p style="margin:10px 0; text-align:justify; color:#030000; line-height:24px;">Thanks for requesting your E-Book on '.$data->service.'. Click below link to download your E-book.</p>
         </td></tr>
 
         <tr><td style="padding:10px 20px;">
-        <p style="margin:10px 0; color:#030000; text-align:center;"><a href="'.route('download').'" style="display:inline-block; text-decoration:none; color:#fff; background:#f52900; padding:12px 50px;">Download Now</a></p>
+        <p style="margin:10px 0; color:#030000; text-align:center;"><a href="'.url('/download/'.encrypt($path)).'" style="display:inline-block; text-decoration:none; color:#fff; background:#f52900; padding:12px 50px;">Download Now</a></p>
         </td></tr>
         </table>
         </td></tr>
