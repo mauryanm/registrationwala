@@ -1,159 +1,136 @@
 @extends('templates.web')
-@section('title', $data->seo_title)
-@section('description', $data->meta_description)
-@section('keywords', $data->meta_keywords)
-@section('bodyData', 'data-spy=scrol data-target=#side')
+@section('title', "E-Book")
+@section('description', "E-Book")
+@section('keywords', "E-Book")
 @section('content')
 @include('templates.header')
 
-<!--Header form section-->
 <div class="service-section overlay">
-  <div class="">
-    <div class="container">
-      <div class="row no-gutters align-items-center">
-        <div class="col-md-8 offset-md-2">
-          <h2 class="text-center h3 mb-2 mt-2 text-white ">Online Trademark/Company Search</h2>
-          <p class="text-center text-white">Search for more than 15 Lacs companies, 40 Lacs Trademarks in all classes registered in India.</p>
-          <div class="row no-gutters">
-            <div class="col-md-4">
-              <select class="form-control select-radius"  name="type">
-                <option value="">SELECT</option>
-                <option value="company">Company</option>
-                <option value="director">Director</option>
-                <option value="address">Address</option>
-                <option value="trademark">Trademark</option>
-              </select>
+   <div class="pb-5">
+      <div class="container">
+         <div class="row no-gutters align-items-center">
+            <div class="col-md-6 offset-md-3">
+               <h2 class="text-center h3 mb-2 mt-2 text-white ">E-books </h2>
+               <!-- <div class="row no-gutters">
+                  <div class="col-md-12">
+                     <div class="input-group">
+                        <input type="text" class="form-control radius0" placeholder="Serach E-book">
+                        <div class="input-group-append">
+                           <button class="btn btn-secondary" type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
+                        </div>
+                     </div>
+                  </div>
+               </div> -->
             </div>
-            <div class="col-md-8">
-              <div class="input-group">
-                <input type="text" class="form-control radius0" placeholder="Company Name, CIN">
-                <div class="input-group-append">
-                  <button class="btn btn-secondary" type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <p class="text-white text-center mt-2"><small>Note:-  Information is in beta phase. It is not to be used for legal purposes. If there are any discrepancies</small></p>
-          <p class="mb-0 mt-3 text-center"> <a href=""><span class="badge badge-info mb-1">New Companies</span></a> <a href=""><span class="badge badge-info mb-1">Directors </span></a> <a href=""><span class="badge badge-info mb-1">Financials </span></a> <a href=""><span class="badge badge-info mb-1">Registration</span> <span class="badge badge-info mb-1">Incoming
-            Notifications</span> <span class="badge badge-info mb-1">Complete India
-            Data</span> </a> </p>
-        </div>
+         </div>
       </div>
-    </div>
-  </div>
+   </div>
 </div>
-<div class="bg-white">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <ol class="breadcrumb radius-0 bg-transparent pt-3  pb-3 m-0">
-          <li class="breadcrumb-item"><a href="/">Home</a></li>
-          <li class="breadcrumb-item active" aria-current="page">{{$data->title}}</li>
-        </ol>
+@include('dashboard.includes.error')
+<div class="bg-light p-2 mt-0">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12">
+            <ol class="breadcrumb radius-0 bg-transparent p-0  m-0">
+               <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
+               <li class="breadcrumb-item active" aria-current="page">E-books </li>
+            </ol>
+         </div>
       </div>
-    </div>
-  </div>
+   </div>
 </div>
-<section class="bg-light section">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="text-center">
-          <h1 class="h2 text-center main-heading">{{$data->title}}</h1>
-          <p class="text-bold">{{$data->sub_heading}}</p>
-        </div>
-        <div class="row mt-2">
-          {!! $data->body !!}
-        </div>
-        <div class="row mt-5">
-        @foreach($data->only(['step1', 'step2', 'step3', 'step4', 'step5', 'step6']) as $step)
-          @if($step)
-          <div class="col-md-4">
-            <div class="start-business {{ $loop->iteration%2==0?'act shadow-lg':'act1' }}">
-              @if($loop->iteration%2==0)<div class="wrap"> <span class="ribbon6"> Most popular</span> </div>@endif
-              <div class="start-business-header"> <span class="price-value">  INR {{number_format(($step))}}/- </span>
-                <h3 class="heading"> {{ $data["section_{$loop->iteration}_heading"] }}</h3>
-              </div>
-              <div class="pricing-content">
-                {!! $data["section_{$loop->iteration}_body"] !!}
+<section class="pb-5 pt-5 bg-light border-bottom">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12">
+          @forelse($ebooks as $ebook)
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="bg-white p-4">
+                     <div class="row">
+                        <div class="col-md-9">
+                           <h2 class="h4">{{$ebook->heading}}</h2>
+                           {!! $ebook->body !!}
+                        </div>
+                        <div class="col-md-3 text-center">
+                           <div class="books mb-5 mt-4">
+                              <div class="book">
+                                 <img src="{{Voyager::image($ebook->image)}}" alt="{{$ebook->heading}}">
+                              </div>
+                           </div>
+                           <a class="cbtn btn-4 mb-1 downloadbtn" href="javascript:void(0)" data-id="{{$ebook->id}}" data-name="{{$ebook->name}}"><i class="fa fa-download" aria-hidden="true"></i> Download </a>   
+                        </div>
+                     </div>
+                  </div>
                </div>
             </div>
-          </div>
-          @endif
-        @endforeach
+          @empty
 
-        </div>
+          @endforelse
+         </div>
       </div>
-    </div>
-  </div>
+   </div>
 </section>
-
-
-
-<section class="section bg-white">
-  <div class="container">
-    <h2 class="font-weight-bold mb-1 h3">Why Choose us </h2>
-    <div class="divider-1"> <span></span></div>
-    <div class="row no-gutters">
-      @foreach($wcu as $row)
-      <div class="col-md-3">
-        <div class="card-wchoose animated fadeInUp"> <img src="/storage/{{$row->icon}}" class="img-card" alt="customer">
-          <div class="card-wchoose-footer">
-            <h2 class="text-center">{{number_format($row->statistics)}} +</h2>
-            <p>{{$row->name}}</p>
-          </div>
-        </div>
+<div class="modal fade" id="downloadebook" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
+   <div class="modal-dialog modelsize  modal-dialog-centered" role="document">
+      <div class="modal-content modelbgimage ">
+         <div class="modal-body pb-0 pt-0">
+            <div class="row no-gutter">
+               <div class="col-md-6"><img src="/images/form-images.png" class="img-fluid mt-2">
+               </div>
+               <div class="col-md-6 bg-light">
+                  <div class="text-left">
+                     <button type="button" class="close p-2" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                  </div>
+                  <div class="login-wrapper">
+                     <div class="form-title text-center mt-3">
+                        <h4 class="mb-3 pb-0"> Download E-Book</h4>
+                     </div>
+                     <div class="d-flex flex-column text-center">
+                        <form action="{{route('e-books')}}" method="post">
+                          @csrf
+                          <input type="hidden" name="page_id" id="ebook_id">
+                          <input type="hidden" name="source" value="ebook">
+                           <div class="form-group">
+                              <input type="text" id="service" class="form-control radius0" placeholder="Service" name="service">
+                           </div>
+                           <div class="form-group">
+                              <input type="text" class="form-control radius0" placeholder="Name" name="name">
+                           </div>
+                           <div class="form-group">
+                              <input type="text" class="form-control radius0" placeholder="Email" name="email">
+                           </div>
+                           <div class="form-group">
+                              <input type="text" class="form-control radius0" placeholder="Phone" name="phone">
+                           </div>
+                           <button type="submit" class="btn btn-dark btn-sm pull-right w-50 btn-round radius0">Submit</button>
+                        </form>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-12">
+                  <div class="row ">
+                     <div class="col bg-dark text-white  pt-2 pb-2 text-center"> <strong>35000+</strong> <small class="d-block">Satisfied Clients</small></div>
+                     <div class="col bg-dark seplr text-white  pt-2 pb-2 text-center"> <strong>500+</strong> <small  class="d-block">Licenses & Registration</small> </div>
+                     <div class="col bg-dark seplr text-white  pt-2 pb-2 text-center"> <strong>10</strong> <small  class="d-block">Branches across India</small></div>
+                     <div class="col bg-dark text-white  pt-2 pb-2 text-center"> <strong>50 Years + </strong> <small  class="d-block">Combined experience </small></div>
+                  </div>
+               </div>
+            </div>
+         </div>
       </div>
-      @endforeach
-    </div>
-  </div>
-</section>
-
-@if($otherservices)
-@include('includes.otherServices')
-@endif
-@include('includes.ourClients')
-@if($data->posts->count()>0)
-<section class="section bg-light">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <h2 class="font-weight-bold mb-1 h3">What's Latest in  {{$data->title}} </h2>
-        <div class="divider-1"> <span></span></div>
-      </div>
-    </div>
-    <div class="row">
-      @foreach($data->posts as $lsb)
-      <div class="col-12 col-sm-8 col-md-6 col-lg-4">
-        <div class="card bloghome h-100">
-          <div class="card-img tag-overlay"> <a href="{{url( __('voyager::post.post_slug').$data->category->slug.'/'.$data->slug.'/'.$lsb->slug)}}"> <img class="card-img" src="{{Voyager::image($lsb->image)}}" alt="{{$lsb->title}}"></a> <a href="{{url( __('voyager::post.post_slug').$data->category->slug)}}" class="btn btn-dark btn-sm">{{$data->category->name}}</a> </div>
-          <div class="card-body pt-2">
-            <h4 class="card-title"> <a href="{{url( __('voyager::post.post_slug').$data->category->slug.'/'.$data->slug.'/'.$lsb->slug)}}">{{$lsb->heading}}</a></h4>
-            <small class="text-muted cat"> <i class="fa fa-calendar "></i> {{date('F d, Y',strtotime($lsb->publish_date))}} <span class="pull-right"> <i class="fa fa-user-o "></i> Registrationwala</span> </small>
-            <a href="{{url( __('voyager::post.post_slug').$data->category->slug.'/'.$data->slug.'/'.$lsb->slug)}}" class="btn btn-sm btn-outline-dark  center-block w-50 mt-2">Read more</a> </div>
-        </div>
-      </div>
-      @endforeach
-    </div>
-  </div>
-</section>
-@endif
+   </div>
+</div>
 @endsection
-
 @section('script')
 <script type="text/javascript">
-  $(document).ready(function(){
-    $("#serviceform1").validate({
-      submitHandler: function(form) {
-        storeformdata(form,'#submit-btn1')
-      }
-     });
-    $("#serviceform2").validate({
-      submitHandler: function(form) {
-        storeformdata(form,'#submit-btn2')
-      }
-     });
+  $(document).ready(function (){
+    $('.downloadbtn').on('click', function(){
+      $("#ebook_id").val($(this).data('id'));
+      $("#service").val($(this).data('name'));
+      $('#downloadebook').modal();
+
+    })
   })
-  
 </script>
 @endsection

@@ -48,6 +48,7 @@ Route::namespace('')
 
 
 Route::get('/', 'App\Http\Controllers\HomeController@index')->name('/');
+Route::get('/download', 'App\Http\Controllers\Controller@download')->name('download');
 Route::get('/search-service', 'App\Http\Controllers\HomeController@searchservice');
 Route::get('/service-list', 'App\Http\Controllers\WebController@servicelist');
 ############# Other pages ###############
@@ -57,14 +58,14 @@ Route::get('/refund-policy', 'App\Http\Controllers\PageController@index')->name(
 Route::get('/cancellation', 'App\Http\Controllers\PageController@index')->name('cancellation');
 Route::get('/terms-condition', 'App\Http\Controllers\PageController@index')->name('terms-condition');
 Route::get('/our-coupon-partner', 'App\Http\Controllers\PageController@index')->name('our-coupon-partner');
-Route::get('/e-books', 'App\Http\Controllers\PageController@index')->name('e-books');
 Route::get('/videos', 'App\Http\Controllers\PageController@videos')->name('videos');
 Route::get("/contact-us", function(){return view("contactus");});
 Route::get('/our-coupon-partner', 'App\Http\Controllers\PageController@couponpartner')->name('our-coupon-partner');
 ############ End Other Pages ############
 
 ############ E-Book URL ############
-Route::get('/e-books', 'App\Http\Controllers\EbookController@index');
+Route::get('/e-books', 'App\Http\Controllers\EbookController@index')->name('e-books');
+Route::post('/e-books', 'App\Http\Controllers\EbookController@ebookdownload')->name('e-books');
 
 ############ Blog Pages ############
 Route::get('/search-post', 'App\Http\Controllers\WebController@searchPost');
