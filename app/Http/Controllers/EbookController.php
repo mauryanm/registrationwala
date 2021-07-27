@@ -42,7 +42,7 @@ class EbookController extends Controller
         );
        $this->sendmail($mail_arry);
        $this->sendmail($mail_asupport);
-        return redirect()->back()->withSuccess('Thank you for choosing registrationwala. Download link send also to mail.');
+        return redirect()->back()->withSuccess('Thank you for choosing registrationwala. Download link also send  to your mail. This link valid for 10 days.')->with('curentdwn',encrypt($ebookpath));
     }
     private function ebookfile($data,$path){
         $texts='<table width="100%" cellpadding="0" cellspacing="0">

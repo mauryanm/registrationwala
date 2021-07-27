@@ -132,5 +132,8 @@
 
     })
   })
+  @if(session()->has('curentdwn'))
+  window.location.href='{{url("download/".session()->get('curentdwn'))}}';
+  @endif
 </script>
 @endsection
