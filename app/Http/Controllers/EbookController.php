@@ -35,8 +35,8 @@ class EbookController extends Controller
        
        $mail_asupport=array(
             'to'=>'ajaymaurya.it@gmail.com',//setting('admin.email'),
-            'from_name'=>$request->input('name'),
-            'from'=>$request->input('email'),
+            'from_name'=>'some one',
+            'from'=>setting('admin.email'),
             'subject'=>'E Book Download | Registrationwala.com',
             'message'=>$this->supportmail($request->except('_token','_method','page_id'))
         );
