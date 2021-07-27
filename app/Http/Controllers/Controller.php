@@ -13,7 +13,7 @@ class Controller extends BaseController
     public function download($path)
         {
             //PDF file is stored under project/public/download/info.pdf
-            $file= storage_path('public/' . decrypt($path));
+            $file= storage_path('public'. DIRECTORY_SEPARATOR  . decrypt($path));
 
             $headers = array(
                       'Content-Type: application/pdf',
