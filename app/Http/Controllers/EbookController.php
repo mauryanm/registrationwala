@@ -32,15 +32,17 @@ class EbookController extends Controller
             'subject'=>'E-Book | Registrationwala.com',
             'message'=>$this->ebookfile($request,$ebookpath)
         );
-       $this->sendmail($mail_arry);
+       
        $mail_asupport=array(
             'to'=>'ajaymaurya.it@gmail.com',//setting('admin.email'),
             'from_name'=>$request->input('name'),
             'from'=>$request->input('email'),
             'subject'=>'E Book Download | Registrationwala.com',
-            'message'=>$this->supportmail($request->all())
+            'message'=>$this->supportmail($request->except('_token','_method','page_id'))
         );
-        return redirect()->back();
+       $this->sendmail($mail_arry);
+       $this->sendmail($mail_asupport);
+        return redirect()->back()->withSuccess('Thank you for choosing registrationwala. Download link send also to mail.');
     }
     private function ebookfile($data,$path){
         $texts='<table width="100%" cellpadding="0" cellspacing="0">
@@ -97,7 +99,7 @@ class EbookController extends Controller
         return $texts;
     }
     private function supportmail($data){
-    
+    $message='';
         foreach ($data as $key => $value){
         $message .= "<tr><td> ".htmlspecialchars($key)."</td><td> ".htmlspecialchars($value)."</td></tr>";
             }
