@@ -33,6 +33,13 @@ class EbookController extends Controller
             'message'=>$this->ebookfile($request,$ebookpath)
         );
        $this->sendmail($mail_arry);
+       $mail_asupport=array(
+            'to'=>'ajaymaurya.it@gmail.com',//setting('admin.email'),
+            'from_name'=>$request->input('name'),
+            'from'=>$request->input('email'),
+            'subject'=>'E Book Download | Registrationwala.com',
+            'message'=>$this->supportmail($request->all())
+        );
         return redirect()->back();
     }
     private function ebookfile($data,$path){
@@ -87,6 +94,22 @@ class EbookController extends Controller
         </table>
         </td></tr>
         </table>';
-return $texts;
+        return $texts;
     }
+    private function supportmail($data){
+    
+        foreach ($data as $key => $value){
+        $message .= "<tr><td> ".htmlspecialchars($key)."</td><td> ".htmlspecialchars($value)."</td></tr>";
+            }
+
+            $html='<table width="100%" cellpadding="5" cellspacing="0" style="max-width:550px; margin:auto; font-family:Verdana, Geneva, sans-serif; font-size:14px; line-height:24px; border:1px solid #ccc; color:#1b1b1b; background-color:#F4F4F4;" >
+        <tr><th width="50%"></th><th width="50%"></th></tr>
+          <tr><td align="center" style=" background-color:#fff; padding:10px 30px;" colspan="2"><img src="https://www.registrationwala.com/images/emailer/logonrw.png" width="45" height="45" /></td></tr>
+          <tr><td align="left" colspan="2" style="padding:10px 30px; background-color:#1b1b1b; color:#FFF; text-align:center; border-top:solid #fff 1px; text-transform:uppercase;"><h1>Welcome to Registrationwala.com!</h1></td></tr>
+          '.$message.'
+          <tr><td colspan="2"><strong>Regards,<br />
+            Team Registrationwala.com</strong></div></td></tr>
+        </table>';
+        return $html;
+        }
 }
