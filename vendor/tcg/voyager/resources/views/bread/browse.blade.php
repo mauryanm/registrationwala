@@ -202,9 +202,11 @@
                                                         </a>
                                                     @endif
                                                 @elseif($row->type == 'single_file')
+                                                @if(isset($data->{$row->field}))
                                                     <a target="_blank" href="{{ Storage::disk(config('voyager.storage.disk'))->url(json_decode($data->{$row->field})->download_link) ?: '' }}">
                                                         {{ __('voyager::generic.download') }}
                                                     </a>
+                                                @endif
                                                 @elseif($row->type == 'rich_text_box')
                                                     @include('voyager::multilingual.input-hidden-bread-browse')
                                                     <div>{{ mb_strlen( strip_tags($data->{$row->field}, '<b><i><u>') ) > 200 ? mb_substr(strip_tags($data->{$row->field}, '<b><i><u>'), 0, 200) . ' ...' : strip_tags($data->{$row->field}, '<b><i><u>') }}</div>

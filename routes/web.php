@@ -63,6 +63,9 @@ Route::get("/contact-us", function(){return view("contactus");});
 Route::get('/our-coupon-partner', 'App\Http\Controllers\PageController@couponpartner')->name('our-coupon-partner');
 ############ End Other Pages ############
 
+############ E-Book URL ############
+Route::get('/e-books', 'App\Http\Controllers\EbookController@index');
+
 ############ Blog Pages ############
 Route::get('/search-post', 'App\Http\Controllers\WebController@searchPost');
 Route::get('/'.__('voyager::post.post_slug').'{category_url}/{Service_url}/{url}', 'App\Http\Controllers\WebController@rwpost');
