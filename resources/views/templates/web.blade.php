@@ -63,57 +63,6 @@
     <div class="container">
       <div class="row">
         {{ menu('Footer', 'rwfooter') }}
-        <!-- <div class="col-md-3 col-sm-6"> 
-          <div class="footer-pad">
-            <h4> Start a Business</h4>
-            <ul class="list-unstyled">
-              <li><a href="#">Company Registration</a></li>
-              <li><a href="#">Pvt Ltd Company Registration</a></li>
-              <li><a href="#">One Person Company</a></li>
-              <li><a href="#">Limited Liability Partnership</a></li>
-              <li><a href="#">Nidhi Company Registration</a></li>
-              <li><a href="#">Public Limited Company</a></li>
-              <li><a href="#">Sole Proprietorship</a></li>
-              <li><a href="#">Producer Company Registration</a></li>
-              <li><a href="#">Partnership Firm Registration</a></li>
-              <li><a href="#">Startup Registration in India </a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-6"> 
-          <div class="footer-pad">
-            <h4> Lisc & Registrations </h4>
-            <ul class="list-unstyled">
-              <li><a href="#">Dealer Certification</a></li>
-              <li><a href="#">Importer License</a></li>
-              <li><a href="#">Packer License</a></li>
-              <li><a href="#">Model Approval Certificate</a></li>
-              <li><a href="#">Legal Metrology Certificate</a></li>
-              <li><a href="#">FFMC License</a></li>
-              <li><a href="#">Ayush Certificate</a></li>
-              <li><a href="#">FEMA consultants</a></li>
-              <li><a href="#">BIS for Toys</a></li>
-              <li><a href="#">Payment Gateway License</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-6"> 
-          <div class="footer-pad">
-            <h4> Other Link</h4>
-            <ul class="list-unstyled">
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">Privacy Policy</a></li>
-              <li><a href="#">Refund Policy</a></li>
-              <li><a href="#">Cancellation Policy</a></li>
-              <li><a href="#">Terms & Conditions</a></li>
-              <li><a href="#">Our Coupon Partners</a></li>
-              <li><a href="#">E-Books</a></li>
-              <li><a href="#">Videos</a></li>
-              <li><a href="#">Sitemap</a></li>
-              <li><a href="#">Contact us </a></li>
-            </ul>
-          </div>
-        </div> -->
         <div class="col-md-3">
           <h4>Follow Us</h4>
           <ul class="list-inline mt-4">

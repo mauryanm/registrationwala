@@ -196,9 +196,7 @@ class WebController extends Controller
     }
     }
 
-    private function sendMail(){
-        
-    }
+
     public function searchcompany(Request $request, $city=null)
     {
         $url = $request->route()->getName();

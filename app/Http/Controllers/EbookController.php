@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use TCG\Voyager\Facades\Voyager;
 use App\Ebook;
 use App\Lead;
-
 class EbookController extends Controller
 {
     public function index()

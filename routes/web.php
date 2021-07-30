@@ -67,6 +67,12 @@ Route::get('/our-coupon-partner', 'App\Http\Controllers\PageController@couponpar
 Route::get('/e-books', 'App\Http\Controllers\EbookController@index')->name('e-books');
 Route::post('/e-books', 'App\Http\Controllers\EbookController@ebookdownload')->name('e-books');
 
+############ Legal Document URL ############
+Route::post('/legal-doc-download', 'App\Http\Controllers\LegalDocumentsController@docdownload')->name('doc-download');
+Route::get('/legal-docs/{url}/edit', 'App\Http\Controllers\LegalDocumentsController@docedit');
+Route::get('/legal-docs/{url}', 'App\Http\Controllers\LegalDocumentsController@docpages');
+Route::get('/legal-docs', 'App\Http\Controllers\LegalDocumentsController@index');
+
 ############ Blog Pages ############
 Route::get('/search-post', 'App\Http\Controllers\WebController@searchPost');
 Route::get('/'.__('voyager::post.post_slug').'{category_url}/{Service_url}/{url}', 'App\Http\Controllers\WebController@rwpost');
