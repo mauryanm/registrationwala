@@ -31,7 +31,6 @@ class LegalDocumentsController extends Controller
             'phone'             => 'required|digits_between:5,15', 
             'service'           => 'required',          
         ]);
-        \Log::info($request->all());
         return redirect()->back()->withSuccess('Thank you for choosing registrationwala. Download link also send  to your mail. This link valid for 10 days.')->withInput();
     }
 }
