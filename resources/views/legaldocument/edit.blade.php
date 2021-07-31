@@ -36,12 +36,12 @@
                  <div class="card">
                    <div class="template-demo">
                       <div class="card-body" id="editor">
-                       {!! $document->docdetail !!}
+                       {!! (old('content')?(old('doc_header').old('content').old('doc_footer')):$document->docdetail) !!}
                      </div>
                    <hr>
                    <div class="editable-footer text-center pb-3">
                       <a class="cbtn btn-4 mb-1 downloaddoc" data-type="doc" href="javascript:void(0)"><i class="fa fa-download" aria-hidden="true"></i> Download Doc</a>
-                        <a class="cbtn btn-4 mb-1 downloaddoc" data-typr="pdf" href="javascript:void(0)"><i class="fa fa-download" aria-hidden="true"></i> Download Pdf</a>
+                        <a class="cbtn btn-4 mb-1 downloaddoc" data-type="pdf" href="javascript:void(0)"><i class="fa fa-download" aria-hidden="true"></i> Download Pdf</a>
                      </div>
                    </div>
                  </div>
@@ -76,7 +76,9 @@
                   @csrf
                   <input type="hidden" name="source" value="Legal Doc">
                   <input type="hidden" name="page_id" value="{{$document->id}}">
+                  <input type="hidden" name="doc_header" id="doc_header" value="">
                   <input type="hidden" name="content" id="content" value="">
+                  <input type="hidden" name="doc_footer" id="doc_footer" value="">
                   <input type="hidden" name="doc_type" id="doc_type" value="">
                   <div class="form-group">
                     <input type="text" class="form-control radius0" placeholder="Service" value="{{$document->heading}}" name="service" required="">
@@ -195,19 +197,7 @@ words[i] = firLet.toUpperCase() + rest
 } 
 return words.join(" "); 
 }
-function submitformdoc(type){
-   if(type=='pdf'){
-   $('#pdfcontent').val($('#editor #maincontent').html());
-   $('#hpdfcontent').val($('#editor #mainheader').html());
-   $('#fpdfcontent').val($('#editor #mainfootert').html()); 
-      }
-   if(type=='doc'){
-   $('#doccontent').val($('#editor #maincontent').html());
-   $('#hdoccontent').val($('#editor #mainheader').html());
-   $('#fdoccontent').val($('#editor #mainfootert').html()); 
-      }  
-//return false;
-}
+
 function stopscroll(){
    var oldScroll = $(window).scrollTop();
    $( window ).one('scroll', function() {
@@ -224,8 +214,13 @@ $(document).ready(function (){
 
    $("#documentdownload").validate({
       submitHandler: function(form) {
-         $('#content').val($('#editor').html());
-         form.submit();
+         $('#doc_header').val($('#editor #mainheader').html());
+         $('#content').val($('#editor #maincontent').html());
+         $('#doc_footer').val($('#editor #mainfootert').html()); 
+         setTimeout(function(){
+          form.submit();
+        },100)
+         
       }
    });
 })
