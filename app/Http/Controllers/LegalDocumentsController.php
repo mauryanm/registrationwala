@@ -36,7 +36,7 @@ class LegalDocumentsController extends Controller
             'service'           => 'required',
             'content'           => 'required',         
         ],[
-            'content.required'  => 'Some thing went wrong please try again!'
+            'content.required'  => 'Some thing went wrong please try again.'
         ]);
         if($request->input('doc_type')=='pdf'){
             $PDF = new TCPDF();
