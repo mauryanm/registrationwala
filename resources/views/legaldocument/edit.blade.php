@@ -207,7 +207,7 @@ function stopscroll(){
 
 $(document).ready(function (){
    $('.downloaddoc').on('click', function(){
-      $('#doc_type').val($(this).data('type'))
+      $('#doc_type').val($(this).data('type'));
       $('#downloadlegaldoc').modal();
 
    })
@@ -216,11 +216,10 @@ $(document).ready(function (){
       submitHandler: function(form) {
          $('#doc_header').val($('#editor #mainheader').html());
          $('#content').val($('#editor #maincontent').html());
-         $('#doc_footer').val($('#editor #mainfootert').html()); 
+         $('#doc_footer').val($('#editor #mainfootert').html());
          setTimeout(function(){
           form.submit();
-        },100)
-         
+        },100)         
       }
    });
 })

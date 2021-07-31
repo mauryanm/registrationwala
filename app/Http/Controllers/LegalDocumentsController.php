@@ -7,8 +7,8 @@ use TCG\Voyager\Facades\Voyager;
 use App\DocCategory;
 use App\LegalDocument;
 use App\Lead;
-use Illuminate\Support\Str;
 use Elibyy\TCPDF\Facades\TCPDF;
+use Illuminate\Support\Str;
 class LegalDocumentsController extends Controller
 {
     public function index()
@@ -26,18 +26,18 @@ class LegalDocumentsController extends Controller
         $document = LegalDocument::whereSlug($url)->firstOrFail();
         return Voyager::view('legaldocument.edit')->with(compact('document'));
     }
+   
     public function docdownload(Request $request)
     {
         $this->validate($request, [
             'name'              => 'required',           
             'email'             => 'required',
             'phone'             => 'required|digits_between:5,15', 
-            'service'           => 'required',         
+            'service'           => 'required',
             'content'           => 'required',         
         ],[
-            'content.required'  => 'Some thing went wrong, Please try again.'
+            'content.required'  => 'Some thing went wrong please try again.'
         ]);
-        
         if($request->input('doc_type')=='pdf'){
             $PDF = new TCPDF();
             if($request->input('doc_header')!=""){
@@ -62,22 +62,23 @@ class LegalDocumentsController extends Controller
             $PDF::SetFont('helvetica', '', 10);
             $PDF::writeHTML($request->input('content'), true, 0, true, true);
             $lead = Lead::create($request->all());
-            $path = storage_path('app/public/legal-documents/'.Str::slug($request->input('name')).'_'.time().'_'.$lead->id.'.pdf');
+            $path = storage_path('app/public/legal-documents/'.Str::slug($request->input('service'),'-').'_'.time().'_'.$lead->id.'.pdf');
             $PDF::Output($path, 'F');
+            
             $mail_arry=array(
-                'to'=>$request->input('email'),
-                'from_name'=>setting('admin.title'),
-                'from'=>setting('admin.email'),
-                'subject'=>'Legal document | Registrationwala.com',
-                'message'=>$this->userdocmail($request->all(),$path)
-            );
+            'to'=>$request->input('email'),
+            'from_name'=>setting('admin.title'),
+            'from'=>setting('admin.email'),
+            'subject'=>'Legal document | Registrationwala.com',
+            'message'=>$this->userdocmailbody($request->all(),$path)
+        );
+            
             $this->sendmail($mail_arry);
         }
 
         return redirect()->back()->withSuccess('Thank you for choosing registrationwala. Download link also send  to your mail. This link valid for 10 days.')->withInput();
     }
-
-    private function userdocmail($data,$path){
+    private function userdocmailbody($data,$path){
         $texts='<table width="100%" cellpadding="0" cellspacing="0">
         <tr><td>
         <table style="margin:auto; width:600px; font-size:16px; line-height:24px; font-family:Verdana, Geneva, sans-serif" cellpadding="0" cellspacing="0">
@@ -129,6 +130,7 @@ class LegalDocumentsController extends Controller
         </table>
         </td></tr>
         </table>';
+
         return $texts;
     }
 }
