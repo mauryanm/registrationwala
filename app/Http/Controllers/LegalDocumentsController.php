@@ -62,15 +62,16 @@ class LegalDocumentsController extends Controller
             $PDF::SetFont('helvetica', '', 10);
             $PDF::writeHTML($request->input('content'), true, 0, true, true);
             $lead = Lead::create($request->all());
-            $path = storage_path('app/public/legal-documents/'.Str::slug($request->input('service'),'-').'_'.time().'_'.$lead->id.'.pdf');
+            $filepath = 'legal-documents/'.Str::slug($request->input('service'),'-').'_'.time().'_'.$lead->id.'.pdf';
+            $path = storage_path('app/public/'.$filepath);
             $PDF::Output($path, 'F');
-            
+
             $mail_arry=array(
             'to'=>$request->input('email'),
             'from_name'=>setting('admin.title'),
             'from'=>setting('admin.email'),
             'subject'=>'Legal document | Registrationwala.com',
-            'message'=>$this->userdocmailbody($request->all(),$path)
+            'message'=>$this->userdocmailbody($request->all(),$filepath)
         );
             
             $this->sendmail($mail_arry);
