@@ -76,35 +76,34 @@ class Loop
 
         if ($progress) {
             $totalJobs = 0;
-            $totalJobs += $this->httpDownloader->countActiveJobs();
+            if ($this->httpDownloader) {
+                $totalJobs += $this->httpDownloader->countActiveJobs();
+            }
             if ($this->processExecutor) {
                 $totalJobs += $this->processExecutor->countActiveJobs();
             }
             $progress->start($totalJobs);
         }
 
-        $lastUpdate = 0;
         while (true) {
             $activeJobs = 0;
 
-            $activeJobs += $this->httpDownloader->countActiveJobs();
+            if ($this->httpDownloader) {
+                $activeJobs += $this->httpDownloader->countActiveJobs();
+            }
             if ($this->processExecutor) {
                 $activeJobs += $this->processExecutor->countActiveJobs();
             }
 
-            if ($progress && microtime(true) - $lastUpdate > 0.1) {
-                $lastUpdate = microtime(true);
+            if ($progress) {
                 $progress->setProgress($progress->getMaxSteps() - $activeJobs);
             }
 
             if (!$activeJobs) {
                 break;
             }
-        }
 
-        // as we skip progress updates if they are too quick, make sure we do one last one here at 100%
-        if ($progress) {
-            $progress->finish();
+            usleep(5000);
         }
 
         unset($this->currentPromises[$waitIndex]);

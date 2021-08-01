@@ -116,8 +116,6 @@ class ProxyHelper
                 return $_SERVER[$name];
             }
         }
-
-        return null;
     }
 
     /**
@@ -133,14 +131,12 @@ class ProxyHelper
         $error = sprintf('malformed %s url', $envName);
         $proxy = parse_url($proxyUrl);
 
-        // We need parse_url to have identified a host
         if (!isset($proxy['host'])) {
             throw new \RuntimeException($error);
         }
 
         $proxyUrl = self::formatParsedUrl($proxy, true);
 
-        // We need a port because streams and curl use different defaults
         if (!parse_url($proxyUrl, PHP_URL_PORT)) {
             throw new \RuntimeException($error);
         }

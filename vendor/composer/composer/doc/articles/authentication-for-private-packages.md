@@ -80,9 +80,10 @@ To fix this you need to open the file in an editor and fix the error. To find th
 your global `auth.json`, execute:
 
 ```sh
-composer config --global home
+composer config --global --list
 ```
 
+And look for the `[home]` section. (It is by default `~/.composer` or `%APPDATA%/Composer` on Windows)
 The folder will contain your global `auth.json` if it exists.
 
 You can open this file in your favorite editor and fix the error.
@@ -106,7 +107,7 @@ section or directly in the repository definition.
 
 The final option to supply Composer with credentials is to use the `COMPOSER_AUTH` environment variable.
 These variables can be either passed as command line variables or set in actual environment variables.
-Read more about the usage of this environment variable [here](../03-cli.md#composer-auth).
+Read more about the usage of this environment variable [here](../03-cli.md#COMPOSER_AUTH).
 
 # Authentication methods
 
@@ -223,10 +224,7 @@ composer config [--global] --editor --auth
 > **Note:** For the gitlab authentication to work on private gitlab instances, the
 > [`gitlab-domains`](../06-config.md#gitlab-domains) section should also contain the url.
 
-To create a new access token, go to your [access tokens section on GitLab](https://gitlab.com/-/profile/personal_access_tokens)
-(or the equivalent URL on your private instance) and create a new token. See also [the GitLab access token documentation](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html#creating-a-personal-access-token) for more informations.
-
-When creating a gitlab token manually, make sure it has either the `read_api` or `api` scope. 
+When creating a gitlab token manually, make sure it has either the `read_api` or `api` scope.
 
 ### Command line gitlab-token
 

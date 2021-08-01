@@ -7,17 +7,13 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\Cookie\CookieValuePrefix;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
 use Illuminate\Support\Traits\Tappable;
 use Illuminate\Testing\Assert as PHPUnit;
 use Illuminate\Testing\Constraints\SeeInOrder;
-use Illuminate\Testing\Fluent\AssertableJson;
-use Illuminate\Validation\ValidationException;
 use LogicException;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
@@ -38,13 +34,6 @@ class TestResponse implements ArrayAccess
     public $baseResponse;
 
     /**
-     * The collection of logged exceptions for the request.
-     *
-     * @var \Illuminate\Support\Collection
-     */
-    protected $exceptions;
-
-    /**
      * The streamed content of the response.
      *
      * @var string
@@ -60,7 +49,6 @@ class TestResponse implements ArrayAccess
     public function __construct($response)
     {
         $this->baseResponse = $response;
-        $this->exceptions = new Collection;
     }
 
     /**
@@ -83,7 +71,7 @@ class TestResponse implements ArrayAccess
     {
         PHPUnit::assertTrue(
             $this->isSuccessful(),
-            $this->statusMessageWithDetails('>=200, <300', $this->getStatusCode())
+            'Response status code ['.$this->getStatusCode().'] is not a successful status code.'
         );
 
         return $this;
@@ -96,7 +84,12 @@ class TestResponse implements ArrayAccess
      */
     public function assertOk()
     {
-        return $this->assertStatus(200);
+        PHPUnit::assertTrue(
+            $this->isOk(),
+            'Response status code ['.$this->getStatusCode().'] does not match expected 200 status code.'
+        );
+
+        return $this;
     }
 
     /**
@@ -106,7 +99,14 @@ class TestResponse implements ArrayAccess
      */
     public function assertCreated()
     {
-        return $this->assertStatus(201);
+        $actual = $this->getStatusCode();
+
+        PHPUnit::assertSame(
+            201, $actual,
+            "Response status code [{$actual}] does not match expected 201 status code."
+        );
+
+        return $this;
     }
 
     /**
@@ -131,7 +131,12 @@ class TestResponse implements ArrayAccess
      */
     public function assertNotFound()
     {
-        return $this->assertStatus(404);
+        PHPUnit::assertTrue(
+            $this->isNotFound(),
+            'Response status code ['.$this->getStatusCode().'] is not a not found status code.'
+        );
+
+        return $this;
     }
 
     /**
@@ -141,7 +146,12 @@ class TestResponse implements ArrayAccess
      */
     public function assertForbidden()
     {
-        return $this->assertStatus(403);
+        PHPUnit::assertTrue(
+            $this->isForbidden(),
+            'Response status code ['.$this->getStatusCode().'] is not a forbidden status code.'
+        );
+
+        return $this;
     }
 
     /**
@@ -151,7 +161,14 @@ class TestResponse implements ArrayAccess
      */
     public function assertUnauthorized()
     {
-        return $this->assertStatus(401);
+        $actual = $this->getStatusCode();
+
+        PHPUnit::assertSame(
+            401, $actual,
+            "Response status code [{$actual}] is not an unauthorized status code."
+        );
+
+        return $this;
     }
 
     /**
@@ -162,94 +179,14 @@ class TestResponse implements ArrayAccess
      */
     public function assertStatus($status)
     {
-        $message = $this->statusMessageWithDetails($status, $actual = $this->getStatusCode());
+        $actual = $this->getStatusCode();
 
-        PHPUnit::assertSame($actual, $status, $message);
+        PHPUnit::assertSame(
+            $actual, $status,
+            "Expected status code {$status} but received {$actual}."
+        );
 
         return $this;
-    }
-
-    /**
-     * Get an assertion message for a status assertion containing extra details when available.
-     *
-     * @param  string|int  $expected
-     * @param  string|int  $actual
-     * @return string
-     */
-    protected function statusMessageWithDetails($expected, $actual)
-    {
-        $lastException = $this->exceptions->last();
-
-        if ($lastException) {
-            return $this->statusMessageWithException($expected, $actual, $lastException);
-        }
-
-        if ($this->baseResponse instanceof RedirectResponse) {
-            $session = $this->baseResponse->getSession();
-
-            if (! is_null($session) && $session->has('errors')) {
-                return $this->statusMessageWithErrors($expected, $actual, $session->get('errors')->all());
-            }
-        }
-
-        if ($this->baseResponse->headers->get('Content-Type') === 'application/json') {
-            $json = $this->json();
-
-            if (isset($json['errors'])) {
-                return $this->statusMessageWithErrors($expected, $actual, $json);
-            }
-        }
-
-        return "Expected response status code [{$expected}] but received {$actual}.";
-    }
-
-    /**
-     * Get an assertion message for a status assertion that has an unexpected exception.
-     *
-     * @param  string|int  $expected
-     * @param  string|int  $actual
-     * @param  \Throwable  $exception
-     * @return string
-     */
-    protected function statusMessageWithException($expected, $actual, $exception)
-    {
-        if ($exception instanceof ValidationException) {
-            return $this->statusMessageWithValidationErrors($expected, $actual, $exception);
-        }
-
-        $exception = (string) $exception;
-
-        return <<<EOF
-Expected response status code [$expected] but received $actual.
-
-The following exception occurred during the request:
-
-$exception
-EOF;
-    }
-
-    /**
-     * Get an assertion message for a status assertion that contained errors.
-     *
-     * @param  string|int  $expected
-     * @param  string|int  $actual
-     * @param  array $errors;
-     * @return string
-     */
-    protected function statusMessageWithErrors($expected, $actual, $errors)
-    {
-        $errors = $this->baseResponse->headers->get('Content-Type') === 'application/json'
-            ? json_encode($errors, JSON_PRETTY_PRINT)
-            : implode(PHP_EOL, Arr::flatten($errors));
-
-        return <<<EOF
-Expected response status code [$expected] but received $actual.
-
-The following errors occurred during the request:
-
-$errors
-
-EOF;
     }
 
     /**
@@ -297,7 +234,7 @@ EOF;
     }
 
     /**
-     * Asserts that the response does not contain the given header.
+     * Asserts that the response does not contains the given header.
      *
      * @param  string  $headerName
      * @return $this
@@ -324,54 +261,6 @@ EOF;
         );
 
         return $this;
-    }
-
-    /**
-     * Assert that the response offers a file download.
-     *
-     * @param  string|null  $filename
-     * @return $this
-     */
-    public function assertDownload($filename = null)
-    {
-        $contentDisposition = explode(';', $this->headers->get('content-disposition'));
-
-        if (trim($contentDisposition[0]) !== 'attachment') {
-            PHPUnit::fail(
-                'Response does not offer a file download.'.PHP_EOL.
-                'Disposition ['.trim($contentDisposition[0]).'] found in header, [attachment] expected.'
-            );
-        }
-
-        if (! is_null($filename)) {
-            if (isset($contentDisposition[1]) &&
-                trim(explode('=', $contentDisposition[1])[0]) !== 'filename') {
-                PHPUnit::fail(
-                    'Unsupported Content-Disposition header provided.'.PHP_EOL.
-                    'Disposition ['.trim(explode('=', $contentDisposition[1])[0]).'] found in header, [filename] expected.'
-                );
-            }
-
-            $message = "Expected file [{$filename}] is not present in Content-Disposition header.";
-
-            if (! isset($contentDisposition[1])) {
-                PHPUnit::fail($message);
-            } else {
-                PHPUnit::assertSame(
-                    $filename,
-                    isset(explode('=', $contentDisposition[1])[1])
-                        ? trim(explode('=', $contentDisposition[1])[1])
-                        : '',
-                    $message
-                );
-
-                return $this;
-            }
-        } else {
-            PHPUnit::assertTrue(true);
-
-            return $this;
-        }
     }
 
     /**
@@ -469,7 +358,7 @@ EOF;
     }
 
     /**
-     * Asserts that the response does not contain the given cookie.
+     * Asserts that the response does not contains the given cookie.
      *
      * @param  string  $cookieName
      * @return $this
@@ -618,25 +507,13 @@ EOF;
     /**
      * Assert that the response is a superset of the given JSON.
      *
-     * @param  array|callable  $value
+     * @param  array  $data
      * @param  bool  $strict
      * @return $this
      */
-    public function assertJson($value, $strict = false)
+    public function assertJson(array $data, $strict = false)
     {
-        $json = $this->decodeResponseJson();
-
-        if (is_array($value)) {
-            $json->assertSubset($value, $strict);
-        } else {
-            $assert = AssertableJson::fromAssertableJsonString($json);
-
-            $value($assert);
-
-            if (Arr::isAssoc($assert->toArray())) {
-                $assert->interacted();
-            }
-        }
+        $this->decodeResponseJson()->assertSubset($data, $strict);
 
         return $this;
     }
@@ -815,13 +692,13 @@ EOF;
 
         $json = $this->json();
 
-        if (! Arr::has($json, $responseKey)) {
-            PHPUnit::assertTrue(true);
+        if (! array_key_exists($responseKey, $json)) {
+            PHPUnit::assertArrayNotHasKey($responseKey, $json);
 
             return $this;
         }
 
-        $errors = Arr::get($json, $responseKey, []);
+        $errors = $json[$responseKey];
 
         if (is_null($keys) && count($errors) > 0) {
             PHPUnit::fail(
@@ -1268,19 +1145,6 @@ EOF;
         $this->sendContent();
 
         return $this->streamedContent = ob_get_clean();
-    }
-
-    /**
-     * Set the previous exceptions on the response.
-     *
-     * @param  \Illuminate\Support\Collection  $exceptions
-     * @return $this
-     */
-    public function withExceptions(Collection $exceptions)
-    {
-        $this->exceptions = $exceptions;
-
-        return $this;
     }
 
     /**

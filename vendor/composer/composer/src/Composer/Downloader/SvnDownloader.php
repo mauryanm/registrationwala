@@ -30,13 +30,6 @@ class SvnDownloader extends VcsDownloader
      */
     protected function doDownload(PackageInterface $package, $path, $url, PackageInterface $prevPackage = null)
     {
-        SvnUtil::cleanEnv();
-        $util = new SvnUtil($url, $this->io, $this->config, $this->process);
-        if (null === $util->binaryVersion()) {
-            throw new \RuntimeException('svn was not found in your PATH, skipping source download');
-        }
-
-        return \React\Promise\resolve();
     }
 
     /**
@@ -57,8 +50,6 @@ class SvnDownloader extends VcsDownloader
 
         $this->io->writeError(" Checking out ".$package->getSourceReference());
         $this->execute($package, $url, "svn co", sprintf("%s/%s", $url, $ref), null, $path);
-
-        return \React\Promise\resolve();
     }
 
     /**
@@ -81,8 +72,6 @@ class SvnDownloader extends VcsDownloader
 
         $this->io->writeError(" Checking out " . $ref);
         $this->execute($target, $url, "svn switch" . $flags, sprintf("%s/%s", $url, $ref), $path);
-
-        return \React\Promise\resolve();
     }
 
     /**
@@ -190,7 +179,7 @@ class SvnDownloader extends VcsDownloader
     {
         if (preg_match('{@(\d+)$}', $fromReference) && preg_match('{@(\d+)$}', $toReference)) {
             // retrieve the svn base url from the checkout folder
-            $command = sprintf('svn info --non-interactive --xml -- %s', ProcessExecutor::escape($path));
+            $command = sprintf('svn info --non-interactive --xml %s', ProcessExecutor::escape($path));
             if (0 !== $this->process->execute($command, $output, $path)) {
                 throw new \RuntimeException(
                     'Failed to execute ' . $command . "\n\n" . $this->process->getErrorOutput()

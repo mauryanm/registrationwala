@@ -19,6 +19,9 @@
         "laravel/tinker": "^2.5",
         "tcg/voyager": "^1.4"
     },
+    "replace": {
+        "tcg/voyager": "^1.4"
+    },
     "require-dev": {
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",

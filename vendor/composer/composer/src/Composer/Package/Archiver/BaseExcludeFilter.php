@@ -123,25 +123,26 @@ abstract class BaseExcludeFilter
     protected function generatePattern($rule)
     {
         $negate = false;
-        $pattern = '';
+        $pattern = '{';
 
-        if ($rule !== '' && $rule[0] === '!') {
+        if (strlen($rule) && $rule[0] === '!') {
             $negate = true;
-            $rule = ltrim($rule, '!');
+            $rule = substr($rule, 1);
         }
 
-        $firstSlashPosition = strpos($rule, '/');
-        if (0 === $firstSlashPosition) {
-            $pattern = '^/';
-        } elseif (false === $firstSlashPosition || strlen($rule) - 1 === $firstSlashPosition) {
-            $pattern = '/';
+        if (strlen($rule) && $rule[0] === '/') {
+            $pattern .= '^/';
+            $rule = substr($rule, 1);
+        } elseif (strlen($rule) - 1 === strpos($rule, '/')) {
+            $pattern .= '/';
+            $rule = substr($rule, 0, -1);
+        } elseif (false === strpos($rule, '/')) {
+            $pattern .= '/';
         }
-
-        $rule = trim($rule, '/');
 
         // remove delimiters as well as caret (^) and dollar sign ($) from the regex
-        $rule = substr(Finder\Glob::toRegex($rule), 2, -2);
+        $pattern .= substr(Finder\Glob::toRegex($rule), 2, -2) . '(?=$|/)';
 
-        return array('{'.$pattern.$rule.'(?=$|/)}', $negate, false);
+        return array($pattern . '}', $negate, false);
     }
 }

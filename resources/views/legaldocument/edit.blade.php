@@ -208,12 +208,14 @@ function stopscroll(){
 $(document).ready(function (){
    $('.downloaddoc').on('click', function(){
       $('#doc_type').val($(this).data('type'));
+      $('#editor table td').attr('width','500')
       $('#downloadlegaldoc').modal();
 
    })
 
    $("#documentdownload").validate({
       submitHandler: function(form) {
+
          $('#doc_header').val($('#editor #mainheader').html());
          $('#content').val($('#editor #maincontent').html());
          $('#doc_footer').val($('#editor #mainfootert').html());
@@ -223,5 +225,8 @@ $(document).ready(function (){
       }
    });
 })
+ @if(session()->has('curentdwn'))
+  window.location.href='{{url("download/".session()->get('curentdwn'))}}';
+  @endif
 </script>
 @endsection

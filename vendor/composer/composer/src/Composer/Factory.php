@@ -37,7 +37,6 @@ use Composer\EventDispatcher\EventDispatcher;
 use Composer\Autoload\AutoloadGenerator;
 use Composer\Package\Version\VersionParser;
 use Composer\Downloader\TransportException;
-use Composer\Json\JsonValidationException;
 use Seld\JsonLint\JsonParser;
 
 /**
@@ -86,7 +85,7 @@ class Factory
 
         // select first dir which exists of: $XDG_CONFIG_HOME/composer or ~/.composer
         foreach ($dirs as $dir) {
-            if (Silencer::call('is_dir', $dir)) {
+            if (is_dir($dir)) {
                 return $dir;
             }
         }
@@ -122,15 +121,6 @@ class Factory
         }
 
         $userDir = self::getUserDir();
-        if (PHP_OS === 'Darwin') {
-            // Migrate existing cache dir in old location if present
-            if (is_dir($home . '/cache') && !is_dir($userDir . '/Library/Caches/composer')) {
-                Silencer::call('rename', $home . '/cache', $userDir . '/Library/Caches/composer');
-            }
-
-            return $userDir . '/Library/Caches/composer';
-        }
-
         if ($home === $userDir . '/.composer' && is_dir($home . '/cache')) {
             return $home . '/cache';
         }
@@ -305,17 +295,11 @@ class Factory
                 } else {
                     $message = 'Composer could not find the config file: '.$localConfig;
                 }
-                $instructions = $fullLoad ? 'To initialize a project, please create a composer.json file. See https://getcomposer.org/basic-usage' : '';
+                $instructions = 'To initialize a project, please create a composer.json file as described in the https://getcomposer.org/ "Getting Started" section';
                 throw new \InvalidArgumentException($message.PHP_EOL.$instructions);
             }
 
-            try {
-                $file->validateSchema(JsonFile::LAX_SCHEMA);
-            } catch (JsonValidationException $e) {
-                $errors = ' - ' . implode(PHP_EOL . ' - ', $e->getErrors());
-                $message = $e->getMessage() . ':' . PHP_EOL . $errors;
-                throw new JsonValidationException($message);
-            }
+            $file->validateSchema(JsonFile::LAX_SCHEMA);
             $jsonParser = new JsonParser;
             try {
                 $jsonParser->parse(file_get_contents($localConfig), JsonParser::DETECT_KEY_CONFLICTS);
@@ -331,7 +315,7 @@ class Factory
         $config = static::createConfig($io, $cwd);
         $config->merge($localConfig);
         if (isset($composerFile)) {
-            $io->writeError('Loading config file ' . $composerFile .' ('.realpath($composerFile).')', true, IOInterface::DEBUG);
+            $io->writeError('Loading config file ' . $composerFile, true, IOInterface::DEBUG);
             $config->setConfigSource(new JsonConfigSource(new JsonFile(realpath($composerFile), null, $io)));
 
             $localAuthFile = new JsonFile(dirname(realpath($composerFile)) . '/auth.json', null, $io);
@@ -385,7 +369,7 @@ class Factory
         $composer->setPackage($package);
 
         // load local repository
-        $this->addLocalRepository($io, $rm, $vendorDir, $package, $process);
+        $this->addLocalRepository($io, $rm, $vendorDir, $package);
 
         // initialize installation manager
         $im = $this->createInstallationManager($loop, $io, $dispatcher);
@@ -458,14 +442,9 @@ class Factory
      * @param Repository\RepositoryManager $rm
      * @param string                       $vendorDir
      */
-    protected function addLocalRepository(IOInterface $io, RepositoryManager $rm, $vendorDir, RootPackageInterface $rootPackage, ProcessExecutor $process = null)
+    protected function addLocalRepository(IOInterface $io, RepositoryManager $rm, $vendorDir, RootPackageInterface $rootPackage)
     {
-        $fs = null;
-        if ($process) {
-            $fs = new Filesystem($process);
-        }
-
-        $rm->setLocalRepository(new Repository\InstalledFilesystemRepository(new JsonFile($vendorDir.'/composer/installed.json', null, $io), true, $rootPackage, $fs));
+        $rm->setLocalRepository(new Repository\InstalledFilesystemRepository(new JsonFile($vendorDir.'/composer/installed.json', null, $io), true, $rootPackage));
     }
 
     /**
@@ -680,7 +659,7 @@ class Factory
             }
         }
 
-        if (Silencer::call('is_dir', '/etc/xdg')) {
+        if (is_dir('/etc/xdg')) {
             return true;
         }
 

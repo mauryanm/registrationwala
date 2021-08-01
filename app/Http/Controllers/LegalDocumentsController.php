@@ -76,8 +76,64 @@ class LegalDocumentsController extends Controller
             
             $this->sendmail($mail_arry);
         }
+        if($request->input('doc_type')=='doc'){
+            require_once base_path() . '\vendor\htmltodocx\phpword/PHPWord.php';
+            require_once base_path() . '\vendor\htmltodocx\simplehtmldom/simple_html_dom.php';
+            require_once base_path() . '\vendor\htmltodocx\htmltodocx_converter/h2d_htmlconverter.php';
+            require_once base_path() . '\vendor\htmltodocx\example_files/styles.inc';
 
-        return redirect()->back()->withSuccess('Thank you for choosing registrationwala. Download link also send  to your mail. This link valid for 10 days.')->withInput();
+            // Functions to support this example.
+            require_once base_path() . '\vendor\htmltodocx\documentation/support_functions.inc';
+            // ==========################################################============
+
+            $phpword_object = new \PHPWord();
+                $section = $phpword_object->createSection();
+                $html_dom = new \simple_html_dom();
+                $html_dom->load('<html><body>' . $request->input('doc_header').$request->input('content').$request->input('doc_footer') . '</body></html>');
+                $html_dom_array = $html_dom->find('html',0)->children();
+                $paths = htmltodocx_paths();
+                $initial_state = array(
+                  'phpword_object' => &$phpword_object,
+                  'base_root' => $paths['base_root'],
+                  'base_path' => $paths['base_path'],
+                  'current_style' => array('size' => '11'), 
+                  'parents' => array(0 => 'body'),
+                  'list_depth' => 0,
+                  'context' => 'section',
+                  'pseudo_list' => TRUE, 
+                  'pseudo_list_indicator_font_name' => 'Wingdings',
+                  'pseudo_list_indicator_font_size' => '7',
+                  'pseudo_list_indicator_character' => 'l ', 
+                  'table_allowed' => TRUE, 
+                  'treat_div_as_paragraph' => TRUE, 
+                      
+                  // Optional - no default:    
+                  'style_sheet' => htmltodocx_styles_example(),
+                  );    
+
+                htmltodocx_insert_html($section, $html_dom_array[0]->nodes, $initial_state);
+                $html_dom->clear(); 
+                unset($html_dom);
+
+                $lead = Lead::create($request->all());
+                $filepath = 'legal-documents/'.Str::slug($request->input('service'),'-').'_'.time().'_'.$lead->id.'.docx';
+                $path = storage_path('app/public/'.$filepath);
+                $objWriter = \PHPWord_IOFactory::createWriter($phpword_object, 'Word2007');
+                $objWriter->save($path);
+                $mail_arry=array(
+                    'to'=>$request->input('email'),
+                    'from_name'=>setting('admin.title'),
+                    'from'=>setting('admin.email'),
+                    'subject'=>'Legal document | Registrationwala.com',
+                    'message'=>$this->userdocmailbody($request->all(),$filepath)
+                );
+            
+            $this->sendmail($mail_arry);
+
+            //===========###############################################=============
+        }
+
+        return redirect()->back()->withSuccess('Thank you for choosing registrationwala. Download link also send  to your mail. This link valid for 10 days.')->with('curentdwn',encrypt($filepath));
     }
     private function userdocmailbody($data,$path){
         $texts='<table width="100%" cellpadding="0" cellspacing="0">

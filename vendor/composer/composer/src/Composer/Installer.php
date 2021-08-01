@@ -43,7 +43,6 @@ use Composer\Package\Version\VersionParser;
 use Composer\Package\Package;
 use Composer\Repository\ArrayRepository;
 use Composer\Repository\RepositorySet;
-use Composer\Repository\CompositeRepository;
 use Composer\Semver\Constraint\Constraint;
 use Composer\Package\Locker;
 use Composer\Package\RootPackageInterface;
@@ -56,7 +55,6 @@ use Composer\Repository\RepositoryInterface;
 use Composer\Repository\RepositoryManager;
 use Composer\Repository\LockArrayRepository;
 use Composer\Script\ScriptEvents;
-use Composer\Util\Platform;
 
 /**
  * @author Jordi Boggiano <j.boggiano@seld.be>
@@ -136,14 +134,13 @@ class Installer
     protected $writeLock;
     protected $executeOperations = true;
 
-    /** @var bool */
-    protected $updateMirrors = false;
     /**
      * Array of package names/globs flagged for update
      *
      * @var array|null
      */
-    protected $updateAllowList = null;
+    protected $updateMirrors = false;
+    protected $updateAllowList;
     protected $updateAllowTransitiveDependencies = Request::UPDATE_ONLY_LISTED;
 
     /**
@@ -207,7 +204,7 @@ class Installer
 
         // Force update if there is no lock file present
         if (!$this->update && !$this->locker->isLocked()) {
-            $this->io->writeError('<warning>No composer.lock file present. Updating dependencies to latest instead of installing from lock file. See https://getcomposer.org/install for more information.</warning>');
+            $this->io->writeError('<warning>No lock file found. Updating dependencies instead of installing from lock file. Use composer update over composer install if you do not have a lock file.</warning>');
             $this->update = true;
         }
 
@@ -225,7 +222,8 @@ class Installer
         }
 
         if ($this->runScripts) {
-            Platform::putEnv('COMPOSER_DEV_MODE', $this->devMode ? '1' : '0');
+            $_SERVER['COMPOSER_DEV_MODE'] = $this->devMode ? '1' : '0';
+            putenv('COMPOSER_DEV_MODE='.$_SERVER['COMPOSER_DEV_MODE']);
 
             // dispatch pre event
             // should we treat this more strictly as running an update and then running an install, triggering events multiple times?
@@ -302,6 +300,7 @@ class Installer
                 $this->io->writeError('<info>Generating autoload files</info>');
             }
 
+            $this->autoloadGenerator->setDevMode($this->devMode);
             $this->autoloadGenerator->setClassMapAuthoritative($this->classMapAuthoritative);
             $this->autoloadGenerator->setApcu($this->apcuAutoloader, $this->apcuAutoloaderPrefix);
             $this->autoloadGenerator->setRunScripts($this->runScripts);
@@ -445,15 +444,6 @@ class Installer
                     $installsUpdates[] = $operation;
                     $installNames[] = $operation->getPackage()->getPrettyName().':'.$operation->getPackage()->getFullPrettyVersion();
                 } elseif ($operation instanceof UpdateOperation) {
-                    // when mirrors/metadata from a package gets updated we do not want to list it as an
-                    // update in the output as it is only an internal lock file metadata update
-                    if ($this->updateMirrors
-                        && $operation->getInitialPackage()->getName() == $operation->getTargetPackage()->getName()
-                        && $operation->getInitialPackage()->getVersion() == $operation->getTargetPackage()->getVersion()
-                    ) {
-                        continue;
-                    }
-
                     $installsUpdates[] = $operation;
                     $updateNames[] = $operation->getTargetPackage()->getPrettyName().':'.$operation->getTargetPackage()->getFullPrettyVersion();
                 } elseif ($operation instanceof UninstallOperation) {
@@ -716,7 +706,7 @@ class Installer
         return 0;
     }
 
-    protected function createPlatformRepo($forUpdate)
+    private function createPlatformRepo($forUpdate)
     {
         if ($forUpdate) {
             $platformOverrides = $this->config->get('platform') ?: array();
@@ -776,21 +766,6 @@ class Installer
         $repositorySet->addRepository(new RootPackageRepository($this->fixedRootPackage));
         $repositorySet->addRepository($platformRepo);
         if ($this->additionalFixedRepository) {
-            // allow using installed repos if needed to avoid warnings about installed repositories being used in the RepositorySet
-            // see https://github.com/composer/composer/pull/9574
-            $additionalFixedRepositories = $this->additionalFixedRepository;
-            if ($additionalFixedRepositories instanceof CompositeRepository) {
-                $additionalFixedRepositories = $additionalFixedRepositories->getRepositories();
-            } else {
-                $additionalFixedRepositories = array($additionalFixedRepositories);
-            }
-            foreach ($additionalFixedRepositories as $additionalFixedRepository) {
-                if ($additionalFixedRepository instanceof InstalledRepository || $additionalFixedRepository instanceof InstalledRepositoryInterface) {
-                    $repositorySet->allowInstalledRepositories();
-                    break;
-                }
-            }
-
             $repositorySet->addRepository($this->additionalFixedRepository);
         }
 
@@ -928,8 +903,7 @@ class Installer
         foreach ($packages as $key => $package) {
             if ($package instanceof AliasPackage) {
                 $alias = (string) $package->getAliasOf();
-                $className = get_class($package);
-                $packages[$key] = new $className($packages[$alias], $package->getVersion(), $package->getPrettyVersion());
+                $packages[$key] = new AliasPackage($packages[$alias], $package->getVersion(), $package->getPrettyVersion());
             }
         }
         $rm->setLocalRepository(
@@ -1131,7 +1105,6 @@ class Installer
      *
      * @param  bool      $runScripts
      * @return Installer
-     * @deprecated Use setRunScripts(false) on the EventDispatcher instance being injected instead
      */
     public function setRunScripts($runScripts = true)
     {
