@@ -77,7 +77,7 @@ class LegalDocumentsController extends Controller
             $this->sendmail($mail_arry);
         }
         if($request->input('doc_type')=='doc'){
-            require_once base_path() . '/vendor/phpoffice/phpword/src/PhpWord/PhpWord.php';
+            require_once base_path() . '/vendor/htmltodocx/phpword/PHPWord.php';
             require_once base_path() . '/vendor/htmltodocx/simplehtmldom/simple_html_dom.php';
             require_once base_path() . '/vendor/htmltodocx/htmltodocx_converter/h2d_htmlconverter.php';
             require_once base_path() . '/vendor/htmltodocx/example_files/styles.inc';
@@ -86,7 +86,7 @@ class LegalDocumentsController extends Controller
             require_once base_path() . '/vendor/htmltodocx/documentation/support_functions.inc';
             // ==========################################################============
 
-            $phpword_object = new \PhpWord();
+            $phpword_object = new \PHPWord();
                 $section = $phpword_object->createSection();
                 $html_dom = new \simple_html_dom();
                 $html_dom->load('<html><body>' . $request->input('doc_header').$request->input('content').$request->input('doc_footer') . '</body></html>');
