@@ -86,7 +86,7 @@ class LegalDocumentsController extends Controller
             require_once base_path() . '/vendor/htmltodocx/documentation/support_functions.inc';
             // ==========################################################============
 
-            $phpword_object = new \PHPWord();
+            $phpword_object = new \PhpWord();
                 $section = $phpword_object->createSection();
                 $html_dom = new \simple_html_dom();
                 $html_dom->load('<html><body>' . $request->input('doc_header').$request->input('content').$request->input('doc_footer') . '</body></html>');
