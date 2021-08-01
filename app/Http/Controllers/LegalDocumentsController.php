@@ -77,7 +77,7 @@ class LegalDocumentsController extends Controller
             $this->sendmail($mail_arry);
         }
         if($request->input('doc_type')=='doc'){
-            require_once base_path() . '/vendor/htmltodocx/phpword/PHPWord.php';
+            require_once base_path() . '/vendor/phpoffice/phpword/PHPWord.php';
             require_once base_path() . '/vendor/htmltodocx/simplehtmldom/simple_html_dom.php';
             require_once base_path() . '/vendor/htmltodocx/htmltodocx_converter/h2d_htmlconverter.php';
             require_once base_path() . '/vendor/htmltodocx/example_files/styles.inc';
