@@ -69,94 +69,36 @@ class MailController extends Controller {
         $mail_arry=array(
     			'to'=>$request->email,
     			'from_name'=>setting('admin.title'),
-    			'from'=>setting('site.site_mail'),
+    			'from'=>setting('admin.email'),
     			'subject'=>'We are happy to help you ! Registrationwala.com',
     			'message'=>$this->welcome()
     		);
-        $this->send_mail($mail_arry);
+        $this->sendMail($mail_arry);
         if($request->input('source')=='service'){
           $mail_enq=array(
           'to'=>$request->email,
           'from_name'=>setting('admin.title'),
-          'from'=>setting('site.site_mail'),
+          'from'=>setting('admin.email'),
           'subject'=>'We are happy to help you ! Registrationwala.com',
           'message'=>$this->serviceEnquiry($insData)
         );
-          $this->send_mail($mail_enq);
+          $this->sendMail($mail_enq);
         }
         if($request->input('source')=='subscribe'){
           $mail_sub=array(
             'to'=>$request->email,
             'from_name'=>setting('admin.title'),
-            'from'=>setting('site.site_mail'),
+            'from'=>setting('admin.email'),
             'subject'=>'We are happy to help you ! Registrationwala.com',
             'message'=>$this->subscribe($insData->email)
           );
-          $this->send_mail($mail_sub);
+          $this->sendMail($mail_sub);
         }
       $response = array('type' => 'success',"title"=>"",'msg'=>['Your query has been submitted successfully.']);
         return response()->json($response);
 
       
     }
-    private function send_mail($mailer_arr){
-
-      $EmailTo = strip_tags($mailer_arr['to']);
-      $EmailFrom = strip_tags($mailer_arr['from']);
-      $EmailFromNmae = strip_tags($mailer_arr['from_name']);
-      $EmailSubject = $mailer_arr['subject'];
-      $EmailMessage = stripslashes($mailer_arr['message']);
-      $EmailCc = strip_tags((isset($mailer_arr['cc'])?$mailer_arr['cc']:''));
-      $EmailBcc = strip_tags((isset($mailer_arr['bcc'])?$mailer_arr['bcc']:''));
-      $filepath = (isset($mailer_arr['file_path'])?$mailer_arr['file_path']:'');
-      $filename = (isset($mailer_arr['file_name']) ? $mailer_arr['file_name'] : basename($filepath));
-      $eol = PHP_EOL;
-      $headers = "";
-      if( !empty($EmailFromNmae) ){
-      if( !empty($EmailFrom) )
-      $headers  .= "From: ".$EmailFromNmae.'<'.$EmailFrom.'>'.$eol; 
-      }else{
-      if( !empty($EmailFrom) )
-      $headers  .= "From: ".$EmailFrom.$eol; 
-      }
-      if( !empty($EmailFrom) )
-      $headers .= "Reply-To: ". $EmailFrom .$eol;
-      if( !empty($EmailCc) )
-      $headers .= "CC: ".$EmailCc.$eol;
-      if( !empty($EmailBcc) )
-      $headers .= "BCC: ".$EmailBcc.$eol;
-      $headers .= "MIME-Version: 1.0".$eol; 
-      if( !isset( $mailer_arr['file_path'] ) || $mailer_arr['file_path'] == '' ){ 
-      $headers .= "Content-type: text/html".$eol;
-      if(mail($EmailTo, $EmailSubject, $EmailMessage, $headers)) 
-      return true;
-       else 
-       return false;
-      
-      }
-      $attachment = chunk_split( base64_encode(file_get_contents($filepath)) );
-      $separator = md5(time());  
-      $headers .= "Content-Type: multipart/mixed; boundary=\"".$separator."\"";
-      $body = "";
-      $body .= "--".$separator.$eol;
-      $body .= "Content-Type: text/html; charset=\"iso-8859-1\"".$eol;
-      $body .= "Content-Transfer-Encoding: 7bit".$eol.$eol;//optional defaults to 7bit
-      $body .= $EmailMessage.$eol;
-      // attachment
-      $body .= "--".$separator.$eol;
-      $body .= "Content-Type: application/octet-stream; name=\"".$filename."\"".$eol; 
-      $body .= "Content-Transfer-Encoding: base64".$eol;
-      $body .= "Content-Disposition: attachment".$eol.$eol;
-      $body .= $attachment.$eol;
-      $body .= "--".$separator."--";
-      // send message
-      if (mail($EmailTo, $EmailSubject, $body, $headers,'-f'.$EmailFrom)) {
-      return true;
-      }
-      else {
-      return false;
-      }
-   }
    private function welcome(){
       $mailhtml = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
       <html xmlns="http://www.w3.org/1999/xhtml">
