@@ -68,7 +68,11 @@ $ytscount=get_twitter_count("https://www.googleapis.com/youtube/v3/channels?part
                 </div>
                 <ul class="navbar-nav pl-3" id="blogsearchlist"></ul>
               </div>
-              @dd($archivelists)
+              <pre>
+              @php
+              print_r($archivelists)
+              @endphp
+            </pre>
               @if($archivelists)
               <h5 class="mb-0 mt-4"> Archive</h5>
               <hr>
