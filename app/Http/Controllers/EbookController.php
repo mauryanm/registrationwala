@@ -39,8 +39,8 @@ class EbookController extends Controller
             'subject'=>'E Book Download | Registrationwala.com',
             'message'=>$this->supportmail($request->except('_token','_method','page_id'))
         );
-       $this->sendmail($mail_arry);
-       $this->sendmail($mail_asupport);
+       $this->sendMail($mail_arry);
+       $this->sendMail($mail_asupport);
         return redirect()->back()->withSuccess('Thank you for choosing registrationwala. Download link also send  to your mail. This link valid for 10 days.')->with('curentdwn',encrypt($ebookpath));
     }
     private function ebookfile($data,$path){

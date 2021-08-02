@@ -74,7 +74,7 @@ class LegalDocumentsController extends Controller
             'message'=>$this->userdocmailbody($request->all(),$filepath)
         );
             
-            $this->sendmail($mail_arry);
+            $this->sendMail($mail_arry);
         }
         if($request->input('doc_type')=='doc'){
             require_once base_path() . '/vendor/htmltodocx/phpword/PHPWord.php';
@@ -128,7 +128,7 @@ class LegalDocumentsController extends Controller
                     'message'=>$this->userdocmailbody($request->all(),$filepath)
                 );
             
-            $this->sendmail($mail_arry);
+            $this->sendMail($mail_arry);
 
             //===========###############################################=============
         }

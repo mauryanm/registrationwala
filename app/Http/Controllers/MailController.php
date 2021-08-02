@@ -11,7 +11,7 @@ use \App\Lead;
 // use App\Http\Controllers\Controller;
 
 class MailController extends Controller {
-    public function sendmail(Request $request)
+    public function sendleadmail(Request $request)
     {
       // ini_set('max_execution_time', 0);
       
