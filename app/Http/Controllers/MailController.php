@@ -16,8 +16,8 @@ class MailController extends Controller {
       
       $validator = \Validator::make($request->all(), [
             'name'  => 'required',
-            'email' => 'required|email',
-            'phone' => 'nullable',
+            'email' => 'required|email:rfc,dns',
+            'phone' => 'nullable|digits_between:5,15', 
         ]);
         if ($validator->fails())
         {
