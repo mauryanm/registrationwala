@@ -68,12 +68,6 @@ $ytscount=get_twitter_count("https://www.googleapis.com/youtube/v3/channels?part
                 </div>
                 <ul class="navbar-nav pl-3" id="blogsearchlist"></ul>
               </div>
-              <pre>
-              @php
-              print_r($archivelists);
-              exit;
-              @endphp
-            </pre>
               @if($archivelists)
               <h5 class="mb-0 mt-4"> Archive</h5>
               <hr>
@@ -91,7 +85,12 @@ $ytscount=get_twitter_count("https://www.googleapis.com/youtube/v3/channels?part
                         <div id="{{ $_month.$_year }}" class="collapse" data-parent="#Jan">
                           <ul>
                             @foreach($_entries as $_entry)
+                            @if(!isset($_entry->service->slug))
+                            nolink=>{{ $_entry->title }}
+                            @else
+
                             <li><a  href="{{url( __('voyager::post.post_slug').$_entry->category->slug.'/'.$_entry->service->slug.'/'.$_entry->slug)}}">{{ $_entry->title }} </a></li>
+                            @endif
                             @endforeach
                           </ul>
                         </div>
