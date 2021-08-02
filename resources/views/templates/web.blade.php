@@ -86,8 +86,9 @@
             @if(setting('site.mobile'))
              <li class="mb-2"><i class="fa fa-phone-square" aria-hidden="true"></i><a href="tel:{{str_replace(' ','',str_replace('-','',setting('site.mobile')))}}"> {{setting('site.mobile')}}</a></li>
              @endif
-
+            @if(setting('admin.email'))
             <li> <i class="fa fa-envelope" aria-hidden="true"></i> <a href="mailto:{{setting('admin.email')}}"> {{setting('admin.email')}}</a></li>
+            @endif
           </ul>
         </div>
       </div>

@@ -1,5 +1,5 @@
 @if ($paginator->hasPages())
-    <nav role="navigation" aria-label="{{ __('Pagination Navigation') }}" class="flex items-center justify-between">
+    <nav role="navigation" aria-label="{{ __('Pagination Navigation') }}" class="flex items-center justify-between hidden">
         <div class="flex justify-between flex-1 sm:hidden">
             @if ($paginator->onFirstPage())
                 <span class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 cursor-default leading-5 rounded-md">
@@ -99,4 +99,35 @@
             </div>
         </div>
     </nav>
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    @if ($paginator->onFirstPage())
+    <li class="page-item disabled"><a class="page-link" href="javascript:void(0)">Previous</a></li>
+    @else
+    <li class="page-item"><a class="page-link" href="{{ $paginator->previousPageUrl() }}">Previous</a></li>
+    @endif
+    @foreach ($elements as $element)
+        {{-- "Three Dots" Separator --}}
+        @if (is_string($element))
+        <li class="page-item disabled"><a class="page-link" href="javascript:void(0)">{{ $element }}</a></li>
+        @endif
+
+        {{-- Array Of Links --}}
+        @if (is_array($element))
+            @foreach ($element as $page => $url)
+                @if ($page == $paginator->currentPage())
+                <li class="page-item disabled active"><a class="page-link" href="javascript:void(0)">{{ $page }}</a></li>
+                @else
+                <li class="page-item"><a class="page-link" href="{{ $url }}" aria-label="{{ __('Go to page :page', ['page' => $page]) }}">{{ $page }}</a></li>
+                @endif
+            @endforeach
+        @endif
+    @endforeach
+    @if ($paginator->hasMorePages())
+    <li class="page-item"><a class="page-link" href="{{ $paginator->nextPageUrl() }}">Next</a></li>
+    @else
+    <li class="page-item disabled"><a class="page-link" href="javascript:void(0)">Next</a></li>
+    @endif
+  </ul>
+</nav>
 @endif
