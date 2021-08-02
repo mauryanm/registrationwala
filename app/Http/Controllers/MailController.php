@@ -67,7 +67,7 @@ class MailController extends Controller {
             'from_name'=>$request->input('name'),
             'from'=>$request->input('email'),
             'subject'=>'Service enquery | Registrationwala.com',
-            'message'=>$this->supportmail($request->except('_token','_method','page_id'))
+            'message'=>$this->rwsupportmail($request->except('_token','_method','page_id'))
         );
        $this->sendMail($mail_asupport);
       ///////////////////////////////////////////////
