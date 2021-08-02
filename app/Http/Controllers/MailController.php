@@ -13,46 +13,7 @@ use \App\Lead;
 class MailController extends Controller {
     public function sendleadmail(Request $request)
     {
-      // ini_set('max_execution_time', 0);
       
-       // Config::set('mail.mailer', 'sendmail');
-       // Config::set('mail.host', $request->input('txt_smtp_server'));
-       // Config::set('mail.username', $request->input('txt_username'));
-       // Config::set('mail.password', $request->input('txt_password'));
-       // Config::set('mail.from_address', $request->input('txt_from_email'));
-       // Config::set('mail.from_name', $request->input('txt_from_name'));
-       // if($request->has('txt_ssl')) Config::set('mail.encryption', "ssl");
-       // else Config::set('mail.encryption', "tls");
-
-    //    mail("ajaymaurya.it@gmail.com","Registrationwala","Mail bhejat bani.");
-      //  try{
-      //       Mail::send([], [], function($message) use($request) {
-      //       $message->to('ajaymaurya.it@gmail.com')->subject
-      //          ('Registrationwala Test Message');
-      //       $message->from('ajju.ghatak@gmail.com','RW');
-      //       $message->setBody('<p>This is an email message sent automatically by Kommtrace while testing the settings for your account.</p>', 'text/html');
-      //    });
-      //   $validator = \Validator::make($request->all(), [
-      //       'name'=> 'required',
-      //       'email' => 'required|email',
-      //       'phone' => 'nullable',
-      //   ]);
-      //   if ($validator->fails())
-      //   {
-      //       return response()->json(['type'=>'error',"title"=>"",'msg'=>$validator->errors()->all()]);
-      //   } 
-
-      //   $data = $request->except('_token','_method');
-      //   $data['status'] = 0;
-      //   $insData = Lead::create($data);
-
-      //       $response = array('type' => 'success',"title"=>"",'msg'=>['Test email sent successfully.']);
-      //       return response()->json($response);
-
-      //    }catch(\Swift_TransportException $e){
-      //       $response = array('type' => 'error',"title"=>"",'msg'=>$e->getMessage());
-      //       return response()->json($response);
-      //    }
       $validator = \Validator::make($request->all(), [
             'name'  => 'required',
             'email' => 'required|email',
@@ -73,6 +34,7 @@ class MailController extends Controller {
     			'subject'=>'We are happy to help you ! Registrationwala.com',
     			'message'=>$this->welcome()
     		);
+        ////////////////////////////
         $this->sendMail($mail_arry);
         if($request->input('source')=='service'){
           $mail_enq=array(
@@ -82,6 +44,7 @@ class MailController extends Controller {
           'subject'=>'We are happy to help you ! Registrationwala.com',
           'message'=>$this->serviceEnquiry($insData)
         );
+          ///////////////////////////
           $this->sendMail($mail_enq);
         }
         if($request->input('source')=='subscribe'){
@@ -92,9 +55,22 @@ class MailController extends Controller {
             'subject'=>'We are happy to help you ! Registrationwala.com',
             'message'=>$this->subscribe($insData->email)
           );
+          //////////////////////////
           $this->sendMail($mail_sub);
         }
       $response = array('type' => 'success',"title"=>"",'msg'=>['Your query has been submitted successfully.']);
+
+
+      ///////////////////////////////////////////////
+      $mail_asupport=array(
+            'to'=>setting('admin.email'),
+            'from_name'=>$request->input('name'),
+            'from'=>$request->input('email'),
+            'subject'=>'Service enquery | Registrationwala.com',
+            'message'=>$this->supportmail($request->except('_token','_method','page_id'))
+        );
+       $this->sendMail($mail_asupport);
+      ///////////////////////////////////////////////
         return response()->json($response);
 
       
@@ -287,5 +263,20 @@ return $srhtml;
 </table>';
   }
 
-   
+   private function rwsupportmail($data){
+    $message='';
+        foreach ($data as $key => $value){
+        $message .= "<tr><td> ".htmlspecialchars($key)."</td><td> ".htmlspecialchars($value)."</td></tr>";
+        }
+
+        $html='<table width="100%" cellpadding="5" cellspacing="0" style="max-width:550px; margin:auto; font-family:Verdana, Geneva, sans-serif; font-size:14px; line-height:24px; border:1px solid #ccc; color:#1b1b1b; background-color:#F4F4F4;" >
+        <tr><th width="50%"></th><th width="50%"></th></tr>
+          <tr><td align="center" style=" background-color:#fff; padding:10px 30px;" colspan="2"><img src="https://www.registrationwala.com/images/emailer/logonrw.png" width="45" height="45" /></td></tr>
+          <tr><td align="left" colspan="2" style="padding:10px 30px; background-color:#1b1b1b; color:#FFF; text-align:center; border-top:solid #fff 1px; text-transform:uppercase;"><h1>Welcome to Registrationwala.com!</h1></td></tr>
+          '.$message.'
+          <tr><td colspan="2"><strong>Regards,<br />
+            Team Registrationwala.com</strong></div></td></tr>
+        </table>';
+        return $html;
+    }
 }
