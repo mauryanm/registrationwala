@@ -37,7 +37,14 @@
           <div class="card-body text-center">
             <i class="fa fa-phone fa-5x mb-3" aria-hidden="true"></i>
             <h4 class="text-uppercase mb-5">call us</h4>
-            <p><a target="_blank" href="https://api.whatsapp.com/send?phone=+919810602899&amp;text=Lets%20talk%20to%20Registrationwala!">+91-9810-602-899</a> , +91-8882-580-580</p>
+            <p>
+              @if(setting('site.whatsaap'))
+              <a target="_blank" href="https://api.whatsapp.com/send?phone={{str_replace(' ','',str_replace('-','',setting('site.whatsaap')))}}&amp;text=Lets%20talk%20to%20Registrationwala!">{{setting('site.whatsaap')}}</a> 
+              @endif
+              @if(setting('site.mobile'))
+              , <a  href="tel:{{str_replace(' ','',str_replace('-','',setting('site.mobile')))}}" title="" data-toggle="tooltip" data-original-title="Call us {{setting('site.mobile')}} OR Contact with us @ support@registrationwala.com"> {{setting('site.mobile')}}</a>
+            @endif
+          </p>
           </div>
         </div>
      </div>
@@ -46,7 +53,7 @@
           <div class="card-body text-center">
             <i class="fa fa-map-marker fa-5x mb-3" aria-hidden="true"></i>
             <h4 class="text-uppercase mb-5">office loaction</h4>
-           <address> E - 1070 Ground Floor Saraswati Vihar, Pitampura New Delhi, 110034 </address>
+           <address> {{setting('admin.address')}} </address>
           </div>
         </div>
      </div>
@@ -56,7 +63,7 @@
           <div class="card-body text-center">
             <i class="fa fa-globe fa-5x mb-3" aria-hidden="true"></i>
             <h4 class="text-uppercase mb-5">email</h4>
-            <p>support@registrationwala.com</p>
+            <p>{{setting('admin.email')}}</p>
           </div>
         </div>
      </div>
