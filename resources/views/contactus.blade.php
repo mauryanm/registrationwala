@@ -1,7 +1,7 @@
 @extends('templates.web')
-@section('title', 'Our Videos - Registrationwala Videos')
-@section('description', 'Check out our vast video collection. Through youtube videos, Registrationwala aims to educate you about business licenses.')
-@section('keywords', 'Videos')
+@section('title', 'Contact Us - Registrationwala')
+@section('description', 'Contact Us')
+@section('keywords', 'Contact Us')
 @section('content')
 @include('templates.header')
 

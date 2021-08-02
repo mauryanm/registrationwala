@@ -60,6 +60,7 @@ Route::get('/terms-condition', 'App\Http\Controllers\PageController@index')->nam
 Route::get('/our-coupon-partner', 'App\Http\Controllers\PageController@index')->name('our-coupon-partner');
 Route::get('/videos', 'App\Http\Controllers\PageController@videos')->name('videos');
 Route::get("/contact-us", function(){return view("contactus");});
+Route::get("/sitemap", function(){return view("sitemap");});
 Route::get('/our-coupon-partner', 'App\Http\Controllers\PageController@couponpartner')->name('our-coupon-partner');
 ############ End Other Pages ############
 

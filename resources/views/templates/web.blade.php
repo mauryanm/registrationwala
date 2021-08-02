@@ -87,7 +87,7 @@
              <li class="mb-2"><i class="fa fa-phone-square" aria-hidden="true"></i><a href="tel:{{str_replace(' ','',str_replace('-','',setting('site.mobile')))}}"> {{setting('site.mobile')}}</a></li>
              @endif
 
-            <li> <i class="fa fa-envelope" aria-hidden="true"></i> <a href="mailto:support@registrationwala.com"> support@registrationwala.com</a></li>
+            <li> <i class="fa fa-envelope" aria-hidden="true"></i> <a href="mailto:{{setting('admin.email')}}"> {{setting('admin.email')}}</a></li>
           </ul>
         </div>
       </div>
