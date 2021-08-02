@@ -70,7 +70,8 @@ $ytscount=get_twitter_count("https://www.googleapis.com/youtube/v3/channels?part
               </div>
               <pre>
               @php
-              print_r($archivelists)
+              print_r($archivelists);
+              exit;
               @endphp
             </pre>
               @if($archivelists)
