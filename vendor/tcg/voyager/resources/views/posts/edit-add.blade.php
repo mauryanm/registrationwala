@@ -227,6 +227,7 @@
                             <div class="form-group">
                                 <label for="service_id">Service</label>
                                 <select class="form-control" name="service_id" id="service_id">
+                                    <option value="">Select Service</option>
                                     @foreach(Voyager::model('Service')::where('category_id',$dataTypeContent->category_id)->get() as $service)
                                         <option value="{{ $service->id }}"@if(isset($dataTypeContent->service_id) && $dataTypeContent->service_id == $service->id) selected="selected"@endif>{{ $service->title }}</option>
                                     @endforeach
