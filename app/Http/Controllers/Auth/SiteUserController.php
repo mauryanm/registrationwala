@@ -66,6 +66,15 @@ class SiteUserController extends DefaultLoginController
             $data['password'] = 'rw@123';
             $check = $this->create($data);
             Auth::guard('siteuser')->login($check);
+            $mail_arry=array(
+                'to'=>$request->email,
+                'from_name'=>setting('admin.title'),
+                'from'=>setting('admin.email'),
+                'subject'=>'We are happy to help you ! Registrationwala.com',
+                'message'=>$this->mailtemplate(['{{$name}}'],[$request->input('name')],setting('mailer.associate'))
+            );
+            $this->sendMail($mail_arry);
+            
             return redirect("dashboard/associate")->withSuccess('Hello '.$check->name.' You are just one step away from getting Onboarded to Registrationwala Associate Program. Your login password is rw@123, please remember.');
          }
          $check = $this->create($data);

@@ -24,4 +24,9 @@ class Controller extends BaseController
                 dd($e->getMessage());
             }
         }
+    public function mailtemplate($from,$by,$mailer)
+    {
+        $mailer = str_replace($from, $by, $mailer);
+        return $mailer;
+    }
 }
