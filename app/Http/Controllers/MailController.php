@@ -42,7 +42,7 @@ class MailController extends Controller {
           'from_name'=>setting('admin.title'),
           'from'=>setting('admin.email'),
           'subject'=>'We are happy to help you ! Registrationwala.com',
-          'message'=>$this->mailtemplate(['{{$name}}','{{$leadid}}','{{$service}}'],[$insData->name,'RWI'.sprintf("%'05d", $insData->id),$data->service->title],setting('mailer.associate'))
+          'message'=>$this->mailtemplate(['{{$name}}','{{$leadid}}','{{$service}}'],[$insData->name,'RWI'.sprintf("%'05d", $insData->id),$insData->service->title],setting('mailer.associate'))
         );
           ///////////////////////////
           $this->sendMail($mail_enq);
