@@ -146,7 +146,7 @@
             <h2 class="h3">Virtual CFO Services </h2>
             <p class="subhead mb-3"> Focus on your business, leaving the accounting matter to us. </p>
             <p>With our Virtual CFO services, you can relax and let us handle your accounting regulations matters. Focus on your work, while our experts take your finances up to the accounting standards. </p>
-            <a class="cbtn btn-4  text-white "> <i class="fa fa-phone" aria-hidden="true"></i> Book a free Consultation</a> </div>
+            <a class="cbtn btn-4  text-white " href="{{url('contact-us')}}"> <i class="fa fa-phone" aria-hidden="true"></i> Book a free Consultation</a> </div>
         </div>
       </div>
     </div>
@@ -162,7 +162,7 @@
         <h2 class=" main-heading-2">Become An Associate?</h2>
         <p class="subhead mb-1">Join us on a mutually beneficial journey where you grow along with us </p>
         <p>Join Registrationwala’s no agreement, no franchisee, and all profit – Associate program. If you are a lawyer, Chartered Accountant, Company Secretary, Business Consultant, you can join us on this transparent platform – where every lead shared will hold value, and every lead cared for will be equal. </p>
-        <div> <a class="cbtn btn-4 mb-3"> <i class="fa fa-phone" aria-hidden="true"></i> Registration</a> </div>
+        <div> <a class="cbtn btn-4 mb-3" href="{{url('become-an-associate')}}"> <i class="fa fa-phone" aria-hidden="true"></i> Registration</a> </div>
       </div>
     </div>
     <!-- row  --> 
