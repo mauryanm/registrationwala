@@ -12,7 +12,7 @@ class HomeController extends Controller
     public function index()
     {
     	$wps = PeopleSay::where('status',1)->get();
-    	$letestBlog = Voyager::model('Post')->where('featured',1)->where('status','PUBLISHED')->limit(3)->with('service:title,slug,id')->with('category')->get();
+    	$letestBlog = Voyager::model('Post')->where('featured',1)->where('status','PUBLISHED')->limit(3)->with('service:title,blog_slug as slug,id')->with('category')->get();
     	$homeService = HomeService::get();
     	foreach ($homeService as $key => $value) {
     		if($value->type=="SERVICE"){
