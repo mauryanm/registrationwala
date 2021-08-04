@@ -175,7 +175,6 @@ class WebController extends Controller
     	    $categoryList = $this->categorylist();
     	    return Voyager::view('blogDetail')->with(compact('data','categoryList'));
     	}else{
-            dd('bb');
     		abort(404, 'Page not found.');
     	}
     }
