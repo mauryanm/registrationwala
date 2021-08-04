@@ -132,9 +132,11 @@ class WebController extends Controller
     public function rwpostservice($category_url,$service_url){
     	$wcu = Choose::where('status',1)->orderBy('created_at','DESC')->get();
     	$data = collect();
-    	$catQuery = Voyager::model('Service')->where('blog_slug',$service_url);
+    	$catQuery = Voyager::model('Service')->where('blog_slug',$service_url)->whereHas('category', function ($query) use($category_url) {
+                return $query->where('slug', $category_url);
+            });
     	if($catQuery->count()>0){
-    		$catData = $catQuery->with('category')->first();
+    		$catData = $catQuery->first();
 	    	
 	    	$data->seo_title = 'Registrationwala';
 	    	$data->meta_description = '';
@@ -150,7 +152,12 @@ class WebController extends Controller
     	return Voyager::view('blogSubCategory')->with(compact('data','wcu','categoryList','catData','posts','archivelists'));
     }
     public function rwpost($category_url,$service_url, $url){
-    	$data = Voyager::model('Post')->where('slug',$url)->published()->with('service:title,blog_slug as slug,id')->with('category')->first();
+
+    	$data = Voyager::model('Post')->where('slug',$url)->published()->whereHas('service', function ($query) use($service_url) {
+                return $query->where('blog_slug', $service_url)->select('title','blog_slug as slug','id');
+            })->whereHas('category', function ($query) use($category_url) {
+                return $query->where('slug', $category_url);
+            })->first();
     	if($data){
             $pageWasRefreshed = isset($_SERVER['HTTP_CACHE_CONTROL']) && $_SERVER['HTTP_CACHE_CONTROL'] === 'max-age=0';
 

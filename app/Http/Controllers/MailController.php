@@ -31,7 +31,7 @@ class MailController extends Controller {
     			'to'=>$request->email,
     			'from_name'=>setting('admin.title'),
     			'from'=>setting('admin.email'),
-    			'subject'=>'We are happy to help you ! Registrationwala.com',
+    			'subject'=>'Thank you for choosing Registrationwala.com',
     			'message'=>setting('mailer.welcome')
     		);
         ////////////////////////////
