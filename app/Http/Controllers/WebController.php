@@ -153,11 +153,14 @@ class WebController extends Controller
     }
     public function rwpost($category_url,$service_url, $url){
 
-    	$data = Voyager::model('Post')->where('slug',$url)->published()->whereHas('service', function ($query) use($service_url) {
+    	// $data = Voyager::model('Post')->where('slug',$url)->published()->whereHas('service', function ($query) use($service_url) {
+     //            return $query->where('blog_slug', $service_url)->select('title','blog_slug as slug','id');
+     //        })->whereHas('category', function ($query) use($category_url) {
+     //            return $query->where('slug', $category_url);
+     //        })->first();
+        $data = Voyager::model('Post')->where('slug',$url)->published()->whereHas('service', function ($query) use($service_url) {
                 return $query->where('blog_slug', $service_url)->select('title','blog_slug as slug','id');
-            })->whereHas('category', function ($query) use($category_url) {
-                return $query->where('slug', $category_url);
-            })->first();
+            })->with('category')->first();
     	if($data){
             $pageWasRefreshed = isset($_SERVER['HTTP_CACHE_CONTROL']) && $_SERVER['HTTP_CACHE_CONTROL'] === 'max-age=0';
 
