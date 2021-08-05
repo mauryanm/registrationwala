@@ -30,7 +30,7 @@
             @foreach($sp->posts as $post)
             <div class="bg-light mb-3">
               <div class="row no-gutters">
-                <div class="col-md-5"><a href="{{url( __('voyager::post.post_slug').$categoryPost->slug.'/'.$sp->slug.'/'.$post->slug)}}"><img src="{{Voyager::image($post->thumbnail('medium'))}}" class="img-fluid border"></a></div>
+                <div class="col-md-5"><a href="{{url( __('voyager::post.post_slug').$categoryPost->slug.'/'.$sp->slug.'/'.$post->slug)}}"><img src="{{Voyager::image($post->thumbnail('medium'))}}" class="img-fluid border" alt="{{$post->title}}"></a></div>
                 <div class="col-md-7">
                   <div class="p-3">
                     <h6 class="ellipsis"><a href="{{url( __('voyager::post.post_slug').$categoryPost->slug.'/'.$sp->slug.'/'.$post->slug)}}">{{$post->title}}</a></h6>

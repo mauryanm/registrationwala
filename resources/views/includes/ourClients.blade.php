@@ -11,14 +11,14 @@
         <div class="carousel-wrap clients">
           <div id="owl" class="owl-carousel ">
             @foreach(\App\Client::where('status','1')->where('positio',1)->get() as $client)
-            <div class="item"><img src="{{Voyager::image($client->image)}}" alt="{{Voyager::image($client->name)}}"></div>
+            <div class="item"><img src="{{Voyager::image($client->image)}}" alt="{{$client->name}}"></div>
             @endforeach
           </div>
         </div>
         <div class="carousel-wrap clients mt-3">
           <div id="owl1" class="owl-carousel ">
             @foreach(\App\Client::where('status','1')->where('positio',2)->get() as $client2)
-            <div class="item"><img src="{{Voyager::image($client2->image)}}" alt="{{Voyager::image($client2->name)}}"></div>
+            <div class="item"><img src="{{Voyager::image($client2->image)}}" alt="{{$client2->name}}"></div>
             @endforeach
           </div>
         </div>
