@@ -111,7 +111,7 @@
           @foreach($cp->posts as $post)
           <div class="col-md-6">
             <div class="row">
-              <div class="col-md-5"><a href="{{url( __('voyager::post.post_slug').$post->category->slug.'/'.$post->service->slug.'/'.$post->slug)}}"><img src="{{Voyager::image($post->thumbnail('small'))}}" class="img-fluid"></a></div>
+              <div class="col-md-5"><a href="{{url( __('voyager::post.post_slug').$post->category->slug.'/'.$post->service->slug.'/'.$post->slug)}}"><img src="{{Voyager::image($post->thumbnail('small'))}}" class="img-fluid" alt="{{$post->title}}"></a></div>
               <div class="col-md-7">
                 <h6 class="ellipsis"><a href="{{url( __('voyager::post.post_slug').$post->category->slug.'/'.$post->service->slug.'/'.$post->slug)}}">{{$post->title}}</a></h6>
                 <a href="{{url( __('voyager::post.post_slug').$post->category->slug.'/'.$post->service->slug)}}"> <span class="badge custom-badge"><i class="fa fa-star" aria-hidden="true"></i> {{$post->service->title}} </span></a>
