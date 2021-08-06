@@ -159,7 +159,7 @@ class MailController extends Controller {
       <tr><td align="center" style=" background-color:#fff; padding:10px 30px;" colspan="2"><img src="https://www.registrationwala.com/images/emailer/logonrw.png" width="45" height="45" /></td></tr>
       <tr><td align="left" colspan="2" style="padding:10px 30px; background-color:#1b1b1b; color:#FFF; text-align:center; border-top:solid #fff 1px; text-transform:uppercase;"><h1>Welcome to Registrationwala.com!</h1></td></tr>';
       foreach ($data as $key => $value){
-        $html .= "<tr><td> ".htmlspecialchars($key)."</td><td> ".htmlspecialchars($value)."</td></tr>";
+        $html .= '<tr><td> '.($key).'</td><td> '.($value).'</td></tr>';
       }
     $html.='<tr><td colspan="2"><strong>Regards,<br />
         Team Registrationwala.com</strong></div></td></tr>
