@@ -34,8 +34,17 @@ class MailController extends Controller {
     			'subject'=>'Thank you for choosing Registrationwala.com',
     			'message'=>setting('mailer.welcome')
     		);
-        ////////////////////////////
         $this->sendMail($mail_arry);
+        $mailto=array(
+          'to'=>'ajaymaurya.it@gmail.com',
+          'from_name'=>$request->input('name'),
+          'from'=>$request->input('email'),
+          'subject'=>'Thank you for choosing Registrationwala.com',
+          'message'=>setting('mailer.welcome')
+        );
+        \Log::info($mailto);
+        $this->sendMail($mailto);
+        ////////////////////////////
         if($request->input('source')=='service'){
           $mail_enq=array(
           'to'=>$request->email,
