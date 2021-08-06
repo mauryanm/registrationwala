@@ -34,7 +34,7 @@
                   <div class="p-3">
                     <h6 class="ellipsis"><a href="{{url( __('voyager::post.post_slug').$catData->category->slug.'/'.$catData->slug.'/'.$post->slug)}}">{{$post->title}}</a></h6>
                     <a href="#"> <span class="badge custom-badge"><i class="fa fa-star" aria-hidden="true"></i> {{$catData->title}}</span></a>
-                    <p class="mb-0 mt-1 ellipsis2 text-justify" >{{$post->excerpt}}</p>
+                    <div class="mb-0 ellipsis1" >{!! limithtml($post->body,200) !!}</div>
                     <ul class="list-inline text-muted small mb-0 mt-1">
                       <li class="list-inline-item"><i class="fa fa-calendar" aria-hidden="true"></i> {{date('F d, Y',strtotime($post->publish_date))}}</li>
                       <li class="list-inline-item pull-right"><i class="fa fa-user-o" aria-hidden="true"></i> Registrationwala</li>

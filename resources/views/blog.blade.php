@@ -50,11 +50,6 @@
             @endforeach
           </div>
           @endif
-          <!-- Left and right controls --> 
-          <!--              <a class="carousel-control-prev" href="#demo" data-slide="prev"> <span class="carousel-control-prev-icon"></span></a> 
-<a class="carousel-control-next" href="#demo" data-slide="next"> <span class="carousel-control-next-icon"></span> </a> </div>--> 
-          
-          <!-- The slideshow --> 
           
         </div>
       </div>
@@ -115,7 +110,7 @@
               <div class="col-md-7">
                 <h6 class="ellipsis"><a href="{{url( __('voyager::post.post_slug').$post->category->slug.'/'.$post->service->slug.'/'.$post->slug)}}">{{$post->title}}</a></h6>
                 <a href="{{url( __('voyager::post.post_slug').$post->category->slug.'/'.$post->service->slug)}}"> <span class="badge custom-badge"><i class="fa fa-star" aria-hidden="true"></i> {{$post->service->title}} </span></a>
-                <p class="mb-0 ellipsis1" >{{$post->excerpt}}</p>
+                <div class="mb-0 ellipsis1" >{!! limithtml($post->body,80) !!}</div>
                 <ul class="list-inline text-muted small mb-0 mt-1">
                   <li class="list-inline-item"><i class="fa fa-calendar" aria-hidden="true"></i>  {{date('F d, Y',strtotime($post->publish_date))}}</li>
                   <li class="list-inline-item pull-right"><i class="fa fa-user-o" aria-hidden="true"></i> Registrationwala</li>
