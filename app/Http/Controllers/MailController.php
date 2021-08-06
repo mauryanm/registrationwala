@@ -34,17 +34,8 @@ class MailController extends Controller {
     			'subject'=>'Thank you for choosing Registrationwala.com',
     			'message'=>setting('mailer.welcome')
     		);
-        $this->sendMail($mail_arry);
-        $mailto=array(
-          'to'=>'ajaymaurya.it@gmail.com',
-          'from_name'=>$request->input('name'),
-          'from'=>$request->input('email'),
-          'subject'=>'Thank you for choosing Registrationwala.com',
-          'message'=>setting('mailer.welcome')
-        );
-        \Log::info($mailto);
-        $this->sendMail($mailto);
         ////////////////////////////
+        $this->sendMail($mail_arry);
         if($request->input('source')=='service'){
           $mail_enq=array(
           'to'=>$request->email,
@@ -72,15 +63,13 @@ class MailController extends Controller {
 
       ///////////////////////////////////////////////
       $mail_asupport=array(
-            'to'=>'ajaymaurya.it@gmail.com',
+            'to'=>setting('admin.email'),
             'from_name'=>$request->input('name'),
             'from'=>$request->input('email'),
             'subject'=>'Service enquery | Registrationwala.com',
-            'message'=>'Mail not come.'
+            'message'=>$this->rwsupportmail($request->except('_token','_method','page_id'))
         );
-      \Log::info($mail_asupport);
-       $mailsup = $this->sendMail($mail_asupport);
-       \Log::info($mailsup);
+       $this->sendMail($mail_asupport);
       ///////////////////////////////////////////////
         return response()->json($response);
 
