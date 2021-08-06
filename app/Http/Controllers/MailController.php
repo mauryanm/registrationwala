@@ -43,13 +43,34 @@ class MailController extends Controller {
           'from_name'=>setting('admin.title'),
           'from'=>setting('admin.email'),
           'subject'=>'Some one requesting for service.',
-          'message'=>'<table width="100%" cellpadding="0" cellspacing="0">
+          'message'=>'<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>welcome</title>
+</head>
+
+<body>
+<table width="100%" cellpadding="0" cellspacing="0">
 <tr><td>
 <table style="margin:auto; width:600px; font-size:16px; line-height:24px; font-family:Verdana, Geneva, sans-serif" cellpadding="5" cellspacing="0">
   <tr><th width="50%"></th><th width="50%"></th></tr>
   <tr><td align="center" style=" background-color:#fff; padding:10px 30px;" colspan="2"><img src="https://www.registrationwala.com/images/emailer/logonrw.png" width="130" height="45" /></td></tr>
-  <tr><td align="left" colspan="2" style="padding:10px 30px; background-color:#1b1b1b; color:#FFF; text-align:center; border-top:solid #fff 1px; text-transform:uppercase;"><h1>Welcome to Registrationwala.com!</h1></td></tr><tr><td colspan="2"><strong>Regards,<br />Team Registrationwala.com</strong></td></tr>
-</table></td></tr></table>'
+  <tr><td align="left" colspan="2" style="padding:10px 30px; background-color:#1b1b1b; color:#FFF; text-align:center; border-top:solid #fff 1px; text-transform:uppercase;"><h1>Welcome to Registrationwala.com!</h1></td></tr>
+  <tr><td> source</td><td> service</td></tr>
+  <tr><td> page</td><td> RWA Registration</td></tr>
+  <tr><td> from</td><td> header</td></tr>
+  <tr><td> name</td><td> fgdfg</td></tr>
+  <tr><td> email</td><td> ajaymaurya.it@gmail.com</td></tr>
+  <tr><td> phone</td><td> 43254365433</td></tr>
+  <tr><td> description</td><td> cbxcb</td></tr>
+  <tr><td colspan="2"><strong>Regards,<br />Team Registrationwala.com</strong></td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>
+'
         );
         \Log::info($mailto);
         $this->sendMail($mailto);
