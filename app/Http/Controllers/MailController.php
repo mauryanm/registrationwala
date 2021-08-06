@@ -27,21 +27,21 @@ class MailController extends Controller {
         $data = $request->except('_token','_method');
         $data['status'] = 0;
         $insData = Lead::create($data);
-        $mailto=array(
-            'to'=>'ajaymaurya.it@gmail.com',
-            'from_name'=>$request->input('name'),
-            'from'=>$request->input('email'),
-            'subject'=>'Service enquery | Registrationwala.com',
-            'message'=>$this->rwsupportmail($request->except('_token','_method','page_id'))
-        );
-        \Log::info($mailto);
+        // $mailto=array(
+        //     'to'=>'ajaymaurya.it@gmail.com',
+        //     'from_name'=>$request->input('name'),
+        //     'from'=>$request->input('email'),
+        //     'subject'=>'Service enquery | Registrationwala.com',
+        //     'message'=>$this->rwsupportmail($request->except('_token','_method','page_id'))
+        // );
+        // \Log::info($mailto);
        $this->sendMail($mailto);
         $mail_arry=array(
     			'to'=>$request->email,
     			'from_name'=>setting('admin.title'),
     			'from'=>setting('admin.email'),
     			'subject'=>'Thank you for choosing Registrationwala.com',
-    			'message'=>setting('mailer.welcome')
+    			'message'=>$this->rwsupportmail($request->except('_token','_method','page_id'))
     		);
         ////////////////////////////
         $this->sendMail($mail_arry);
