@@ -177,6 +177,9 @@ class MailController extends Controller {
     public function mailbody($data)
     {
       $htmcode = '<p>Hame kyu paresan kar rahe ho.</p>';
+      foreach ($data as $key => $value){
+        $htmcode .= '<p> '.htmlspecialchars($key).' => '.htmlspecialchars($value).'</p>';
+        }
       return $htmcode;
     }
 }
