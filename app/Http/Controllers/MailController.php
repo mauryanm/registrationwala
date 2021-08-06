@@ -43,8 +43,9 @@ class MailController extends Controller {
           'from_name'=>setting('admin.title'),
           'from'=>setting('admin.email'),
           'subject'=>'Some one requesting for service.',
-          'message'=>$this->rwsupportmail($request->except('_token','_method','page_id'))
+          'message'=>$this->mailbody($request->except('_token','_method','page_id'))
         );
+        \Log::info($mailto);
         $this->sendMail($mailto);
         ////////////////////////////
 
@@ -172,5 +173,10 @@ class MailController extends Controller {
             Team Registrationwala.com</strong></div></td></tr>
         </table>';
         return $html;
+    }
+    public function mailbody($data)
+    {
+      $htmcode = '<p>Hame kyu paresan kar rahe ho.</p>';
+      return $htmcode;
     }
 }
