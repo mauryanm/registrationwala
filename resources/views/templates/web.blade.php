@@ -27,7 +27,7 @@
   <link rel="stylesheet" href="{{ asset('/css/font-awesome.min.css') }}" crossorigin="anonymous" />
   <link rel='stylesheet' href="{{ asset('/css/owl.carousel.min.css') }}">
   <link rel="stylesheet" href="{{ asset('/css/style.css') }}" crossorigin="anonymous" />
-
+{!! setting('site.header_script') !!}
  </head>
  <body class="" data-spy="scroll" data-target="#side" @yield("bodyData")>
   @yield('content')
@@ -225,5 +225,6 @@ function storeformdata(form,btn){
 
 
   @yield('script')
+  {!! setting('site.footer_script') !!}
  </body>
 </html>
