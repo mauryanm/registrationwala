@@ -234,7 +234,7 @@
           <div class="card-body pt-2">
             <h4 class="card-title"> <a href="{{url( __('voyager::post.post_slug').$data->category->slug.'/'.$data->blog_slug.'/'.$lsb->slug)}}">{{$lsb->title}}</a></h4>
             <small class="text-muted cat"> <i class="fa fa-calendar "></i> {{date('F d, Y',strtotime($lsb->publish_date))}} <span class="pull-right"> <i class="fa fa-user-o "></i> Registrationwala</span> </small>
-            <a href="{{url( __('voyager::post.post_slug').$data->category->slug.'/'.$data->slug.'/'.$lsb->slug)}}" class="btn btn-sm btn-outline-dark  center-block w-50 mt-2">Read more</a> </div>
+            <a href="{{url( __('voyager::post.post_slug').$data->category->slug.'/'.$data->blog_slug.'/'.$lsb->slug)}}" class="btn btn-sm btn-outline-dark  center-block w-50 mt-2">Read more</a> </div>
         </div>
       </div>
       @endforeach
