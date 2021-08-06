@@ -70,7 +70,8 @@ class MailController extends Controller {
             'message'=>$this->rwsupportmail($request->except('_token','_method','page_id'))
         );
       \Log::info($mail_asupport);
-       $this->sendMail($mail_asupport);
+       $mailsup = $this->sendMail($mail_asupport);
+       \Log::info($mailsup);
       ///////////////////////////////////////////////
         return response()->json($response);
 
