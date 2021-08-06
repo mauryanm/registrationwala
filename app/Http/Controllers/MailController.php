@@ -35,7 +35,7 @@ class MailController extends Controller {
         //     'message'=>$this->rwsupportmail($request->except('_token','_method','page_id'))
         // );
         // \Log::info($mailto);
-       $this->sendMail($mailto);
+       // $this->sendMail($mailto);
         $mail_arry=array(
     			'to'=>$request->email,
     			'from_name'=>setting('admin.title'),
