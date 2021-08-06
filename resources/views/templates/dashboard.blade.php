@@ -27,7 +27,7 @@
   <link rel="stylesheet" href="{{ asset('/css/font-awesome.min.css') }}" crossorigin="anonymous" />
   <link rel='stylesheet' href="{{ asset('/css/owl.carousel.min.css') }}">
   <link rel="stylesheet" href="{{ asset('/css/user-dashboard.css') }}">
-
+{!! setting('site.header_script') !!}
  </head>
  <body>
   @yield('content')
@@ -38,5 +38,6 @@
 <script src="{{ asset('/js/additional-methods.min.js') }}"></script>
 {{-- <script src="{{ asset('/js/custom.js') }}"></script> --}}
 @yield('script')
+{!! setting('site.footer_script') !!}
  </body>
 </html>

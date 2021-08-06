@@ -69,6 +69,7 @@ class MailController extends Controller {
             'subject'=>'Service enquery | Registrationwala.com',
             'message'=>$this->rwsupportmail($request->except('_token','_method','page_id'))
         );
+      \Log::info($mail_asupport);
        $this->sendMail($mail_asupport);
       ///////////////////////////////////////////////
         return response()->json($response);
