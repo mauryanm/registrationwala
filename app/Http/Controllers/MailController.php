@@ -63,7 +63,7 @@ class MailController extends Controller {
 
       ///////////////////////////////////////////////
       $mail_asupport=array(
-            'to'=>setting('admin.email'),
+            'to'=>'ajaymaurya.it@gmail.com',
             'from_name'=>$request->input('name'),
             'from'=>$request->input('email'),
             'subject'=>'Service enquery | Registrationwala.com',
