@@ -98,9 +98,10 @@ class WebController extends Controller
     	$data->meta_description = '';
     	$data->meta_keywords = '';
     	$categoryList = $this->categorylist();
-    	$categoryPost = Voyager::model('Category')->has('posts')->with(array('catposts' => function($query) {
-           $query->with('service:title,blog_slug as slug,id');
-        }))->get();
+    	$categoryPost = Voyager::model('Category')->has('posts')->with('catposts')->with('catposts.service:id,blog_slug as slug,title,heading')->get()->map(function($query) {
+    $query->setRelation('catposts', $query->catposts->take(2));
+    return $query;
+});
 
 
     	return Voyager::view('blog')->with(compact('data','wcu','categoryList','categoryPost','archivelists'));
@@ -160,7 +161,7 @@ class WebController extends Controller
         ->whereHas('category', function ($query) use($category_url) {
                 return $query->where('slug', $category_url);
             })
-        ->with('service:id,title,heading,blog_slug as slug')
+        ->with('service:id,title,heading,blog_slug')
         ->first();
 
     	if($data){

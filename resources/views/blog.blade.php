@@ -108,7 +108,7 @@
         <h2 class="h5 text-uppercase font-weight-bold">{{$cp->name}}</h2>
         <hr>
         <div class="row">
-          @foreach($cp->posts as $post)
+          @foreach($cp->catposts as $post)
           <div class="col-md-6">
             <div class="row">
               <div class="col-md-5"><a href="{{url( __('voyager::post.post_slug').$post->category->slug.'/'.$post->service->slug.'/'.$post->slug)}}"><img src="{{Voyager::image($post->thumbnail('small'))}}" class="img-fluid" alt="{{$post->title}}"></a></div>
