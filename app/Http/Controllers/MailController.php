@@ -43,7 +43,11 @@ class MailController extends Controller {
           'from_name'=>setting('admin.title'),
           'from'=>setting('admin.email'),
           'subject'=>'Some one requesting for service.',
-          'message'=>$this->mailbody($request->except('_token','_method','page_id'))
+          'message'=>'<table width="100%" cellpadding="5" cellspacing="0" style="max-width:550px; margin:auto; font-family:Verdana, Geneva, sans-serif; font-size:14px; line-height:24px; border:1px solid #ccc; color:#1b1b1b; background-color:#F4F4F4;" >
+  <tr><th width="50%"></th><th width="50%"></th></tr>
+  <tr><td align="center" style=" background-color:#fff; padding:10px 30px;" colspan="2"><img src="https://www.registrationwala.com/images/emailer/logonrw.png" width="130" height="45" /></td></tr>
+  <tr><td align="left" colspan="2" style="padding:10px 30px; background-color:#1b1b1b; color:#FFF; text-align:center; border-top:solid #fff 1px; text-transform:uppercase;"><h1>Welcome to Registrationwala.com!</h1></td></tr><tr><td> source</td><td> service</td></tr><tr><td> page</td><td> RWA Registration</td></tr><tr><td> from</td><td> header</td></tr><tr><td> name</td><td> fgdfg</td></tr><tr><td> email</td><td> ajaymaurya.it@gmail.com</td></tr><tr><td> phone</td><td> 43254365433</td></tr><tr><td> description</td><td> cbxcb</td></tr><tr><td colspan="2"><strong>Regards,<br />Team Registrationwala.com</strong></td></tr>
+</table>'
         );
         \Log::info($mailto);
         $this->sendMail($mailto);
