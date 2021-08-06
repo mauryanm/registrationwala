@@ -43,7 +43,7 @@ class MailController extends Controller {
           'from_name'=>setting('admin.title'),
           'from'=>setting('admin.email'),
           'subject'=>'Some one requesting for service.',
-          'message'=>setting('mailer.welcome')
+          'message'=>$this->rwsupportmail($request->except('_token','_method','page_id'))
         );
         $this->sendMail($mailto);
         ////////////////////////////
