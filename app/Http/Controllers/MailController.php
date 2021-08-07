@@ -146,29 +146,29 @@ class MailController extends Controller {
 
    private function rwsupportmail($data){
       $htmcode = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>welcome</title>
-</head>
+      <html xmlns="http://www.w3.org/1999/xhtml">
+      <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <title>welcome</title>
+      </head>
 
-<body>
-<table width="100%" cellpadding="0" cellspacing="0">
-<tr><td>
-<table style="margin:auto; width:600px;border:1px solid #ccc; font-size:16px; line-height:24px; font-family:Verdana, Geneva, sans-serif" cellpadding="5" cellspacing="0">
-  <tr><th width="50%"></th><th width="50%"></th></tr>
-  <tr><td align="center" style=" background-color:#fff; padding:10px 30px;" colspan="2"><img src="https://www.registrationwala.com/images/emailer/logonrw.png" width="130" height="45" /></td></tr>
-  <tr><td align="left" colspan="2" style="padding:10px 30px; background-color:#1b1b1b; color:#FFF; text-align:center; border-top:solid #fff 1px; text-transform:uppercase;"><h1>Welcome to Registrationwala.com!</h1></td></tr>';
+      <body>
+      <table width="100%" cellpadding="0" cellspacing="0">
+      <tr><td>
+      <table style="margin:auto; width:600px;border:1px solid #ccc; font-size:16px; line-height:24px; font-family:Verdana, Geneva, sans-serif" cellpadding="5" cellspacing="0">
+        <tr><th width="50%"></th><th width="50%"></th></tr>
+        <tr><td align="center" style=" background-color:#fff; padding:10px 30px;" colspan="2"><img src="https://www.registrationwala.com/images/emailer/logonrw.png" width="130" height="45" /></td></tr>
+        <tr><td align="left" colspan="2" style="padding:10px 30px; background-color:#1b1b1b; color:#FFF; text-align:center; border-top:solid #fff 1px; text-transform:uppercase;"><h1>Welcome to Registrationwala.com!</h1></td></tr>';
 
-  foreach ($data as $key => $value){
-        $htmcode .= '<tr><td> '.htmlspecialchars($key).'</td><td> '.htmlspecialchars($value).'</td></tr>';
-        }
-$htmcode.='<tr><td colspan="2"><strong>Regards,<br />Team Registrationwala.com</strong></td></tr>
-</table>
-</td></tr>
-</table>
-</body>
-</html>';
+        foreach ($data as $key => $value){
+              $htmcode .= '<tr><td> '.htmlspecialchars($key).'</td><td> '.htmlspecialchars($value).'</td></tr>';
+              }
+      $htmcode.='<tr><td colspan="2"><strong>Regards,<br />Team Registrationwala.com</strong></td></tr>
+      </table>
+      </td></tr>
+      </table>
+      </body>
+      </html>';
       return $htmcode;
     }
 }
