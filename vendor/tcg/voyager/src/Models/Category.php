@@ -20,14 +20,14 @@ class Category extends Model
     {
         return $this->hasMany(Voyager::modelClass('Post'))
             ->published()
-            ->orderBy('created_at', 'DESC')->limit(2);
+            ->orderBy('publish_date', 'DESC')->limit(2);
     }
 
     public function catposts()
     {
         return $this->hasMany(Voyager::modelClass('Post'))
             ->published()
-            ->orderBy('created_at', 'DESC');
+            ->orderBy('publish_date', 'DESC');
     }
 
     public function parentId()
@@ -37,5 +37,9 @@ class Category extends Model
     public function services()
     {
         return $this->hasMany(Voyager::modelClass('Service'));
+    }
+    public function postservices()
+    {
+        return $this->hasMany(Voyager::modelClass('Service'))->has('allpost');
     }
 }

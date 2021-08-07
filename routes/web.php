@@ -86,8 +86,12 @@ Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
 ###################### Other service pages ##########
-
-
+###################### Site Map URL ##########
+Route::get('/sitemaps/knowledge-base.xml', 'App\Http\Controllers\SitemapController@post');
+Route::get('/sitemaps/service.xml', 'App\Http\Controllers\SitemapController@service');
+Route::get('/sitemaps/legal-docs.xml', 'App\Http\Controllers\SitemapController@legaldocs');
+Route::get('/rwlocalsitemap.xml', 'App\Http\Controllers\SitemapController@rwlocalsitemap');
+###################### Site Map URL ##########
 Route::get('/copyright-registration/{url}/{city?}', 'App\Http\Controllers\WebController@index');
 Route::get('/company-search/{city?}', 'App\Http\Controllers\WebController@searchcompany')->name('company-search');
 Route::get('/{url?}/{city?}', 'App\Http\Controllers\WebController@index');

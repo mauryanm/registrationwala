@@ -19,7 +19,7 @@ use TCG\Voyager\FormFields\After\HandlerInterface as AfterHandlerInterface;
 use TCG\Voyager\FormFields\HandlerInterface;
 use TCG\Voyager\Models\Category;
 use TCG\Voyager\Models\Service;
-use TCG\Voyager\Models\City;
+use App\City;
 use TCG\Voyager\Models\DataRow;
 use TCG\Voyager\Models\DataType;
 use TCG\Voyager\Models\Menu;
@@ -38,6 +38,11 @@ use TCG\Voyager\Models\Lead;
 use TCG\Voyager\Models\Choose;
 use TCG\Voyager\Models\HomeService;
 use TCG\Voyager\Models\CouponPartner;
+use App\LegalDocument;
+use App\Ebook;
+use App\DocCategory;
+use App\SiteUser;
+use App\Ticket;
 
 class Voyager
 {
@@ -80,6 +85,11 @@ class Voyager
         'Choose'      => Choose::class,
         'HomeService' => HomeService::class,
         'CouponPartner'=>CouponPartner::class,
+        'LegalDocument'=>LegalDocument::class,
+        'Ebook'       =>Ebook::class,
+        'DocCategory' =>DocCategory::class,
+        'SiteUser'    =>SiteUser::class,
+        'Ticket'      =>Ticket::class,
     ];
 
     public $setting_cache = null;

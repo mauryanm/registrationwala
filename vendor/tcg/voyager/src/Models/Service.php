@@ -23,6 +23,12 @@ class Service extends Model
             ->orderBy('created_at', 'DESC')
             ->take(2);
     }
+    public function allpost()
+    {
+        return $this->hasMany(Voyager::modelClass('Post'))
+            ->published()
+            ->orderBy('publish_date', 'DESC');
+    }
 
     public function category()
     {
