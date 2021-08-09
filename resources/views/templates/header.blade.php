@@ -24,9 +24,9 @@
                   <div class="form-group">
                     <select class="form-control radius0" name="page_id" id="page_id" onchange="setpagename()" required>
                         <option value="">Get a Quote for</option>
-                        @foreach ($servicesdata as $hsr)
-                        <option value="{{ $hsr->id }}">{{ $hsr->title }}</option>
-                        @endforeach               
+            @foreach ($servicesdata as $hsr)
+            <option value="{{ $hsr->id }}">{{ $hsr->title }}</option>
+            @endforeach               
                     </select>
                   </div>
                     
