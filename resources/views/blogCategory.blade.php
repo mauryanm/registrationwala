@@ -25,7 +25,7 @@
         <hr class="mt-1">
         <div class="row">
           <div class="col-md-8">
-            @foreach($categoryPost->services as $sp)
+            @foreach($categoryPost->postservices as $sp)
             <h3 class="h6 text-uppercase font-weight-bold"> {{$sp->title}} </h3>
             @foreach($sp->posts as $post)
             <div class="bg-light mb-3">

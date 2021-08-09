@@ -7,8 +7,8 @@ use TCG\Voyager\Facades\Voyager;
 use \App\Choose;
 use \App\Lead;
 use \App\City;
-use Mail;
-use Config;
+// use Mail;
+// use Config;
 use Illuminate\Support\Str;
 
 class WebController extends Controller
@@ -94,9 +94,9 @@ class WebController extends Controller
         $archivelists = $this->archivelist();
         
     	$data->letest = Voyager::model('Post')->where('status','PUBLISHED')->orderBy('created_at','DESC')->take(9)->with('category')->with('service:title,blog_slug as slug,id')->get()->makeHidden(['body','meta_description','meta_keywords']);
-    	$data->seo_title = 'Registrationwala';
-    	$data->meta_description = '';
-    	$data->meta_keywords = '';
+    	$data->seo_title = 'Registrationwala Knowledge-base - Business Registrations | IPR Services | Taxation.';
+    	$data->meta_description = 'Registrationwala is legal knowledgebase for entrepreneurs in india to providing legal knowledge about business registrations, ipr services , taxation and startups';
+    	$data->meta_keywords = 'business registrations, ipr services , taxation and startups';
     	$categoryList = $this->categorylist();
     	$categoryPost = Voyager::model('Category')->has('posts')->with('catposts')->with('catposts.service:id,blog_slug as slug,title,heading')->get()->map(function($query) {
     $query->setRelation('catposts', $query->catposts->take(2));
@@ -109,20 +109,12 @@ class WebController extends Controller
     public function rwpostcategory($category_url){
     	$wcu = Choose::where('status',1)->orderBy('created_at','DESC')->get();
     	$data = collect();
-    	$catQuery = Voyager::model('Category')->where('slug',$category_url);
-    	if($catQuery->count()>0){
-    		$catId = $catQuery->value('id');
-	    	
-	    	$data->seo_title = 'Registrationwala';
-	    	$data->meta_description = '';
-	    	$data->meta_keywords = '';
+    	$categoryPost = Voyager::model('Category')->where('slug',$category_url)->with('postservices:title,blog_slug as slug,category_id,id')->first();
+    	if($categoryPost){    	
+	    	$data->seo_title = $categoryPost->blog_title;
+	    	$data->meta_description = $categoryPost->blog_description;
+	    	$data->meta_keywords = $categoryPost->blog_keywords;
 	    	$categoryList = $this->categorylist();
-	    	// $categoryPost = Voyager::model('Category')->where('id',$catId)->has('posts')->with(array('catposts' => function($query) {
-	     //       $query->with('service:title,blog_slug  as slug,id');
-	     //    }))->get();
-	    	$categoryPost = Voyager::model('Category')->where('id',$catId)->with(array('services' => function($query) {
-	           $query->select('title','blog_slug as slug','category_id','id')->has('posts');
-	        }))->first();
 		    }else{
 		    	abort(404, 'Page not found.');
 		    }
@@ -137,11 +129,10 @@ class WebController extends Controller
                 return $query->where('slug', $category_url);
             });
     	if($catQuery->count()>0){
-    		$catData = $catQuery->select('id','blog_slug as slug', 'title', 'heading','category_id')->first();
-	    	
-	    	$data->seo_title = 'Registrationwala';
-	    	$data->meta_description = '';
-	    	$data->meta_keywords = '';
+    		$catData = $catQuery->select('id','blog_slug as slug', 'title', 'heading','category_id','blog_title','blog_description','blog_keywords')->first();
+	    	$data->seo_title = $catData->blog_title;
+            $data->meta_description = $catData->blog_description;
+            $data->meta_keywords = $catData->blog_keywords;
 	    	$categoryList = $this->categorylist();
 
 	    	$posts = Voyager::model('Post')->where('service_id',$catData->id)->published()->paginate(10);
