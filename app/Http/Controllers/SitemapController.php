@@ -37,4 +37,22 @@ class SitemapController extends Controller
         $exept =['songs', 'sound-recording','computer-software','logo-copyright-for-goods','logo-copyright-for-service','artistic-painting','cinematography','book','literature-dramatic','music-notation','phrase-slogan','symbol'];
         return response()->view('sitemap.rwlocalsitemap', ['services' => $services,'exept'=>$exept,'cities'=>$cities])->header('Content-Type', 'text/xml');
     }
+    // public function sitemaps()
+    // {
+    //     $posts = Voyager::model('Category')
+    //     ->select('id','slug')->has('catposts')
+    //     ->with(array('postservices' => function($query) {
+    //         $query->select('id','category_id','blog_slug as slug')
+    //         ->with('allpost:id,service_id,slug');
+    //     }))
+    //     ->get();
+    //     $sitemap = new \Sitemap(url('/'));
+    //     $sitemap->setPath(base_path().'/sitemaps/');
+    //     $sitemap->setFilename('knowledge-base');
+    //     $sitemap->addItem("/knowledge-base", '0.8', 'weekly', 'Today');
+    //         foreach($posts as $post){
+    //             $sitemap->addItem('/knowledge-base/'.$post->slug, '0.8', 'weekly', 'Today');   
+    //         }
+    //     $sitemap->endSitemap();
+    // }
 }

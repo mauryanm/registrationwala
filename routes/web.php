@@ -88,9 +88,10 @@ Route::group(['prefix' => 'admin'], function () {
 ###################### Other service pages ##########
 ###################### Site Map URL ##########
 Route::get('/sitemaps/knowledge-base.xml', 'App\Http\Controllers\SitemapController@post');
-Route::get('/sitemaps/service.xml', 'App\Http\Controllers\SitemapController@service');
+Route::get('/sitemaps/services.xml', 'App\Http\Controllers\SitemapController@service');
 Route::get('/sitemaps/legal-docs.xml', 'App\Http\Controllers\SitemapController@legaldocs');
-Route::get('/rwlocalsitemap.xml', 'App\Http\Controllers\SitemapController@rwlocalsitemap');
+Route::get('/RWlocalsitemap.xml', 'App\Http\Controllers\SitemapController@rwlocalsitemap');
+// Route::get('/sitemaps', 'App\Http\Controllers\SitemapController@sitemaps');
 ###################### Site Map URL ##########
 Route::get('/copyright-registration/{url}/{city?}', 'App\Http\Controllers\WebController@index');
 Route::get('/company-search/{city?}', 'App\Http\Controllers\WebController@searchcompany')->name('company-search');

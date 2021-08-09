@@ -38,6 +38,7 @@ class ComposerStaticInit4c25fbf46f90d16fd93985811b0d8dcd
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
         'ed962a97bd972bc82007176b647d4e36' => __DIR__ . '/..' . '/facade/ignition/src/helpers.php',
         'fdb3b5f01b3ed818a713c5450349237f' => __DIR__ . '/../..' . '/app/Helpers/functions.php',
+        '569c49daa6791779911b06599e0a1a06' => __DIR__ . '/..' . '/sitemap/sitemap.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -669,6 +670,7 @@ class ComposerStaticInit4c25fbf46f90d16fd93985811b0d8dcd
         'App\\Http\\Controllers\\MailController' => __DIR__ . '/../..' . '/app/Http/Controllers/MailController.php',
         'App\\Http\\Controllers\\PageController' => __DIR__ . '/../..' . '/app/Http/Controllers/PageController.php',
         'App\\Http\\Controllers\\SiteUserController' => __DIR__ . '/../..' . '/app/Http/Controllers/SiteUserController.php',
+        'App\\Http\\Controllers\\SitemapController' => __DIR__ . '/../..' . '/app/Http/Controllers/SitemapController.php',
         'App\\Http\\Controllers\\WebController' => __DIR__ . '/../..' . '/app/Http/Controllers/WebController.php',
         'App\\Http\\Controllers\\becomeAnAssociateController' => __DIR__ . '/../..' . '/app/Http/Controllers/becomeAnAssociateController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
@@ -686,7 +688,6 @@ class ComposerStaticInit4c25fbf46f90d16fd93985811b0d8dcd
         'App\\LegalDocument' => __DIR__ . '/../..' . '/app/LegalDocument.php',
         'App\\Models\\SiteUser' => __DIR__ . '/../..' . '/app/Models/SiteUser.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
-        'App\\People' => __DIR__ . '/../..' . '/app/People.php',
         'App\\PeopleSay' => __DIR__ . '/../..' . '/app/PeopleSay.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
