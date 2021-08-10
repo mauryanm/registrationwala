@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
   
 use Illuminate\Http\Request; 
 use DB; 
-use Carbon\Carbon; 
+use Carbon\Carbon;
+use TCG\Voyager\Facades\Voyager;
 use App\Models\SiteUser; 
 use Mail; 
 use Hash;
@@ -115,7 +116,7 @@ class ForgotPasswordController extends Controller
         <p style="padding-left:25px; margin:8px; text-transform:uppercase; font-size:13px;">MASTER THE ART OF BUSINESS!</p>
         </td></tr>
         <tr><td style="padding:0">
-        <img src="https://www.registrationwala.com/images/emailer/ebookrwbg.jpg" height="215" width="483" style="height:auto; width:100%" alt="Grow with us" />
+        <img src="'.{{Voyager::image('images/rest-password.png')}}.'" height="215" width="483" style="height:auto; width:100%" alt="Grow with us" />
         </td></tr>
         <tr><td style="padding:10px 20px; background-color:#00293c; color:#fff;" bgcolor="#00293c">
         <p style="padding-left:10px; margin:0">Forget Password Email</p>
@@ -127,7 +128,7 @@ class ForgotPasswordController extends Controller
         </td></tr>
 
         <tr><td style="padding:10px 20px;">
-        <p style="margin:10px 0; color:#030000; text-align:center;"><a href="'.$link.'" style="display:inline-block; text-decoration:none; color:#fff; background:#f52900; padding:12px 50px;">Download Now</a></p>
+        <p style="margin:10px 0; color:#030000; text-align:center;"><a href="'.$link.'" style="display:inline-block; text-decoration:none; color:#fff; background:#f52900; padding:12px 50px;">Reset Password</a></p>
         </td></tr>
         </table>
         </td></tr>
