@@ -485,7 +485,10 @@
             });
 
             // Initiliaze rich text editor
-            tinymce.init(window.voyagerTinyMCE.getConfig());
+            var editorconf = window.voyagerTinyMCE.getConfig();
+            editorconf.min_height = 200;
+            tinymce.init(editorconf);
+
         });
     </script>
     <script type="text/javascript">
