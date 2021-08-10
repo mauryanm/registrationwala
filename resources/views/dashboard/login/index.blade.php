@@ -53,7 +53,7 @@
 						 <input type="password" class="form-control" placeholder="" name="password" required>
 					  </div>
 					  <div>
-						 <button type="submit" class="btn btn-login w-50 ">Login</button> <small class="text-right mt-2 pull-right"><a href="#" >Forgot Password ?</a></small>
+						 <button type="submit" class="btn btn-login w-50 ">Login</button> <small class="text-right mt-2 pull-right"><a href="{{route('dashboard.forget.password.get')}}" >Forgot Password ?</a></small>
 					  </div>
 				   </form>
 				   <div class="copy-text">
