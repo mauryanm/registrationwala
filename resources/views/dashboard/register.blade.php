@@ -64,9 +64,9 @@
 								<div class="col-md-12">
 									<a href="{{ url('auth/google') }}" class="btn text-white btn-gm btn-sm btn-block  mb-2  btn-round radius0 normal-text-size "> <span class="btn-label"><i class="icon fa fa-google"></i></span> Login with Gmail</a>
 								</div>
-                                <div class="col-md-12">
+                                <!-- <div class="col-md-12">
                                 <button type="button"  class="btn btn-fb btn-sm btn-block mb-2  btn-round radius0 normal-text-size "> <span class="btn-label"><i class="fa fa-users"></i></span> Associate Login</button>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>

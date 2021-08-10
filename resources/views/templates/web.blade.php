@@ -3,7 +3,6 @@
  <head>
   <base target="_parent">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>@yield('title',setting('site.title'))</title>
   <meta name="description" content="@yield('description',setting('site.description'))">
   <meta name="keywords" content="@yield('keywords', setting('site.keywords'))">
@@ -20,7 +19,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="theme-color" content="#e5e5e5">
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
   <script src="{{ asset('/js/jquery.min.js') }}"></script>
   <script src="{{ asset('/js/popper.min.js') }}"></script>

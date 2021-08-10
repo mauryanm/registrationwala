@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Auth\ForgotPasswordController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,6 +26,7 @@ Route::prefix('dashboard')
         ->as('dashboard.')
         ->group(function() {
         Route::get('/', 'App\Http\Controllers\SiteUserController@index')->name('dashboard');
+
 Route::namespace('')
         ->group(function() {
         Route::get('login', 'App\Http\Controllers\Auth\SiteUserController@showLoginForm')->name('login');
@@ -34,6 +35,12 @@ Route::namespace('')
         Route::get('logout', 'App\Http\Controllers\Auth\SiteUserController@logout')->name('logout');
         Route::get('register', 'App\Http\Controllers\Auth\SiteUserController@registration')->name('register');
         Route::post('register', 'App\Http\Controllers\Auth\SiteUserController@registeruser')->name('register');
+        ///////////////////////////
+        Route::get('forget-password', 'App\Http\Controllers\ForgotPasswordController@showForgetPasswordForm')->name('forget.password.get');
+        Route::post('forget-password', 'App\Http\Controllers\ForgotPasswordController@submitForgetPasswordForm')->name('forget.password.post'); 
+        Route::get('reset-password/{token}', 'App\Http\Controllers\ForgotPasswordController@showResetPasswordForm')->name('reset.password.get');
+        Route::post('reset-password', 'App\Http\Controllers\ForgotPasswordController@submitResetPasswordForm')->name('reset.password.post');
+        ////////////////////////////
         Route::put('updateuser/{id}', 'App\Http\Controllers\SiteUserController@update')->name('updateuser');
         Route::group(['middleware' => 'checkusertype'], function () {
         Route::get('/service-request', 'App\Http\Controllers\SiteUserController@servicerequest')->name('service-request');
