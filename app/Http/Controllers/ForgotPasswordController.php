@@ -45,9 +45,7 @@ class ForgotPasswordController extends Controller
             'from_name'=>setting('admin.title'),
             'from'=>setting('admin.email'),
             'subject'=>'Reset Password | Registrationwala.com',
-            'message'=>'<h1>Forget Password Email</h1>   
-                        You can reset password from bellow link:
-                        <a href="'.route('dashboard.reset.password.get', $token).'" style="display:inline-block; text-decoration:none; color:#fff; background:#f52900; padding:12px 50px;">Reset Password</a>'
+            'message'=>$this->passwordlink(route('dashboard.reset.password.get', $token))
         );
        $this->sendMail($mail);
   
@@ -97,5 +95,58 @@ class ForgotPasswordController extends Controller
           DB::table('password_resets')->where(['email'=> $request->email])->delete();
   
           return redirect('dashboard/login')->withSuccess('Your password has been changed!');
+      }
+      private function passwordlink($link){
+        return '<table width="100%" cellpadding="0" cellspacing="0">
+        <tr><td>
+        <table style="margin:auto; width:600px; font-size:16px; line-height:24px; font-family:Verdana, Geneva, sans-serif" cellpadding="0" cellspacing="0">
+        <tr><td>
+        <table width="100%" cellpadding="5" cellspacing="0">
+        <tr><td><a href="https://www.registrationwala.com"><img src="https://www.registrationwala.com/images/emailer/logonrw.png" width="109" height="38" alt="Registrationwala.com" /></a></td>
+        <td align="right"><a style="margin:0 5px;" href="https://www.facebook.com/registrationwala/" target="_blank"><img src="https://www.registrationwala.com/images/emailer/facebookc.png" width="27" height="27" alt="Like On Facebook" /></a><a style="margin:0 5px;" href="https://twitter.com/Registrationwla" target="_blank"><img src="https://www.registrationwala.com/images/emailer/twitterc.png" width="27" height="27" alt="Like On Twitter" /></a><a style="margin:0 5px;" href="https://plus.google.com/u/0/115063389280026230269/posts" target="_blank"><img src="https://www.registrationwala.com/images/emailer/g-plusc.png" width="27" height="27" alt="Like On Google plus" /></a></td></tr>
+        </table>
+        </td></tr>
+        <tr><td>
+        <table width="100%" cellpadding="15" cellspacing="0">
+        <tr><td style="border:1px solid #ccc; background:url(https://www.registrationwala.com/images/emailer/drop-mark.png) no-repeat top left 10px;">
+        <table width="100%" cellpadding="5" cellspacing="0">
+        <tr><td style="padding:10px 20px;">
+        <h1 style="margin:8px; padding-left:25px; font-size:40px; font-weight:300; text-transform:uppercase; color:#00293c; font-family:\'Times New Roman\', Times, serif">REGISTRAIONWALA !</h1>
+        <p style="padding-left:25px; margin:8px; text-transform:uppercase; font-size:13px;">MASTER THE ART OF BUSINESS!</p>
+        </td></tr>
+        <tr><td style="padding:0">
+        <img src="https://www.registrationwala.com/images/emailer/ebookrwbg.jpg" height="215" width="483" style="height:auto; width:100%" alt="Grow with us" />
+        </td></tr>
+        <tr><td style="padding:10px 20px; background-color:#00293c; color:#fff;" bgcolor="#00293c">
+        <p style="padding-left:10px; margin:0">Forget Password Email</p>
+        </td></tr>
+        <tr><td>
+        <table width="100%" cellpadding="0" cellspacing="0">
+        <tr><td style="padding:10px 20px;">
+        <p style="margin:10px 0; text-align:justify; color:#030000; line-height:24px;">You can reset password from bellow link:</p>
+        </td></tr>
+
+        <tr><td style="padding:10px 20px;">
+        <p style="margin:10px 0; color:#030000; text-align:center;"><a href="'.$link.'" style="display:inline-block; text-decoration:none; color:#fff; background:#f52900; padding:12px 50px;">Download Now</a></p>
+        </td></tr>
+        </table>
+        </td></tr>
+        <tr>
+        <td style="padding:15px 10px; background-color:#00293c;">
+        <h2 style="color:#fff; margin:0 0 20px 0; padding:0; font-size:18px; text-align:center; text-transform:uppercase;">FOR any guidance feel free to reach us</h2> 
+        <table width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+        <td align="center"><a style="text-decoration:none; color:#fff;" href="mailto:support@registrationwala.com">support@registrationwala.com</a></td><td align="center"><a style="text-decoration:none; color:#fff;" href="tel:+918882580580">+91-888-2580-580</a></td>
+        </tr>
+        </table>
+        </td>
+        </tr>
+        </table>
+        </td></tr>
+        </table>
+        </td></tr>
+        </table>
+        </td></tr>
+        </table>';
       }
 }
