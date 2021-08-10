@@ -116,7 +116,7 @@ class ForgotPasswordController extends Controller
         <p style="padding-left:25px; margin:8px; text-transform:uppercase; font-size:13px;">MASTER THE ART OF BUSINESS!</p>
         </td></tr>
         <tr><td style="padding:0">
-        <img src="'.Voyager::image('images/rest-password.png').'" height="215" width="483" style="height:auto; width:100%" alt="Grow with us" />
+        <img src="'.url('storage/images/reset-password.png').'" height="215" width="483" style="height:auto; width:100%" alt="Grow with us" />
         </td></tr>
         <tr><td style="padding:10px 20px; background-color:#00293c; color:#fff;" bgcolor="#00293c">
         <p style="padding-left:10px; margin:0">Forget Password Email</p>
