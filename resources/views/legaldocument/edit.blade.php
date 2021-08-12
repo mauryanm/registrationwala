@@ -208,7 +208,7 @@ function stopscroll(){
 $(document).ready(function (){
    $('.downloaddoc').on('click', function(){
       $('#doc_type').val($(this).data('type'));
-      $('#editor table td').attr('width','500')
+      $('#editor table td').attr('width','250')
       $('#downloadlegaldoc').modal();
 
    })
