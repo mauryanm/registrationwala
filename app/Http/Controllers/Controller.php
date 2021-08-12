@@ -20,8 +20,8 @@ class Controller extends BaseController
                 $headers = array(
                           'Content-Type: application/pdf',
                         );
-
-                return \Response::download($file);
+                ob_end_clean();
+                return \Response::download($file, basename($path));
             }catch (\Exception $e) {
 
                 dd($e->getMessage());
