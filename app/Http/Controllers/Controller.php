@@ -13,6 +13,8 @@ class Controller extends BaseController
     public function download($path)
         {
             $path =  decrypt($path);
+            \Log::info($path);
+            \Log::info(basename($path));
             try {
                 $file= storage_path('app'.DIRECTORY_SEPARATOR.'public'. DIRECTORY_SEPARATOR  . decrypt($path));
                 $headers = array(
