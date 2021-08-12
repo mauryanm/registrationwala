@@ -106,6 +106,7 @@
 <div class="service-content  pt-3">
   <div class="container-fluid">
     <div class="row mt-1">
+      @if($data->section_1_heading || $data->section_2_heading || $data->section_3_heading || $data->section_4_heading || $data->section_5_heading)
       <aside class="col-md-3">
         <div class="mt-0 bg-white  mb-3 pt-4 sticky-top textmedium-bold" id="side">
           <ul class="nav flex-md-column flex-row justify-content-between" id="sidenav">
@@ -158,6 +159,13 @@
           
         </div>
       </div>
+      @else
+      <div class="col-md-9">
+        <div class="bg-white p-5">
+          {!! $data->body !!}
+        </div>
+      </div>
+      @endif
       <aside class="col-md-3">
         <div class="mb-3 sticky-top bg-white p-3" >
             <div class="card-body bg-white radius10">
@@ -245,8 +253,9 @@
 @endsection
 
 @section('script')
+
 <script type="text/javascript">
-  $(document).ready(function(){
+  jQuery(window).on('load', function(){
     $("#serviceform1").validate({
       submitHandler: function(form) {
         storeformdata(form,'#submit-btn1')
@@ -256,8 +265,22 @@
       submitHandler: function(form) {
         storeformdata(form,'#submit-btn2')
       }
-     });
   })
   
 </script>
+@if(str_contains(Request::url(),'trademark-class'))
+<style type="text/css">
+  .warptmclass>div {width: 33.333%;font-size: 1rem;}
+</style>
+<script type="text/javascript" src="{{ asset('/js/masonry.pkgd.min.js') }}"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  if(jQuery(".warptmclass").length>0){
+    var m = new Masonry(jQuery(".warptmclass").get()[0], {
+    itemSelector: ".warptmclass>div",
+    });
+  }
+ }) 
+</script>
+@endif
 @endsection
