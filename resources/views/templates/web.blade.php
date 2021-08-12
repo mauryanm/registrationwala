@@ -10,7 +10,7 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta name="robots" content="noindex">
   @yield('og')
-<link rel="icon" href="{{ asset('/images/icon/favicon.png') }}" type="image/gif" >
+<link rel="icon" href="{{ asset('/assets/images/icon/favicon.png') }}" type="image/gif" >
   <link rel="canonical" href="{{ url()->current() }}" />
   <link rel="manifest" href="/manifest.json">
   <meta name="mobile-web-app-capable" content="yes">
@@ -19,13 +19,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="theme-color" content="#e5e5e5">
   <meta charset="utf-8">
-  <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
-  <script src="{{ asset('/js/jquery.min.js') }}"></script>
-  <script src="{{ asset('/js/popper.min.js') }}"></script>
-  <script src="{{ asset('/js/bootstrap.min.js') }}"></script>
-  <link rel="stylesheet" href="{{ asset('/css/font-awesome.min.css') }}" crossorigin="anonymous" />
-  <link rel='stylesheet' href="{{ asset('/css/owl.carousel.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('/css/style.css') }}" crossorigin="anonymous" />
+  <link rel="stylesheet" href="{{ asset('/assets/css/bootstrap.min.css') }}">
+  <script src="{{ asset('/assets/js/jquery.min.js') }}"></script>
+  <script src="{{ asset('/assets/js/popper.min.js') }}"></script>
+  <script src="{{ asset('/assets/js/bootstrap.min.js') }}"></script>
+  <link rel="stylesheet" href="{{ asset('/assets/css/font-awesome.min.css') }}" crossorigin="anonymous" />
+  <link rel='stylesheet' href="{{ asset('/assets/css/owl.carousel.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('/assets/css/style.css') }}" crossorigin="anonymous" />
 {!! setting('site.header_script') !!}
  </head>
  <body class="" data-spy="scroll" data-target="#side" @yield("bodyData")>
@@ -117,11 +117,11 @@
   </div>
 </footer>
 
-<script src="{{ asset('/js/owl.carousel.min.js') }}"></script> 
-<script src="{{ asset('/js/jquery.validate.min.js') }}"></script>
-<script src="{{ asset('/js/sweetalert.js') }}"></script>
-<script src="{{ asset('/js/additional-methods.min.js') }}"></script>
-<script src="{{ asset('/js/custom.js') }}"></script>
+<script src="{{ asset('/assets/js/owl.carousel.min.js') }}"></script> 
+<script src="{{ asset('/assets/js/jquery.validate.min.js') }}"></script>
+<script src="{{ asset('/assets/js/sweetalert.js') }}"></script>
+<script src="{{ asset('/assets/js/additional-methods.min.js') }}"></script>
+<script src="{{ asset('/assets/js/custom.js') }}"></script>
 <a href="#" id="toTopBtn" class="cd-top text-replace js-cd-top cd-top--is-visible cd-top--fade-out" data-abc="true">Top</a>
 <style>
 #toTopBtn{position:fixed;bottom:26px;right:39px;z-index:9999;padding:10px;width:50px;height:50px;text-align:center;line-height:30px;background-color:#343a40;color:#fff;border-radius:50%}.js .cd-top--fade-out{opacity:.5}.js .cd-top--is-visible{visibility:visible;opacity:1}.js .cd-top{visibility:hidden;opacity:0;transition:opacity .3s,visibility .3s,background-color .3s}.cd-top{position:fixed;bottom:20px;bottom:var(--cd-back-to-top-margin);right:20px;right:var(--cd-back-to-top-margin);display:inline-block;height:40px;height:var(--cd-back-to-top-size);width:40px;width:var(--cd-back-to-top-size);box-shadow:0 0 10px rgba(0,0,0,.05)!important;background:{background-color:hsla(5,76%,62%,.8);background-color:hsla(var(--cd-color-3-h),var(--cd-color-3-s),var(--cd-color-3-l),.8)};}
