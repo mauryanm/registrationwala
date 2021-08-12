@@ -255,7 +255,7 @@
 @section('script')
 
 <script type="text/javascript">
-  jQuery(window).on('load', function(){
+  $(document).ready(function(){
     $("#serviceform1").validate({
       submitHandler: function(form) {
         storeformdata(form,'#submit-btn1')
@@ -274,7 +274,7 @@
 </style>
 <script type="text/javascript" src="{{ asset('/js/masonry.pkgd.min.js') }}"></script>
 <script type="text/javascript">
-$(document).ready(function(){
+jQuery(window).on('load', function(){
   if(jQuery(".warptmclass").length>0){
     var m = new Masonry(jQuery(".warptmclass").get()[0], {
     itemSelector: ".warptmclass>div",
