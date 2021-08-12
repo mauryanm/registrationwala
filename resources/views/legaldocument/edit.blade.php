@@ -40,7 +40,7 @@
                      </div>
                    <hr>
                    <div class="editable-footer text-center pb-3">
-                      <a class="cbtn btn-4 mb-1 downloaddoc" data-type="doc" href="javascript:void(0)"><i class="fa fa-download" aria-hidden="true"></i> Download Doc</a>
+                      <a class="cbtn btn-4 mb-1 downloaddoc" data-type="pdf" href="javascript:void(0)"><i class="fa fa-download" aria-hidden="true"></i> Download Doc</a>
                         <a class="cbtn btn-4 mb-1 downloaddoc" data-type="pdf" href="javascript:void(0)"><i class="fa fa-download" aria-hidden="true"></i> Download Pdf</a>
                      </div>
                    </div>
