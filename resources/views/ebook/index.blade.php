@@ -76,7 +76,7 @@
       <div class="modal-content modelbgimage ">
          <div class="modal-body pb-0 pt-0">
             <div class="row no-gutter">
-               <div class="col-md-6"><img src="/images/form-images.png" class="img-fluid mt-2">
+               <div class="col-md-6"><img src="{{ asset('/assets/images/form-images.png') }}" class="img-fluid mt-2">
                </div>
                <div class="col-md-6 bg-light">
                   <div class="text-left">
