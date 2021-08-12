@@ -665,6 +665,7 @@ class ComposerStaticInit4c25fbf46f90d16fd93985811b0d8dcd
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\CreateTicketController' => __DIR__ . '/../..' . '/app/Http/Controllers/CreateTicketController.php',
         'App\\Http\\Controllers\\EbookController' => __DIR__ . '/../..' . '/app/Http/Controllers/EbookController.php',
+        'App\\Http\\Controllers\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/ForgotPasswordController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\LegalDocumentsController' => __DIR__ . '/../..' . '/app/Http/Controllers/LegalDocumentsController.php',
         'App\\Http\\Controllers\\MailController' => __DIR__ . '/../..' . '/app/Http/Controllers/MailController.php',

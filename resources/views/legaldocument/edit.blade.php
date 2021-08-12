@@ -112,9 +112,9 @@
    .fa.red, .textedit, .dateselect, .selcttitle, .editaddr, #editor .editable{ color:#f52900; font-weight:bold;}
    #editor [class^="set-"], #editor [class*=" set-"]{color:#707475; font-weight:bold;}
 </style>
-<link href="{{ asset('/css/bootstrap-editable.css') }}" rel="stylesheet"/>
-<script src="{{ asset('/js/bootstrap-editable.min.js') }}"></script>
-<script src="{{ asset('/js/moment.min.js') }}"></script>
+<link href="{{ asset('/assets/css/bootstrap-editable.css') }}" rel="stylesheet"/>
+<script src="{{ asset('/assets/js/bootstrap-editable.min.js') }}"></script>
+<script src="{{ asset('/assets/js/moment.min.js') }}"></script>
 <script>
 //$.fn.editable.defaults.mode = 'inline';
 //text|textarea|select|date|checklist
