@@ -12,13 +12,14 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests, MailakmTrait;
     public function download($path)
         {
+            $path =  decrypt($path);
             try {
                 $file= storage_path('app'.DIRECTORY_SEPARATOR.'public'. DIRECTORY_SEPARATOR  . decrypt($path));
                 $headers = array(
                           'Content-Type: application/pdf',
                         );
 
-                return \Response::download($file, time().'.pdf', $headers);
+                return \Response::download($file, basename($path));
             }catch (\Exception $e) {
 
                 dd($e->getMessage());
