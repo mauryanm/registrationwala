@@ -3,5 +3,6 @@ deployment:
   tasks:
     - current_path=`pwd` # set current path to variable
     - if [ $current_path == "/home/cagauravbansal/repositories/registrationwala" ]; then export DEPLOYPATH=/home/cagauravbansal/registrationwala/; fi;
+    - if [ $current_path == "/home/registrationwala/repositories/registrationwala" ]; then export DEPLOYPATH=/home/registrationwala/registrationwala/; fi;
     - if [ $current_path == "/home4/ajaymaur/repositories/registrationwala" ]; then export DEPLOYPATH=/home4/ajaymaur/registrationwala/; fi;
     - /bin/cp -R * $DEPLOYPATH
