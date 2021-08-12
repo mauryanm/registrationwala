@@ -6,10 +6,10 @@
 <section class="hero-banner pt-0 pb-0 d-flex h-100 align-items-center">
   <div class="container-fluid ">
     <div class="row">
-      <div class="col-md-12"> <img src="images/hero-top.png" class="img-fluid d-none d-lg-block" alt="top-hero"> </div>
+      <div class="col-md-12"> <img src="{{ asset('/assets/images/hero-top.png') }}" class="img-fluid d-none d-lg-block" alt="top-hero"> </div>
     </div>
     <div class="row no-gutters">
-      <div class="col-md-3"> <img src="images/hero-left.png" class="img-fluid  d-none d-lg-block" alt="Hero left"> </div>
+      <div class="col-md-3"> <img src="{{ asset('/assets/images/hero-left.png') }}" class="img-fluid  d-none d-lg-block" alt="Hero left"> </div>
       <div class="col-md-6">
         <h1 class="text-center h2 mb-0 mt-2 ">One Portal , Complete Legal Solution!</h1>
         <div class="pt-2 pl-5 pr-5 pb-2 pt-0">
@@ -33,18 +33,18 @@
           </div>
         </div>
       </div>
-      <div class="col-md-3"> <img src="images/hero-right.png" class="img-fluid  d-none d-lg-block" alt="Hero right"> </div>
+      <div class="col-md-3"> <img src="{{ asset('/assets/images/hero-right.png') }}" class="img-fluid  d-none d-lg-block" alt="Hero right"> </div>
     </div>
     <div class="row">
-      <div class="col-md-12"> <img src="images/hero-bottom.png" class="img-fluid  d-none d-lg-block" alt="Hero bottom"> </div>
+      <div class="col-md-12"> <img src="{{ asset('/assets/images/hero-bottom.png') }}" class="img-fluid  d-none d-lg-block" alt="Hero bottom"> </div>
     </div>
   </div>
 </section>
 <div class="container">
   <div class="row">
-    <div class="col-md-4 text-center"> <img src="images/icon/CA.png" class="img-fluid" alt="CA"> <strong> Chartered Account </strong> </div>
-    <div class="col-md-4 text-center"> <img src="images/icon/cs.png" class="img-fluid" alt="cs"> <strong> Company Secretary </strong> </div>
-    <div class="col-md-4 text-center"> <img src="images/icon/advacate.png" class="img-fluid" alt="advacate"> <strong> Lawyer</strong> </div>
+    <div class="col-md-4 text-center"> <img src="{{ asset('/assets/images/icon/CA.png') }}" class="img-fluid" alt="CA"> <strong> Chartered Account </strong> </div>
+    <div class="col-md-4 text-center"> <img src="{{ asset('/assets/images/icon/cs.png') }}" class="img-fluid" alt="cs"> <strong> Company Secretary </strong> </div>
+    <div class="col-md-4 text-center"> <img src="{{ asset('/assets/images/icon/advacate.png') }}" class="img-fluid" alt="advacate"> <strong> Lawyer</strong> </div>
   </div>
 </div>
 <div class="section  pt-2  pb-2 counter-wrapper">
@@ -52,42 +52,42 @@
     <div class="row text-center no-gutters">
       <div class="col-md-2">
         <div class="counter">
-          <div class="counter-icon"> <img src="images/icon/customer-review.svg"  alt="customer" class="img-fluid"> </div>
+          <div class="counter-icon"> <img src="{{ asset('/assets/images/icon/customer-review.svg') }}"  alt="customer" class="img-fluid"> </div>
           <div class="timer icon plus  count-title count-number text-bold" data-to="25000" data-speed="1500"><i class="fa fa-plus" aria-hidden="true"></i></div>
           <p class="count-text"> Satisfied Clients</p>
         </div>
       </div>
       <div class="col-md-2">
         <div class="counter">
-          <div class="counter-icon"> <img src="images/icon/certificate.svg" alt="certificate" class="img-fluid"> </div>
+          <div class="counter-icon"> <img src="{{ asset('/assets/images/icon/certificate.svg') }}" alt="certificate" class="img-fluid"> </div>
           <div class="timer icon plus count-title count-number text-bold" data-to="500" data-speed="1500"></div>
           <p class="count-text">Registration | License | Compliance</p>
         </div>
       </div>
       <div class="col-md-2">
         <div class="counter">
-          <div class="counter-icon"> <img src="images/icon/india.svg" alt="india" class="img-fluid"> </div>
+          <div class="counter-icon"> <img src="{{ asset('/assets/images/icon/india.svg') }}" alt="india" class="img-fluid"> </div>
           <div class="timer  count-title count-number text-bold" data-to="10" data-speed="1500"></div>
           <p class="count-text "> Branches across India</p>
         </div>
       </div>
       <div class="col-md-2">
         <div class="counter">
-          <div class="counter-icon"> <img src="images/icon/success.svg" alt="success" class="img-fluid"> </div>
+          <div class="counter-icon"> <img src="{{ asset('/assets/images/icon/success.svg') }}" alt="success" class="img-fluid"> </div>
           <div class="timer icon plus count-title count-number text-bold" data-to="50" data-speed="1500"></div>
           <p class="count-text "> Years Combined Experience</p>
         </div>
       </div>
       <div class="col-md-2">
         <div class="counter">
-          <div class="counter-icon"> <img src="images/icon/team.svg" alt="team" class="img-fluid"> </div>
+          <div class="counter-icon"> <img src="{{ asset('/assets/images/icon/team.svg') }}" alt="team" class="img-fluid"> </div>
           <div class="timer icon plus count-title count-number text-bold" data-to="35" data-speed="1500"></div>
           <p class="count-text "> Team Members</p>
         </div>
       </div>
       <div class="col">
         <div class="counter">
-          <div class="counter-icon"> <img src="images/icon/consulting.svg"  alt="consulting" class="img-fluid"> </div>
+          <div class="counter-icon"> <img src="{{ asset('/assets/images/icon/consulting.svg') }}"  alt="consulting" class="img-fluid"> </div>
           <div class="timer icon  count-title count-number text-bold" data-to="10" data-speed="1500"></div>
           <p class="count-text ">Among Top 10 Consulting firms</p>
         </div>
@@ -141,7 +141,7 @@
     <div class="row">
       <div class="col-md-12 text-center">
         <div class="row align-items-center no-gutters">
-          <div class="col-md-5 text-center"><img src="images/associate.png" alt="associate"></div>
+          <div class="col-md-5 text-center"><img src="{{ asset('/assets/images/associate.png') }}" alt="associate"></div>
           <div class="col-md-6 text-left">
             <h2 class="h3">Virtual CFO Services </h2>
             <p class="subhead mb-3"> Focus on your business, leaving the accounting matter to us. </p>
@@ -157,7 +157,7 @@
   <div class="container pt-0 pb-0"> 
     <!-- row  -->
     <div class="row justify-content-center align-items-center ">
-      <div class="col-md-5 text-center"> <img src="images/associate.jpg" class="img-fluid" alt="associate"> </div>
+      <div class="col-md-5 text-center"> <img src="{{ asset('/assets/images/associate.jpg') }}" class="img-fluid" alt="associate"> </div>
       <div class="col-md-7 text-white">
         <h2 class=" main-heading-2">Become An Associate?</h2>
         <p class="subhead mb-1">Join us on a mutually beneficial journey where you grow along with us </p>
