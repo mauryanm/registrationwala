@@ -21,7 +21,7 @@ class Controller extends BaseController
                           'Content-Type: application/pdf',
                         );
 
-                return \Response::download($file, basename($path));
+                return \Response::download($file);
             }catch (\Exception $e) {
 
                 dd($e->getMessage());
