@@ -31,8 +31,8 @@
                     <div id="view-selector-container"></div>
                 </header>
 
-                <ul class="FlexGrid FlexGrid--halves">
-                    <li class="FlexGrid-item">
+                <div class="row">
+                    <div class="col-md-6">
                         <div class="Chartjs">
                             <header class="Titles">
                                 <h1 class="Titles-main">{{ __('voyager::analytics.this_vs_last_week') }}</h1>
@@ -41,8 +41,8 @@
                             <figure class="Chartjs-figure" id="chart-1-container"></figure>
                             <ol class="Chartjs-legend" id="legend-1-container"></ol>
                         </div>
-                    </li>
-                    <li class="FlexGrid-item">
+                    </div>
+                    <div class="col-md-6">
                         <div class="Chartjs">
                             <header class="Titles">
                                 <h1 class="Titles-main">{{ __('voyager::analytics.this_vs_last_year') }}</h1>
@@ -51,8 +51,8 @@
                             <figure class="Chartjs-figure" id="chart-2-container"></figure>
                             <ol class="Chartjs-legend" id="legend-2-container"></ol>
                         </div>
-                    </li>
-                    <li class="FlexGrid-item">
+                    </div>
+                    <div class="col-md-6">
                         <div class="Chartjs">
                             <header class="Titles">
                                 <h1 class="Titles-main">{{ __('voyager::analytics.top_browsers') }}</h1>
@@ -61,8 +61,8 @@
                             <figure class="Chartjs-figure" id="chart-3-container"></figure>
                             <ol class="Chartjs-legend" id="legend-3-container"></ol>
                         </div>
-                    </li>
-                    <li class="FlexGrid-item">
+                    </div>
+                    <div class="col-md-6">
                         <div class="Chartjs">
                             <header class="Titles">
                                 <h1 class="Titles-main">{{ __('voyager::analytics.top_countries') }}</h1>
@@ -71,8 +71,8 @@
                             <figure class="Chartjs-figure" id="chart-4-container"></figure>
                             <ol class="Chartjs-legend" id="legend-4-container"></ol>
                         </div>
-                    </li>
-                </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
