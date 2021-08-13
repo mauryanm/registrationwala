@@ -176,6 +176,7 @@ class SiteUserController extends DefaultLoginController
                 return redirect()->intended('dashboard')->withSuccess('Signed in');
             }
         } catch (Exception $e) {
+            \Log::info($e);
             dd($e->getMessage());
         }
     }
