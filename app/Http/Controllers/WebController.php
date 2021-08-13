@@ -152,7 +152,8 @@ class WebController extends Controller
         ->whereHas('category', function ($query) use($category_url) {
                 return $query->where('slug', $category_url);
             })
-        ->with('service:id,title,heading,blog_slug')
+        ->with('service:id,title,heading,blog_slug as slug')
+        ->with('category:id,name,slug')
         ->first();
 
     	if($data){
