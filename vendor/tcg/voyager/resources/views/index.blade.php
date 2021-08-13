@@ -192,6 +192,9 @@
                     renderYearOverYearChart(data.ids);
                     renderTopBrowsersChart(data.ids);
                     renderTopCountriesChart(data.ids);
+                    setTimeout(function(){
+                        $(window).trigger('resize'); 
+                    }10000)
                 });
 
 
