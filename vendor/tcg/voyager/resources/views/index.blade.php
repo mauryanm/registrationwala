@@ -261,7 +261,7 @@
                                 }
                             ]
                         };
-                        console.log(data);
+
                         new Chart(makeCanvas('chart-1-container')).Line(data);
                         generateLegend('legend-1-container', data.datasets);
                     });
