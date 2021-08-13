@@ -1,5 +1,4 @@
 @extends('voyager::master')
-
 @section('content')
     <div class="page-content">
         @include('voyager::alerts')
@@ -468,7 +467,5 @@
             });
 
         </script>
-
     @endif
-
 @stop
