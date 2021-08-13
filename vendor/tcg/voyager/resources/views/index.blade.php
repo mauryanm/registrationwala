@@ -189,14 +189,10 @@
                     activeUsers.set(data).execute();
 
                     // Render all the of charts for this view.
-                    console.log('Before => ',data);
                     renderWeekOverWeekChart(data.ids);
                     renderYearOverYearChart(data.ids);
                     renderTopBrowsersChart(data.ids);
                     renderTopCountriesChart(data.ids);
-                    setTimeout(function(){
-                        console.log('After => ',data)
-                    },500)
                 });
 
 
@@ -265,7 +261,7 @@
                                 }
                             ]
                         };
-
+                        console.log(data);
                         new Chart(makeCanvas('chart-1-container')).Line(data);
                         generateLegend('legend-1-container', data.datasets);
                     });
