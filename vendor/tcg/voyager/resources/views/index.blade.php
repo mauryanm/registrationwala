@@ -189,10 +189,12 @@
                     activeUsers.set(data).execute();
 
                     // Render all the of charts for this view.
-                    renderWeekOverWeekChart(data.ids);
-                    renderYearOverYearChart(data.ids);
-                    renderTopBrowsersChart(data.ids);
-                    renderTopCountriesChart(data.ids);
+                    setTimeout(function(){
+                        renderWeekOverWeekChart(data.ids);
+                        renderYearOverYearChart(data.ids);
+                        renderTopBrowsersChart(data.ids);
+                        renderTopCountriesChart(data.ids);
+                    },100);
                 });
 
 
