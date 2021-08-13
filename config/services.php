@@ -38,7 +38,7 @@ return [
     'facebook' => [
         'client_id' => '536176547433653',
         'client_secret' => '188e3a766ac35198cf3a2ed312536355',
-        'redirect' => 'https://registrationwala.com/facebook/callback',
+        'redirect' => 'https://www.registrationwala.com/facebook/callback',
     ],
 
     //     'google' => [
