@@ -143,6 +143,7 @@
                 /**
                  * Add CSS animation to visually show the when users come and go.
                  */
+                 console.log(activeUsers);
                 activeUsers.once('success', function () {
                     var element = this.container.firstChild;
                     var timeout;
