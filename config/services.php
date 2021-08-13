@@ -33,18 +33,18 @@ return [
     // 'facebook' => [
     //     'client_id' => '1085794198098224',
     //     'client_secret' => 'b881f9a6fe5c4b93558d54c95bf2b4fc',
-    //     'redirect' => 'https://cagauravbansal.com/facebook/callback',
+    //     'redirect' => 'https://registrationwala.com/facebook/callback',
     // ],
     'facebook' => [
         'client_id' => '536176547433653',
         'client_secret' => '188e3a766ac35198cf3a2ed312536355',
-        'redirect' => 'https://cagauravbansal.com/facebook/callback',
+        'redirect' => 'https://registrationwala.com/facebook/callback',
     ],
 
         'google' => [
         'client_id' => '892703187235-bg49jtlfe1gmtffpgsrdqcdarumpsi72.apps.googleusercontent.com',
         'client_secret' => 'QUx7A6nNnnphi_-VRIxQ-aSO',
-        'redirect' => 'https://cagauravbansal.com/google/callback',
+        'redirect' => 'https://registrationwala.com/google/callback',
 
     ],
 

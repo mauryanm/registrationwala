@@ -9,7 +9,7 @@
   <meta name="keywords" content="@yield('keywords')">
   <meta name="author" content="@yield('author')">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <meta name="robots" content="noindex">
+  <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
   @yield('og')
   <link rel="icon" href="{{ asset('/assets/images/icon/favicon.png') }}" type="image/gif" >  
   <link rel="manifest" href="/manifest.json">
