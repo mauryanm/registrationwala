@@ -272,7 +272,7 @@
 <style type="text/css">
   .warptmclass>div {width: 33.333%;font-size: 1rem;}
 </style>
-<script type="text/javascript" src="{{ asset('/js/masonry.pkgd.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/assets/js/masonry.pkgd.min.js') }}"></script>
 <script type="text/javascript">
 jQuery(window).on('load', function(){
   if(jQuery(".warptmclass").length>0){
