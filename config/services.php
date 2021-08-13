@@ -50,7 +50,7 @@ return [
     'google' => [
         'client_id' => '892703187235-j308pap8fm1vvdrpr5pmk034i7q41mgi.apps.googleusercontent.com',
         'client_secret' => 'Q7I0byXh_PMrBlefdoV0xmpg',
-        'redirect' => 'https://registrationwala.com/google/callback',
+        'redirect' => 'https://www.registrationwala.com/google/callback',
 
     ],
 

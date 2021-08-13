@@ -152,9 +152,7 @@ class SiteUserController extends DefaultLoginController
     public function handleGoogleCallback()
     {
         try {
-            // $user = Socialite::driver('google')->user();
-            $user = Socialite::driver('google')->stateless()->user();
-            \Log::info($user);
+            $user = Socialite::driver('google')->user();
             $finduser = SiteUser::where('google_id', $user->id)->first();
             if($finduser){
                 Auth::guard('siteuser')->login($finduser);
@@ -177,7 +175,6 @@ class SiteUserController extends DefaultLoginController
                 return redirect()->intended('dashboard')->withSuccess('Signed in');
             }
         } catch (Exception $e) {
-            \Log::info($e);
             dd($e->getMessage());
         }
     }
