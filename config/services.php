@@ -33,7 +33,7 @@ return [
     // 'facebook' => [
     //     'client_id' => '1085794198098224',
     //     'client_secret' => 'b881f9a6fe5c4b93558d54c95bf2b4fc',
-    //     'redirect' => 'https://registrationwala.com/facebook/callback',
+    //     'redirect' => 'https://cagauravbansal.com/facebook/callback',
     // ],
     'facebook' => [
         'client_id' => '536176547433653',
@@ -41,9 +41,15 @@ return [
         'redirect' => 'https://registrationwala.com/facebook/callback',
     ],
 
-        'google' => [
-        'client_id' => '892703187235-bg49jtlfe1gmtffpgsrdqcdarumpsi72.apps.googleusercontent.com',
-        'client_secret' => 'QUx7A6nNnnphi_-VRIxQ-aSO',
+    //     'google' => [
+    //     'client_id' => '892703187235-bg49jtlfe1gmtffpgsrdqcdarumpsi72.apps.googleusercontent.com',
+    //     'client_secret' => 'QUx7A6nNnnphi_-VRIxQ-aSO',
+    //     'redirect' => 'https://registrationwala.com/google/callback',
+
+    // ],
+    'google' => [
+        'client_id' => '892703187235-j308pap8fm1vvdrpr5pmk034i7q41mgi.apps.googleusercontent.com',
+        'client_secret' => 'Q7I0byXh_PMrBlefdoV0xmpg',
         'redirect' => 'https://registrationwala.com/google/callback',
 
     ],
