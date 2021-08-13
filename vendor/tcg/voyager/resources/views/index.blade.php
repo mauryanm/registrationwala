@@ -149,6 +149,10 @@
 
                     document.getElementById('embed-api-auth-container').style.display = 'none';
                     document.getElementById('analytics-dashboard').style.display = 'block';
+                    console.log(this);
+                    setTimeout(function(){
+                        new Event('resize');
+                    },50)
 
                     this.on('change', function (data) {
                         var element = this.container.firstChild;
@@ -189,12 +193,10 @@
                     activeUsers.set(data).execute();
 
                     // Render all the of charts for this view.
-                    setTimeout(function(){
-                        renderWeekOverWeekChart(data.ids);
-                        renderYearOverYearChart(data.ids);
-                        renderTopBrowsersChart(data.ids);
-                        renderTopCountriesChart(data.ids);
-                    },100);
+                    renderWeekOverWeekChart(data.ids);
+                    renderYearOverYearChart(data.ids);
+                    renderTopBrowsersChart(data.ids);
+                    renderTopCountriesChart(data.ids);
                 });
 
 
