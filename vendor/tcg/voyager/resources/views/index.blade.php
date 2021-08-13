@@ -194,7 +194,10 @@
                     renderTopCountriesChart(data.ids);
                     setTimeout(function(){
                         $(window).trigger('resize'); 
-                        console.log('hhhh')
+                        renderWeekOverWeekChart(data.ids);
+                    renderYearOverYearChart(data.ids);
+                    renderTopBrowsersChart(data.ids);
+                    renderTopCountriesChart(data.ids);
                     },10000)
                 });
 
@@ -466,7 +469,6 @@
                 Chart.defaults.global.maintainAspectRatio = false;
 
                 // resize to redraw charts
-                console.log('last');
                 window.dispatchEvent(new Event('resize'));
 
             });
