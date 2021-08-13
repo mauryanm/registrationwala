@@ -194,7 +194,7 @@
                     renderTopCountriesChart(data.ids);
                     setTimeout(function(){
                         $(window).trigger('resize'); 
-                    }10000)
+                    },10000)
                 });
 
 
