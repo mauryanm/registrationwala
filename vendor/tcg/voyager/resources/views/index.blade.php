@@ -189,7 +189,7 @@
                     activeUsers.set(data).execute();
 
                     // Render all the of charts for this view.
-                    console.lod('Before => ',data);
+                    console.log('Before => ',data);
                     renderWeekOverWeekChart(data.ids);
                     renderYearOverYearChart(data.ids);
                     renderTopBrowsersChart(data.ids);
