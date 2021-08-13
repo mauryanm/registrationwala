@@ -151,8 +151,8 @@ class SiteUserController extends DefaultLoginController
     }
     public function handleGoogleCallback()
     {
-        \Log::info(Socialite::driver('google')->stateless()->user());
-        \Log::info(Socialite::driver('google')->user());
+        \Log::info(print_r(Socialite::driver('google')->stateless()->user(),true));
+        \Log::info(print_r(Socialite::driver('google')->user(),true));
         try {
             $user = Socialite::driver('google')->user();
             \Log::info($user);
