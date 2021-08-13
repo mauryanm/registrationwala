@@ -266,7 +266,7 @@
         storeformdata(form,'#submit-btn2')
       }
   })
-  
+  })
 </script>
 @if(str_contains(Request::url(),'trademark-class'))
 <style type="text/css">

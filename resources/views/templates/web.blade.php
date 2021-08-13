@@ -116,6 +116,13 @@
     </div>
   </div>
 </footer>
+
+<script src="{{ asset('/assets/js/owl.carousel.min.js') }}"></script> 
+<script src="{{ asset('/assets/js/jquery.validate.min.js') }}"></script>
+<script src="{{ asset('/assets/js/sweetalert.js') }}"></script>
+<script src="{{ asset('/assets/js/additional-methods.min.js') }}"></script>
+<script src="{{ asset('/assets/js/custom.js') }}"></script>
+<a href="#" id="toTopBtn" class="cd-top text-replace js-cd-top cd-top--is-visible cd-top--fade-out" data-abc="true">Top</a>
 <style>
 #toTopBtn{position:fixed;bottom:26px;right:39px;z-index:9999;padding:10px;width:50px;height:50px;text-align:center;line-height:30px;background-color:#343a40;color:#fff;border-radius:50%}.js .cd-top--fade-out{opacity:.5}.js .cd-top--is-visible{visibility:visible;opacity:1}.js .cd-top{visibility:hidden;opacity:0;transition:opacity .3s,visibility .3s,background-color .3s}.cd-top{position:fixed;bottom:20px;bottom:var(--cd-back-to-top-margin);right:20px;right:var(--cd-back-to-top-margin);display:inline-block;height:40px;height:var(--cd-back-to-top-size);width:40px;width:var(--cd-back-to-top-size);box-shadow:0 0 10px rgba(0,0,0,.05)!important;background:{background-color:hsla(5,76%,62%,.8);background-color:hsla(var(--cd-color-3-h),var(--cd-color-3-s),var(--cd-color-3-l),.8)};}
 </style>
@@ -178,13 +185,6 @@ function storeformdata(form,btn){
       
   }
   </script>
-<script src="{{ asset('/assets/js/owl.carousel.min.js') }}"></script> 
-<script src="{{ asset('/assets/js/jquery.validate.min.js') }}"></script>
-<script src="{{ asset('/assets/js/sweetalert.js') }}"></script>
-<script src="{{ asset('/assets/js/additional-methods.min.js') }}"></script>
-<script src="{{ asset('/assets/js/custom.js') }}"></script>
-<a href="#" id="toTopBtn" class="cd-top text-replace js-cd-top cd-top--is-visible cd-top--fade-out" data-abc="true">Top</a>
-
 
   @yield('script')
   {!! setting('site.footer_script') !!}
