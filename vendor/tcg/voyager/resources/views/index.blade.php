@@ -194,6 +194,7 @@
                     renderTopCountriesChart(data.ids);
                     setTimeout(function(){
                         $(window).trigger('resize'); 
+                        console.log('hhhh')
                     },10000)
                 });
 
@@ -465,6 +466,7 @@
                 Chart.defaults.global.maintainAspectRatio = false;
 
                 // resize to redraw charts
+                console.log('last');
                 window.dispatchEvent(new Event('resize'));
 
             });
