@@ -29,7 +29,7 @@
           @if($data->letest)
           <ul class="carousel-indicators">
             @foreach($data->letest->take(3) as $row)
-            <li data-target="#blogslider" data-slide-to="{{ $loop->iteration }}" class="{{$loop->first?'active':''}}"></li>
+            <li data-target="#blogslider" data-slide-to="{{ $loop->iteration-1 }}" class="{{$loop->first?'active':''}}"></li>
             @endforeach
           </ul>
           
