@@ -14,7 +14,7 @@
 <meta name="twitter:site" content="@Registrationwla"/>
 <meta name="twitter:title" content="@yield('title',setting('site.title'))"/>
 <meta name="twitter:description" content="@yield('description',setting('site.description'))"/>
-<meta name="twitter:image" content="{{Voyager::image(setting('site.logo'))}}"/>
+<meta name="twitter:image" content="{{ asset(Voyager::image(setting('site.logo')))}}"/>
 
 <link rel="icon" href="{{ asset('/assets/images/icon/favicon.png') }}" type="image/gif" >
   <link rel="canonical" href="{{ url()->current() }}" />
