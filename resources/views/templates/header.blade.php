@@ -12,7 +12,7 @@
             <div class="login-wrapper">
               <div class="form-title text-center mt-3 mb-1">
                 <h4 class="mb-0 pb-0"> Get a Quote</h4>
-                <small>Get a Quote within About 30 Minutes and Find Services to Fit Your Needs</small>
+                <small>Get a Quote and Find Services to Fit Your Needs</small>
 
                  </div>
               <div class="d-flex flex-column text-center">

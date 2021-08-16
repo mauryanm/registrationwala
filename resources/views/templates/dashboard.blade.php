@@ -11,6 +11,11 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
   @yield('og')
+  <meta name="twitter:card" content="URL"/>
+<meta name="twitter:site" content="@Registrationwla"/>
+<meta name="twitter:title" content="@yield('title',setting('site.title'))"/>
+<meta name="twitter:description" content="@yield('description',setting('site.description'))"/>
+<meta name="twitter:image" content="{{Voyager::image(setting('site.logo'))}}"/>
   <link rel="icon" href="{{ asset('/assets/images/icon/favicon.png') }}" type="image/gif" >  
   <link rel="manifest" href="/manifest.json">
   <meta name="mobile-web-app-capable" content="yes">
