@@ -102,14 +102,14 @@
           <div class="line"></div>
         </div>
       </div>
-      <div class="row">
+      <!-- <div class="row">
         <div class="col-md-6  text-center text-md-left">
           <p > Member <img src="{{ asset('/assets/images/delhilogo.png') }}" alt="Member"> <img src="{{ asset('/assets/images/cii-logo.png') }}" alt="cii"></p>
         </div>
         <div class="col-md-6 text-center text-md-right ">
           <p > Payment Method <img src="{{ asset('/assets/images/payment.png') }}" class="img-fluid" alt="Payment"> </p>
         </div>
-      </div>
+      </div> -->
     </div>
     <div class="copyright">
       <div class="container">

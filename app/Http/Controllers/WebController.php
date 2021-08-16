@@ -93,7 +93,7 @@ class WebController extends Controller
     	$data = collect();
         $archivelists = $this->archivelist();
         
-    	$data->letest = Voyager::model('Post')->where('status','PUBLISHED')->orderBy('created_at','DESC')->take(9)->with('category')->with('service:title,blog_slug as slug,id')->get()->makeHidden(['body','meta_description','meta_keywords']);
+    	$data->letest = Voyager::model('Post')->where('status','PUBLISHED')->orderBy('publish_date','DESC')->take(9)->with('category')->with('service:title,blog_slug as slug,id')->get()->makeHidden(['body','meta_description','meta_keywords']);
     	$data->seo_title = 'Registrationwala Knowledge-base - Business Registrations | IPR Services | Taxation.';
     	$data->meta_description = 'Registrationwala is legal knowledgebase for entrepreneurs in india to providing legal knowledge about business registrations, ipr services , taxation and startups';
     	$data->meta_keywords = 'business registrations, ipr services , taxation and startups';
