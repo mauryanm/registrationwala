@@ -312,6 +312,15 @@ $(document).ready(function(){
       }
   });
   })
-})
+isAlreadyPopUpComb=false;
+$(window).scroll(function () {
+    if(!isAlreadyPopUpComb){
+            if ($(document).scrollTop() >= $(document).height() / 3){
+       $('#getaquote').modal('show');
+     isAlreadyPopUpComb=true;
+      }
+     }
+});
+});
 </script>
 @endsection
