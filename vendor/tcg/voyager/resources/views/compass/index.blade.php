@@ -39,7 +39,7 @@
                         <i class="voyager-angle-down"></i>
                         <i class="voyager-angle-up"></i>
                     </div>
-                    {{-- <div class="collapse-content collapse in" id="links">
+                    <div class="collapse-content collapse in" id="links">
                         <div class="row">
                             <div class="col-md-4">
                                 <a href="https://docs.laravelvoyager.com" target="_blank" class="voyager-link" style="background-image:url('{{ voyager_asset('images/compass/documentation.jpg') }}')">
@@ -57,7 +57,7 @@
                                 </a>
                             </div>
                         </div>
-                    </div> --}}
+                    </div>
               </div>
 
               <div class="collapsible">
