@@ -78,7 +78,7 @@ class MailController extends Controller {
                 'Access-Control-Allow-Credentials' => 'true',
                 'Access-Control-Allow-Origin' => $_SERVER['HTTP_ORIGIN'],
                 'Access-Control-Expose-Headers' => 'AMP-Access-Control-Allow-Source-Origin',
-                'AMP-Access-Control-Allow-Source-Origin'=> url()
+                'AMP-Access-Control-Allow-Source-Origin'=> url('\')
             ]);
         }
        }
