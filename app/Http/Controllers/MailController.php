@@ -13,7 +13,7 @@ use \App\Lead;
 class MailController extends Controller {
     public function sendleadmail(Request $request)
     {
-      
+
       $validator = \Validator::make($request->all(), [
             'name'  => 'required',
             'email' => 'required|email:rfc,dns',
@@ -71,6 +71,17 @@ class MailController extends Controller {
         );
        $this->sendMail($mail_asupport);
       ///////////////////////////////////////////////
+       if($request->has('type')){
+        if($request->input('type')=='amp'){
+          return response()->json($response)->withHeaders([
+                'Content-Type' => 'application/json',
+                'Access-Control-Allow-Credentials' => 'true',
+                'Access-Control-Allow-Origin' => $_SERVER['HTTP_ORIGIN'],
+                'Access-Control-Expose-Headers' => 'AMP-Access-Control-Allow-Source-Origin',
+                'AMP-Access-Control-Allow-Source-Origin'=> url()
+            ]);
+        }
+       }
         return response()->json($response);
 
       
