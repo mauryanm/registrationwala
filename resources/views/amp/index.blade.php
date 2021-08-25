@@ -256,7 +256,6 @@
        </fieldset>
        <div submit-success>
     <template type="amp-mustache">
-      @{{message}}
       Thank you for subscribing Registrationwala.
     </template>
   </div>
