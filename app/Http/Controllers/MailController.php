@@ -73,7 +73,7 @@ class MailController extends Controller {
       ///////////////////////////////////////////////
        if($request->has('type')){
         if($request->input('type')=='amp'){
-          return response()->json($response)->withHeaders([
+          return response($response)->withHeaders([
                 'Content-Type' => 'application/json',
                 'Access-Control-Allow-Credentials' => 'true',
                 'Access-Control-Allow-Origin' => $_SERVER['HTTP_ORIGIN'],
