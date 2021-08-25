@@ -9,10 +9,10 @@ class SitemapController extends Controller
 {
     public function post() {
         $posts = Voyager::model('Category')
-        ->select('id','slug')->has('catposts')
+        ->select('id','slug','created_at')->has('catposts')
         ->with(array('postservices' => function($query) {
-            $query->select('id','category_id','blog_slug as slug')
-            ->with('allpost:id,service_id,slug');
+            $query->select('id','category_id','blog_slug as slug','created_at')
+            ->with('allpost:id,service_id,slug,publish_date');
         }))
         ->get();
         return response()->view('sitemap.post', ['posts' => $posts])->header('Content-Type', 'text/xml');

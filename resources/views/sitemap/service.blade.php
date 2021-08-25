@@ -3,7 +3,7 @@
     @foreach ($services->whereNotIn('slug',$exept) as $service)
         <url>
             <loc>{{ url('/') }}/{{$service->slug}}</loc>
-            <lastmod>{{ $service->created_at }}</lastmod>
+            <lastmod>{{ $service->created_at->format('Y-m-d') }}</lastmod>
             <changefreq>weekly</changefreq>
             <priority>0.8</priority>
         </url>
@@ -11,7 +11,7 @@
         @foreach ($exept as $exp)
         <url>
             <loc>{{ url('/') }}/copyright-registration/{{$exp}}</loc>
-            <lastmod>{{ $service->created_at }}</lastmod>
+            <lastmod>{{ $service->created_at->format('Y-m-d') }}</lastmod>
             <changefreq>weekly</changefreq>
             <priority>0.8</priority>
         </url>

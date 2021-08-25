@@ -2,28 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>{{ url('/') }}/knowledge-base</loc>
-        <lastmod>2017-12-29 08:42:27</lastmod>
+        <lastmod>2017-12-29</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     @foreach ($posts as $category)
         <url>
             <loc>{{ url('/') }}/knowledge-base/{{$category->slug}}</loc>
-            <lastmod>{{ $category->created_at }}</lastmod>
+            <lastmod>{{ $category->created_at->format('Y-m-d') }}</lastmod>
             <changefreq>weekly</changefreq>
             <priority>0.8</priority>
         </url>
         @foreach ($category->postservices as $service)
         <url>
             <loc>{{ url('/') }}/knowledge-base/{{$category->slug}}/{{$service->slug}}</loc>
-            <lastmod>{{ $service->created_at }}</lastmod>
+            <lastmod>{{ $service->created_at->format('Y-m-d') }}</lastmod>
             <changefreq>weekly</changefreq>
             <priority>0.8</priority>
         </url>
         @foreach ($service->allpost as $post)
         <url>
             <loc>{{ url('/') }}/knowledge-base/{{$category->slug}}/{{$service->slug}}/{{$post->slug}}</loc>
-            <lastmod>{{ $post->publish_date }}</lastmod>
+            @if($post->publish_date)
+            <lastmod>{{ date('Y-m-d',strtotime($post->publish_date)) }}</lastmod>
+            @endif
             <changefreq>weekly</changefreq>
             <priority>0.8</priority>
         </url>
