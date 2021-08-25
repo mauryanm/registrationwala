@@ -256,7 +256,7 @@
        </fieldset>
        <div submit-success>
     <template type="amp-mustache">
-      Success! Thanks @{{name}} for trying the <code>amp-form</code> demo! Try to insert the word "error" as a name input in the form to see how <code>amp-form</code> handles errors.
+      {{{message}}}
     </template>
   </div>
   <div submit-error>

@@ -13,6 +13,18 @@ use \App\Lead;
 class MailController extends Controller {
     public function sendleadmail(Request $request)
     {
+      if($request->has('type')){
+        if($request->input('type')=='amp'){
+          $response = array('type' => 'success',"title"=>"",'msg'=>['Your query has been submitted successfully.']);
+          return response()->json($response)->withHeaders([
+                'Content-Type' => 'application/json',
+                'Access-Control-Allow-Credentials' => 'true',
+                'Access-Control-Allow-Origin' => $_SERVER['HTTP_ORIGIN'],
+                'Access-Control-Expose-Headers' => 'AMP-Access-Control-Allow-Source-Origin',
+                'AMP-Access-Control-Allow-Source-Origin'=> url('/')
+            ]);
+        }
+       }
 
       $validator = \Validator::make($request->all(), [
             'name'  => 'required',
@@ -73,7 +85,7 @@ class MailController extends Controller {
       ///////////////////////////////////////////////
        if($request->has('type')){
         if($request->input('type')=='amp'){
-          return response($response)->withHeaders([
+          return response()->json($response)->withHeaders([
                 'Content-Type' => 'application/json',
                 'Access-Control-Allow-Credentials' => 'true',
                 'Access-Control-Allow-Origin' => $_SERVER['HTTP_ORIGIN'],
