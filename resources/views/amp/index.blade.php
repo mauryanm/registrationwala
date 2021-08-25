@@ -230,7 +230,7 @@
           </h2>
           <!-- Start Input -->
           <div class="ampstart-input inline-block relative m0 p0 mb3">
-             <input type="email" value="" name="emailid"
+             <input type="email" value="" name="email"
                 id="emailid"
                 class="block border-none p0 m0"
                 placeholder="Email"
