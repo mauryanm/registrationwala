@@ -16,7 +16,7 @@ class MailController extends Controller {
       if($request->has('type')){
         if($request->input('type')=='amp'){
           $response = array('type' => 'success',"title"=>"",'msg'=>['Your query has been submitted successfully.']);
-          return response()->json($response)->withHeaders([
+          return response($response,400)->withHeaders([
                 'Content-Type' => 'application/json',
                 'Access-Control-Allow-Credentials' => 'true',
                 'Access-Control-Allow-Origin' => $_SERVER['HTTP_ORIGIN'],
@@ -33,6 +33,18 @@ class MailController extends Controller {
         ]);
         if ($validator->fails())
         {
+          if($request->has('type')){
+            if($request->input('type')=='amp'){
+              $response = array('type' => 'success',"title"=>"",'msg'=>['Your query has been submitted successfully.']);
+              return response($validator->errors()->all(),400)->withHeaders([
+                    'Content-Type' => 'application/json',
+                    'Access-Control-Allow-Credentials' => 'true',
+                    'Access-Control-Allow-Origin' => $_SERVER['HTTP_ORIGIN'],
+                    'Access-Control-Expose-Headers' => 'AMP-Access-Control-Allow-Source-Origin',
+                    'AMP-Access-Control-Allow-Source-Origin'=> url('/')
+                ]);
+            }
+           }
             return response()->json(['type'=>'error',"title"=>"",'msg'=>$validator->errors()->all()]);
         } 
 

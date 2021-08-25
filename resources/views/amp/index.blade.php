@@ -218,7 +218,7 @@
  </section>
  @endif
  <div class="ampstart-card  pt2">
-    <form action-xhr="{{url('lead-form')}}" target="_top" method="post" class="p0 m0 px3 mb4">
+    <form id="subscribeform" action-xhr="{{url('lead-form')}}" target="_top" method="post" class="p0 m0 px3 mb4" on=submit-success: subscribeform.clear>
       @csrf
       <input type="hidden" name="source" value="subscribe">
       <input type="hidden" name="name" value="subscriber">
@@ -254,16 +254,16 @@
              />
           <!-- End Submit -->
        </fieldset>
-       <div submit-success>
-    <template type="amp-mustache">
-      Thank you for subscribing Registrationwala.
-    </template>
-  </div>
-  <div submit-error>
-    <template type="amp-mustache">
-      Error! Some thing went wrong please try again.
-    </template>
-  </div>
+       <div class="pb-2" submit-success>
+        <template type="amp-mustache">
+          Thank you for subscribing Registrationwala.
+        </template>
+      </div>
+      <div class="pb-2" submit-error>
+        <template type="amp-mustache">
+          Error! Some thing went wrong please try again.
+        </template>
+      </div>
     </form>
  </div>
 </main>
