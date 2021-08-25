@@ -56,7 +56,11 @@ Route::namespace('')
 
 Route::get('/', 'App\Http\Controllers\HomeController@index')->name('/');
 ############### AMP PAGE REDIRECT################
+Route::group(['prefix' => 'amp'], function () {
+  Route::get('/', 'App\Http\Controllers\HomeController@amp')->name('/');
+});
 Route::get('/amp/{url?}/{url1?}/{url2?}/{url3?}', function () {return redirect('/');});
+
 #################################################
 Route::get('/download/{path}', 'App\Http\Controllers\Controller@download');
 Route::get('/search-service', 'App\Http\Controllers\HomeController@searchservice');
