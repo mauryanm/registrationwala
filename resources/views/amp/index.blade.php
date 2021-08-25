@@ -223,6 +223,7 @@
       <input type="hidden" name="source" value="subscribe">
       <input type="hidden" name="name" value="subscriber">
       <input type="hidden" name="page" value="https://www.registrationwala.com/amp">
+      <input type="hidden" name="type" value="amp">
        <fieldset class="border-none p0 m0">
           <h2 class="block mb4 h4 bold">Subscribe
              to our newsletter

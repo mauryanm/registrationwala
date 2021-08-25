@@ -13,6 +13,7 @@ use \App\Lead;
 class MailController extends Controller {
     public function sendleadmail(Request $request)
     {
+      \Log::info($request);
       
       $validator = \Validator::make($request->all(), [
             'name'  => 'required',
