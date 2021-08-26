@@ -9,7 +9,7 @@
       <div class="ampstart-card max-width-4 pt2 pb4  bgimg-color-service">
         <h4 class="block  text-center bold text-white">{{$data->heading}}</h4>
         <p class=" text-center text-white mb2">{{$data->sub_heading}}</p>
-        <form id="subscribeform" action-xhr="/lead-form" target="_top" method="post" class="p0 m0 px3 mb4" on=submit-success:subscribeform.clear custom-validation-reporting="show-all-on-submit">
+        <form id="serviceform" action-xhr="/lead-form" target="_top" method="post" class="p0 m0 px3 mb4" on=submit-success:serviceform.clear custom-validation-reporting="show-all-on-submit">
         <!-- <form method="GET" action-xhr="/lead-form" target="_top" class="p0 m0 px3 "> -->
           <fieldset class="border-none p0 m0">
             <h2 class="block mb2 h4 bold text-white text-center" >Want to know More ?</h2>
