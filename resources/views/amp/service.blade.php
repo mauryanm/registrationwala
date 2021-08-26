@@ -19,7 +19,7 @@
               <input type="hidden" name="source" value="service">
               <input type="hidden" name="page" value="{{$data->title}}">
               <input type="hidden" name="page_id" value="{{$data->id}}">
-              <input type="hidden" name="from" value="header">
+              <input type="hidden" name="from" value="AMP">
               <input type="hidden" name="type" value="amp">
               <input class="block mb2" type="text" id="show-all-on-submit-name" name="name" placeholder="Name..." required >
   <span visible-when-invalid="valueMissing" validation-for="show-all-on-submit-name"></span>
