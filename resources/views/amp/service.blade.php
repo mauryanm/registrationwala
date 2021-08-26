@@ -47,9 +47,7 @@
               />
             <!-- End Submit -->
           </fieldset>
-          
-        </form>
-        <div class="pb-2" submit-success>
+          <div class="pb-2" submit-success>
               <template type="amp-mustache">
                 Thank you, @{{name}} your query submitted successfully to Registrationwala.
               </template>
@@ -59,6 +57,7 @@
                 Error! Some thing went wrong please try again.
               </template>
             </div>
+        </form>
         <div class="flex">
           <div class="m-auto" >
             @if($data->video)
