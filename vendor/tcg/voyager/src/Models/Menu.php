@@ -88,8 +88,7 @@ class Menu extends Model
                 if(!view()->exists($type))  $type = 'voyager::menu.'.$type;
             }else if($type == 'rwfooter'){
                 if(!view()->exists($type))  $type = 'voyager::menu.'.$type;
-            }else{
-                //default
+            }else if($type == 'ampmenu'){
                 if(!view()->exists($type))  $type = 'voyager::menu.'.$type;
             }
         }
