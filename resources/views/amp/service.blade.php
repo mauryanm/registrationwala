@@ -47,6 +47,16 @@
               />
             <!-- End Submit -->
           </fieldset>
+          <div class="pb-2" submit-success>
+              <template type="amp-mustache">
+                Thank you for subscribing Registrationwala.
+              </template>
+            </div>
+            <div class="pb-2" submit-error>
+              <template type="amp-mustache">
+                Error! Some thing went wrong please try again.
+              </template>
+            </div>
         </form>
         <div class="flex">
           <div class="m-auto" >
