@@ -89,9 +89,11 @@ class Menu extends Model
             }else if($type == 'rwfooter'){
                 if(!view()->exists($type))  $type = 'voyager::menu.'.$type;
             }else{
+                //default
                 if(!view()->exists($type))  $type = 'voyager::menu.'.$type;
             }
         }
+
 
         if (!isset($options->locale)) {
             $options->locale = app()->getLocale();
