@@ -22,7 +22,6 @@
       <meta name="apple-mobile-web-app-capable" content="yes">
       <meta name="msapplication-starturl" content="/">
       <meta name="theme-color" content="#e5e5e5">
-      <meta charset="utf-8">
 
       <meta name="google-site-verification" content="KhTzsOArUyP0zA16qZoW-QBM1LXTJP9rT9rkI35AR7g" />
       <meta name="DC.title" content="Registration Consultant Services" />
@@ -32,11 +31,19 @@
       <meta name="ICBM" content="31.270669, 72.323003" />
       <meta name="viewport" content="width=device-width" />
       <script async src="https://cdn.ampproject.org/v0.js"></script>
-      <script custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js" async></script>
-      <script custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js" async></script>
-      <script custom-element="amp-accordion" src="https://cdn.ampproject.org/v0/amp-accordion-0.1.js" async></script>
-      <script custom-element="amp-form"  src="https://cdn.ampproject.org/v0/amp-form-0.1.js" async></script>
+      <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
+      <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
+      <script async custom-element="amp-accordion" src="https://cdn.ampproject.org/v0/amp-accordion-0.1.js"></script>
+      <script async custom-element="amp-selector" src="https://cdn.ampproject.org/v0/amp-selector-0.1.js"></script>
+      <script async custom-element="amp-list" src="https://cdn.ampproject.org/v0/amp-list-0.1.js"></script>
+      <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
       <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
+      <script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
+      <!-- <script async custom-element="amp-lightbox" src="https://cdn.ampproject.org/v0/amp-lightbox-0.1.js"></script> -->
+      <!-- <script async custom-element="amp-image-lightbox" src="https://cdn.ampproject.org/v0/amp-image-lightbox-0.1.js"></script> -->
+      <!-- <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script> -->
+
+      <!-- <script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script> -->
       <style amp-boilerplate>
 body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}
 @-webkit-keyframes -amp-start{from{visibility:hidden}
@@ -348,7 +355,7 @@ canvas{display:inline-block}
 *{box-sizing:border-box}
 body{background:#fff;color:#000;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,Arial,sans-serif;min-width:315px;overflow-x:hidden;font-smooth:always;-webkit-font-smoothing:antialiased}
 main{max-width:700px;margin:0 auto}
-.bgimg{background-image:url(../images/hero-banner.jpg)}
+.bgimg{background-image:url(./assets/images/hero-banner.jpg)}
 .bgimg-color{background-color:rgba(255,255,255,0.8)}
 p{padding:0;margin:0}
 .ampstart-accent{color:#003f93}
@@ -505,6 +512,7 @@ h1+.ampstart-byline time{font-size:1.5rem;font-weight:400}
 .text-white{color:#FFF}
 .dottedimg{border-bottom:dashed #f4f4f4 1px}
 .tag{border:solid #ccc 1px;margin-top:10px;background-color:#ccc;line-height:33px;display:inline-block;padding:3px 10px;border-radius:5px}
+#compresult amp-list > div{overflow-y:auto;}#compresult amp-list > div  amp-selector [option]{padding: .25rem .5rem;border-bottom: 1px solid #ccc;}.list-group-item-success {color: #155724;background-color: #c3e6cb;}.list-group-item-danger {color: #721c24;background-color: #f5c6cb;}
       </style>
    </head>
    <body>

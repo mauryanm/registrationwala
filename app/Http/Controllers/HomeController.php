@@ -66,4 +66,38 @@ class HomeController extends Controller
         $hmpt = $homeService->where('type','POST')->all();
         return Voyager::view('amp.index')->with(compact('wps','letestBlog','hmsr','hmpt'));
     }
+    public function searchampservice(Request $request)
+    {
+        // $posts = Voyager::model('Service')
+        //         ->where('title','like',"%{$request->title}%")
+        //         ->orWhere('heading','like',"%{$request->title}%")
+        //         ->select('id','title','heading','slug')
+        //         ->orderBy('title','DESC')
+        //         ->take(10)
+        //         ->get();
+        // \DB::connection()->enableQueryLog();
+        $posts = Voyager::model('Service')
+                ->where('title','like',"%{$request->title}%")
+                ->orWhere('heading','like',"%{$request->title}%")
+                ->select('id','title','heading','slug')
+                ->take(10)
+                ->orderByRaw("
+                    CASE
+                        WHEN title LIKE '{$request->title}' THEN 1
+                        WHEN title LIKE '{$request->title}%' THEN 2
+                        WHEN title LIKE '%{$request->title}%' THEN 3
+                        WHEN title LIKE '%{$request->title}' THEN 4
+                        ELSE 5
+                    END
+                    ")
+                ->get();
+                
+        if($posts->count()>0){
+        // $data['items']['query']=$request->title;
+        $data['items'][]['results']=$posts;
+        }else{
+            $data['items'][]['query']='Result not found';
+        }
+        return response()->json($data);
+    }
 }

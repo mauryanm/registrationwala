@@ -64,6 +64,7 @@ Route::get('/amp/{url?}/{url1?}/{url2?}/{url3?}', function () {return redirect('
 #################################################
 Route::get('/download/{path}', 'App\Http\Controllers\Controller@download');
 Route::get('/search-service', 'App\Http\Controllers\HomeController@searchservice');
+Route::get('/search-amp-service', 'App\Http\Controllers\HomeController@searchampservice');
 Route::get('/service-list', 'App\Http\Controllers\WebController@servicelist');
 ############# Other pages ###############
 Route::get('/privacy-policy', 'App\Http\Controllers\PageController@index')->name('privacy-policy');
