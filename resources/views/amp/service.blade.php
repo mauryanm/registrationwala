@@ -30,11 +30,11 @@
   <span visible-when-invalid="valueMissing" validation-for="show-all-on-submit-email"></span>
   <span visible-when-invalid="typeMismatch" validation-for="show-all-on-submit-email"></span>
   
-              <input type="number" value=""  id="show-all-on-submit-phone" class="block mb2" placeholder="phone" required/>
+              <input type="number" value="" name="phone" id="show-all-on-submit-phone" class="block mb2" placeholder="phone" required/>
   <span visible-when-invalid="valueMissing" validation-for="show-all-on-submit-phone"></span>
   <span visible-when-invalid="typeMismatch" validation-for="show-all-on-submit-phone"></span>
 
-              <textarea rows="2"  placeholder="How we can help?"></textarea>
+              <textarea rows="2" name="description" placeholder="How we can help?"></textarea>
             </div>
             <!-- End Input--> 
             <!-- Start Submit -->
@@ -49,7 +49,7 @@
           </fieldset>
           <div class="pb-2" submit-success>
               <template type="amp-mustache">
-                Thank you for subscribing Registrationwala.
+                Thank you, @{{name}} your query submitted successfully to Registrationwala.
               </template>
             </div>
             <div class="pb-2" submit-error>
