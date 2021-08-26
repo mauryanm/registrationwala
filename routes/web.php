@@ -58,8 +58,10 @@ Route::get('/', 'App\Http\Controllers\HomeController@index')->name('/');
 ############### AMP PAGE REDIRECT################
 Route::group(['prefix' => 'amp'], function () {
   Route::get('/', 'App\Http\Controllers\HomeController@amp')->name('amp');
+  Route::get('/copyright-registration/{url}/{city?}', 'App\Http\Controllers\AmpWebController@index');
+  Route::get('/{url?}/{city?}/{url2?}/{url3?}', 'App\Http\Controllers\AmpWebController@index');
 });
-Route::get('/amp/{url?}/{url1?}/{url2?}/{url3?}', function () {return redirect('/amp');});
+
 
 #################################################
 Route::get('/download/{path}', 'App\Http\Controllers\Controller@download');

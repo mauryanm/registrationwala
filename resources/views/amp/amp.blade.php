@@ -39,6 +39,7 @@
       <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
       <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
       <script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
+      <script async custom-element="amp-fit-text" src="https://cdn.ampproject.org/v0/amp-fit-text-0.1.js"></script>
       <!-- <script async custom-element="amp-lightbox" src="https://cdn.ampproject.org/v0/amp-lightbox-0.1.js"></script> -->
       <!-- <script async custom-element="amp-image-lightbox" src="https://cdn.ampproject.org/v0/amp-image-lightbox-0.1.js"></script> -->
       <!-- <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script> -->
@@ -334,6 +335,7 @@ canvas{display:inline-block}
 .z3{z-index:3}
 .z4{z-index:4}
 .border{border-style:solid;border-width:1px}
+.light-border{border:solid #ddd 1px}
 .border-top{border-top-style:solid;border-top-width:1px}
 .border-right{border-right-style:solid;border-right-width:1px}
 .border-bottom{border-bottom-style:solid;border-bottom-width:1px}
@@ -355,8 +357,9 @@ canvas{display:inline-block}
 *{box-sizing:border-box}
 body{background:#fff;color:#000;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,Arial,sans-serif;min-width:315px;overflow-x:hidden;font-smooth:always;-webkit-font-smoothing:antialiased}
 main{max-width:700px;margin:0 auto}
-.bgimg{background-image:url(./assets/images/hero-banner.jpg)}
+.bgimg{background-image:url(../images/hero-banner.jpg)}
 .bgimg-color{background-color:rgba(255,255,255,0.8)}
+.bgimg-color-service{background-color:rgba(0,41,60,0.84)}
 p{padding:0;margin:0}
 .ampstart-accent{color:#003f93}
 #content:target{margin-top:calc(0px - 3.5rem);padding-top:3.5rem}
@@ -428,7 +431,8 @@ amp-carousel .ampstart-image-with-caption{margin-bottom:0}
 .ampstart-input>input:not(:placeholder-shown):not([disabled])+label,.ampstart-input>select:not(:placeholder-shown):not([disabled])+label,.ampstart-input>textarea:not(:placeholder-shown):not([disabled])+label{opacity:1}
 .ampstart-input>input:focus+label,.ampstart-input>select:focus+label,.ampstart-input>textarea:focus+label{animation-name:a}
 @keyframes a{to{opacity:1}
-}.ampstart-input>label:after{content:'';height:2px;position:absolute;bottom:0;left:45%;background:#003f93;transition:.2s;transition-timing-function:cubic-bezier(0.4,0,0.2,1);visibility:hidden;width:10px}
+}.service-input>input,.service-input>textarea{width:100%;min-height:40px;padding:2px 10px;line-height:22px}
+.ampstart-input>label:after{content:'';height:2px;position:absolute;bottom:0;left:45%;background:#003f93;transition:.2s;transition-timing-function:cubic-bezier(0.4,0,0.2,1);visibility:hidden;width:10px}
 .ampstart-input>input:focus+label:after,.ampstart-input>select:focus+label:after,.ampstart-input>textarea:focus+label:after{left:0;width:100%;visibility:visible}
 .ampstart-input>input[type='search']{-webkit-appearance:none;-moz-appearance:none;appearance:none}
 .ampstart-input>input[type='range']{border-bottom:0}
@@ -512,7 +516,29 @@ h1+.ampstart-byline time{font-size:1.5rem;font-weight:400}
 .text-white{color:#FFF}
 .dottedimg{border-bottom:dashed #f4f4f4 1px}
 .tag{border:solid #ccc 1px;margin-top:10px;background-color:#ccc;line-height:33px;display:inline-block;padding:3px 10px;border-radius:5px}
-#compresult amp-list > div{overflow-y:auto;}#compresult amp-list > div  amp-selector [option]{padding: .25rem .5rem;border-bottom: 1px solid #ccc;}.list-group-item-success {color: #155724;background-color: #c3e6cb;}.list-group-item-danger {color: #721c24;background-color: #f5c6cb;}
+.price-ribbon{position:relative;display:inline-block;text-align:center}
+.ytext{display:inline-block;padding:.5em 1em;max-width:50em;line-height:1.2em;background:#ffd72a;position:relative}
+.price-ribbon:after,.price-ribbon:before,.ytext:before,.ytext:after,.abold:before{content:'';position:absolute;border-style:solid}
+.price-ribbon:before{top:.3em;left:-30px;width:100%;height:100%;border:0;z-index:-2}
+.ytext:before{bottom:100%;left:0;border-width:.5em .7em 0 0;border-color:transparent #fc9544 transparent transparent}
+.ytext:after{top:100%;right:0;border-width:.5em 2em 0 0;border-color:#fc9544 transparent transparent transparent}
+.price-ribbon:after,.abold:before{top:.5em;right:-2em;border-width:1.1em 1em 1.1em 3em;border-color:#fecc30 transparent #fecc30 #fecc30;z-index:-1}
+.abold:before{border-color:#ebeced transparent #ebeced #ebeced;top:.7em;right:-2.3em}
+ul.timeline{list-style-type:none;position:relative}
+ul.timeline:before{content:' ';background:#8a8686;display:inline-block;position:absolute;left:28px;width:2px;height:100%;z-index:400}
+ul.timeline>li{margin:20px 0;padding-left:20px}
+ul.timeline>li:before{content:' ';background:white;display:inline-block;position:absolute;border-radius:50%;border:3px solid #8a8686;left:20px;width:15px;height:15px;z-index:400}
+amp-selector[role=tablist].tabs-with-flex{display:flex;flex-wrap:wrap}
+amp-selector[role=tablist].tabs-with-flex [role=tab]{flex-grow:1;text-align:center;padding:var(--space-1)}
+amp-selector[role=tablist].tabs-with-flex [role=tab][selected]{outline:0;border-bottom:2px solid var(--color-primary)}
+amp-selector[role=tablist].tabs-with-flex [role=tabpanel]{display:none;width:100%;order:1;padding:var(--space-4)}
+amp-selector[role=tablist].tabs-with-flex [role=tab][selected]+[role=tabpanel]{display:block}
+amp-selector[role=tablist].tabs-with-selector{display:flex}
+amp-selector[role=tablist].tabs-with-selector [role=tab][selected]{outline:0;border-bottom:2px solid var(--color-primary)}
+amp-selector[role=tablist].tabs-with-selector{display:flex}
+amp-selector[role=tablist].tabs-with-selector [role=tab]{width:100%;text-align:center;padding:var(--space-1)}
+amp-selector.tabpanels [role=tabpanel]{display:none;padding:var(--space-4)}
+amp-selector.tabpanels [role=tabpanel][selected]{outline:0;display:block}
       </style>
    </head>
    <body>
