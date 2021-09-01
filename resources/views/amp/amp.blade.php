@@ -15,7 +15,7 @@
       <meta name="twitter:image" content="{{ asset(Voyager::image(setting('site.logo')))}}"/>
 
       <link rel="icon" href="{{ asset('/assets/images/icon/favicon.png') }}" type="image/gif" >
-      <link rel="canonical" href="{{ url()->current() }}" />
+      <link rel="canonical" href="{{ str_replace('/amp','',url()->current() )}}" />
       <link rel="amphtml" href="{{ url()->current() }}">
       <!-- <link rel="manifest" href="/manifest.json"> -->
       <meta name="mobile-web-app-capable" content="yes">
@@ -40,10 +40,14 @@
       <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
       <script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
       <script async custom-element="amp-fit-text" src="https://cdn.ampproject.org/v0/amp-fit-text-0.1.js"></script>
+   @if (Request::is(__('voyager::post.post_title').'*'))
       <script async custom-element="amp-facebook-page" src="https://cdn.ampproject.org/v0/amp-facebook-page-0.1.js"></script>
       <script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
       <script async custom-element="amp-twitter" src="https://cdn.ampproject.org/v0/amp-twitter-0.1.js"></script>
+      @endif
+      @if (Request::is('videos*'))
       <script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>
+      @endif
       <!-- <script async custom-element="amp-lightbox" src="https://cdn.ampproject.org/v0/amp-lightbox-0.1.js"></script> -->
       <!-- <script async custom-element="amp-image-lightbox" src="https://cdn.ampproject.org/v0/amp-image-lightbox-0.1.js"></script> -->
       <!-- <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script> -->
@@ -558,6 +562,7 @@ p{margin-bottom:1rem}
 .views{border:solid #ccc 1px;margin-top:0;background-color:#ccc;line-height:23px;font-size:15px;display:inline-block;padding:3px 10px;border-radius:5px}
 .views svg{position:relative;top:3px}
 .text-justify{text-align:justify}
+.bgimg-video {background-image: url(../images/VIDEO-PAGE-banner.jpg);background-size: cover;}
       </style>
    </head>
    <body>
