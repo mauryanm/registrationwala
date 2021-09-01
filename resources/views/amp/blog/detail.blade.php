@@ -1,4 +1,7 @@
 @extends('amp.amp')
+@section('title', $data->seo_title)
+@section('description', $data->meta_description)
+@section('keywords', $data->meta_keywords)
 @section('content')
 <main id="content" role="main">
 <section class="mt3 ">

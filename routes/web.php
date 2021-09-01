@@ -58,6 +58,7 @@ Route::get('/', 'App\Http\Controllers\HomeController@index')->name('/');
 ############### AMP PAGE REDIRECT################
 Route::group(['prefix' => 'amp'], function () {
   Route::get('/', 'App\Http\Controllers\HomeController@amp')->name('amp');
+  Route::get('/videos', 'App\Http\Controllers\PageController@ampvideos');
   //AM Blog 
   Route::get('/search-amp-post', 'App\Http\Controllers\AmpWebController@searchPost');
   Route::get('/'.__('voyager::post.post_slug').'{category_url}/{Service_url}/{url}', 'App\Http\Controllers\AmpWebController@rwpost');

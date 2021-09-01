@@ -30,6 +30,15 @@ class PageController extends Controller {
 
 
     }
+    public function ampvideos()
+    {
+        $response = Http::get('https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId=UC99xCarIiulzbP68z2VQPRg&maxResults=50&key=AIzaSyBCEK2zCWga931ug117VbwY9WAH_HaXU64');
+
+        $data = $response->json();
+        return Voyager::view('amp.videos')->with(compact('data')); 
+
+
+    }
     public function couponpartner()
     {
         $data = CouponPartner::where('status','ACTIVE')->get();
