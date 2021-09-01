@@ -50,7 +50,7 @@ $ytscount=get_twitter_count("https://www.googleapis.com/youtube/v3/channels?part
             <div class="side-bar"> <!-- <a href="javascript:popupwindow('https://www.facebook.com/registrationwala', 'Subscribe on Registrationwla', 600, 400)" class="btn btn-social btn-block btn-facebook text-right"><i class="fa fa-facebook"></i><strong class="pull-left">187,555</strong> Subscribe us on <strong>Facebook</strong></a> -->
               <a href="javascript:void(0)" onclick="popupwindow('https://twitter.com/intent/follow?original_referer={{url('/')}}knowledge-base&region=follow_link&screen_name=Registrationwla', 'Follow up Registrationwla', 600, 400)" class="btn btn-social btn-block btn-twitter text-right" rel="nofollow"><i class="fa fa-twitter"></i><strong class="pull-left">
                 @if(isset($twcount))
-              <?= $twcount[0]->followers_count?>
+              <?= (isset($twcount[0]->followers_count)?$twcount[0]->followers_count:0)?>
               @endif
               </strong>Follow us on <strong>Twitter</strong></a> <a href="javascript:void(0)" onclick="popupwindow('https://www.youtube.com/channel/UC99xCarIiulzbP68z2VQPRg?sub_confirmation=1', 'Subscribe on Registrationwla', 600, 400)" class="btn btn-social btn-block btn-youtube text-right"><i class="fa fa-youtube-play"></i><strong class="pull-left">
                 @if(isset($ytscount->items))

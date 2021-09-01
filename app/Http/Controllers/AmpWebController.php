@@ -62,26 +62,6 @@ class AmpWebController extends Controller
 		
 	}
 
-	public function leadfrom(Request $request){
-		$validator = \Validator::make($request->all(), [
-            'name'=> 'required',
-            'email' => 'required|email',
-            'phone' => 'nullable',
-        ]);
-        if ($validator->fails())
-        {
-            return response()->json(['type'=>'error',"title"=>"",'msg'=>$validator->errors()->all()]);
-        } 
-
-        $data = $request->except('_token','_method');
-        $data['status'] = 0;
-        $insData = Lead::create($data); 
-
-		$msg = ['Your request submitted successfully!'];
-        $type = 'success';
-        $title = '';
-        return response()->json(compact('msg','type','title'));
-	}
     
     public function servicelist(Request $request){
     	$service = Voyager::model('Service')->select('title','id')->where('category_id',$request->input('id'))->get();
@@ -104,7 +84,7 @@ class AmpWebController extends Controller
 });
 
 
-    	return Voyager::view('blog')->with(compact('data','wcu','categoryList','categoryPost','archivelists'));
+    	return Voyager::view('amp.blog.index')->with(compact('data','wcu','categoryList','categoryPost','archivelists'));
     }
     public function rwpostcategory($category_url){
     	$wcu = Choose::where('status',1)->orderBy('created_at','DESC')->get();
