@@ -35,7 +35,7 @@
           
           <!-- The slideshow -->
           <div class="carousel-inner">
-            @foreach($data->letest as $row)
+           @foreach($data->letest->take(3) as $row)
             <div class="carousel-item {{$loop->first?'active':''}}"> <a href="{{url( __('voyager::post.post_slug').$row->category->slug.'/'.$row->service->slug.'/'.$row->slug)}}"> <img class="d-block img-fluid" src="{{Voyager::image($row->image)}}" alt="{{$row->title}}"></a>
               <div class="carousel-caption d-none d-md-block">
                 <div class="blog-content"> <a href="{{url(__('voyager::post.post_slug').$row->category->slug)}}"><span class="home-blog-tag"><i class="fa fa-star" aria-hidden="true"></i> {{$row->category->name}}</span></a>

@@ -230,15 +230,40 @@ class AmpWebController extends Controller
     }
     public function searchPost(Request $request)
     {
+        // $posts = Voyager::model('Post')
+        //         ->where('title','like',"%{$request->title}%")
+        //         ->select('id','title','slug','publish_date','category_id','service_id')
+        //         ->published()
+        //         ->with('service:title,blog_slug as slug,id')
+        //         ->with('category')
+        //         ->orderBy('publish_date','DESC')
+        //         ->take(10)
+        //         ->get();
+        // return response()->json($posts);
         $posts = Voyager::model('Post')
                 ->where('title','like',"%{$request->title}%")
-                ->select('id','title','slug','publish_date','category_id','service_id')
+                ->select('id','title','slug','service_id','category_id')
                 ->published()
-                ->with('service:title,blog_slug as slug,id')
-                ->with('category')
-                ->orderBy('publish_date','DESC')
+                ->with('service:blog_slug as slug,id')
+                ->with('category:slug,id')
                 ->take(10)
+                ->orderByRaw("
+                    CASE
+                        WHEN title LIKE '{$request->title}' THEN 1
+                        WHEN title LIKE '{$request->title}%' THEN 2
+                        WHEN title LIKE '%{$request->title}%' THEN 3
+                        WHEN title LIKE '%{$request->title}' THEN 4
+                        ELSE 5
+                    END
+                    ")
                 ->get();
-        return response()->json($posts); 
+                
+        if($posts->count()>0){
+        // $data['items']['query']=$request->title;
+        $data['items'][]['results']=$posts;
+        }else{
+            $data['items'][]['query']='Result not found';
+        }
+        return response()->json($data);
     }
 }

@@ -5,12 +5,12 @@
     <header class="bgimg">
        <div class="ampstart-card max-width-4 pt2 pb4  bgimg-color">
           <h3 class="block mb4 text-center bold">One Portal , Complete Legal Solution! </h3>
-          <form class="text-center serach-wraper" method="GET" action="/" target="_top">
+         <form class="text-center serach-wraper" method="GET" action="/" target="_top">
              <input type="search" placeholder="FFMC  License" name="search"  class="serachinput  p0 m0" on="input-debounced:AMP.setState({query: event.value}),compresult.show"
           [value]="query || ''">
              <input type="submit" value="Search">
-          </form>
-          <div id="compresult" class="compresult list-group" hidden="">
+         </form>
+         <div id="compresult" class="compresult list-group" hidden="">
             <amp-list width="auto" height="100" layout="fixed-height" [src]="'/search-amp-service?title='+query">
                <template type="amp-mustache" id="autosuggest-list" >
                   <amp-selector class="autosuggest-box" id="autosuggest-selector" keyboard-select-mode="focus" layout="container" on="select:AMP.setState({query: event.targetOption}),compresult.hide">

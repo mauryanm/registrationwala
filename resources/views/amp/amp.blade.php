@@ -61,7 +61,6 @@ to{visibility:visible}
 </style></noscript><style amp-custom="">html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
 body{margin:0}
 article,aside,footer,header,nav,section{display:block}
-h1{font-size:2em;margin:.67em 0}
 figcaption,figure,main{display:block}
 figure{margin:1em 40px}
 hr{box-sizing:content-box;height:0;overflow:visible}
@@ -379,7 +378,7 @@ p{padding:0;margin:0}
 .h5,h5{font-size:.875rem;line-height:1.125rem}
 .h6,h6{font-size:.75rem;line-height:1rem}
 h1,h2,h3,h4,h5,h6{margin:0;padding:0;font-weight:400;letter-spacing:.06rem}
-a,a:active,a:visited{color:inherit}
+a,a:active,a:visited{color:inherit;text-decoration:none}
 .ampstart-btn{font-family:inherit;font-weight:inherit;font-size:1rem;line-height:1.125rem;padding:.7em .8em;text-decoration:none;white-space:nowrap;word-wrap:normal;vertical-align:middle;cursor:pointer;background-color:#000;color:#fff;border:1px solid #fff}
 .ampstart-btn:visited{color:#fff}
 .ampstart-btn-secondary{background-color:#fff;color:#040202;border:1px solid #040202}
@@ -515,7 +514,7 @@ h1+.ampstart-byline time{font-size:1.5rem;font-weight:400}
 .bgdark1{background-color:#253944}
 .text-white{color:#FFF}
 .dottedimg{border-bottom:dashed #f4f4f4 1px}
-.tag{border:solid #ccc 1px;margin-top:10px;background-color:#ccc;line-height:33px;display:inline-block;padding:3px 10px;border-radius:5px}
+.tag{border:solid #ccc 1px;margin-top:10px;background-color:#ccc;line-height:33px;font-size:15px;display:inline-block;padding:3px 10px;border-radius:5px}
 .price-ribbon{position:relative;display:inline-block;text-align:center}
 .ytext{display:inline-block;padding:.5em 1em;max-width:50em;line-height:1.2em;background:#ffd72a;position:relative}
 .price-ribbon:after,.price-ribbon:before,.ytext:before,.ytext:after,.abold:before{content:'';position:absolute;border-style:solid}
@@ -539,6 +538,23 @@ amp-selector[role=tablist].tabs-with-selector{display:flex}
 amp-selector[role=tablist].tabs-with-selector [role=tab]{width:100%;text-align:center;padding:var(--space-1)}
 amp-selector.tabpanels [role=tabpanel]{display:none;padding:var(--space-4)}
 amp-selector.tabpanels [role=tabpanel][selected]{outline:0;display:block}
+.pagination{display:inline-block}
+.pagination a{color:black;float:left;padding:8px 16px;text-decoration:none;transition:background-color .3s}
+.pagination a.active{background-color:#253944;color:white}
+.pagination a:hover:not(.active){background-color:#ddd}
+p{margin-bottom:1rem}
+.btn-twitter{color:#fff;background-color:#55acee;border-color:rgba(0,0,0,0.2);padding:0 10px 10px 8px;width:100%}
+.btn-twitter svg{position:relative;top:8px}
+.btn-twitter:hover,.btn-twitter:focus,.btn-twitter:active,.btn-twitter.active,.open .dropdown-toggle.btn-twitter{color:#fff;background-color:#55acee;border-color:rgba(0,0,0,0.2)}
+.btn-twitter:active,.btn-twitter.active,.open .dropdown-toggle.btn-twitter{background-image:none}
+.btn-youtube{color:#fff;background-color:#d42428;border-color:rgba(0,0,0,0.2);padding:0 10px 10px 8px;width:100%}
+.btn-youtube svg{position:relative;top:8px}
+.btn-youtube:hover,.btn-youtube:focus,.btn-youtube:active,.btn-youtube.active,.open .dropdown-toggle.btn-youtube{color:#fff;background-color:#d42428;border-color:rgba(0,0,0,0.2)}
+.btn-youtube:active,.btn-youtube.active,.open .dropdown-toggle.btn-youtube{background-image:none}
+.views{border:solid #ccc 1px;margin-top:0;background-color:#ccc;line-height:23px;font-size:15px;display:inline-block;padding:3px 10px;border-radius:5px}
+.views svg{position:relative;top:3px}
+.text-justify{text-align:justify}
+.compresult .i-amphtml-layout-size-defined{overflow-y: auto !important;}
       </style>
    </head>
    <body>
