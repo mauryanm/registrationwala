@@ -29,18 +29,26 @@
     @endforeach
       
    </section>
-   <!-- <section class="text-center">
+   <section class="text-center">
       <div class="pagination text-center">
-         <a href="#">«</a>
-         <a href="#">1</a>
-         <a href="#" class="active">2</a>
+        @if(isset($data['prevPageToken']))
+         <a href="{{url('videos/'.$data['prevPageToken'])}}">«</a>
+        @else
+        <a href="#" class="disabled">«</a>
+        @endif
+         <a href="#" class="disabled">Total {{$data['totalResults']}}</a>
+         <!-- <a href="#" class="active">2</a>
          <a href="#">3</a>
          <a href="#">4</a>
          <a href="#">5</a>
-         <a href="#">6</a>
-         <a href="#">»</a>
+         <a href="#">6</a> -->
+         @if(isset($data['nextPageToken']))
+         <a href="{{url('videos/'.$data['nextPageToken'])}}">»</a>
+         @else
+        <a href="#" class="disabled">«</a>
+        @endif
       </div>
-   </section> -->
+   </section>
    <div class="dotted-line mt2 mb2"></div>
    <div class="ampstart-card  pt2">
       <form id="subscribeform" action-xhr="/lead-form" target="_top" method="post" class="p0 m0 px3 mb4" on=submit-success:subscribeform.clear>

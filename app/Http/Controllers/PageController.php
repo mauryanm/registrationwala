@@ -30,9 +30,13 @@ class PageController extends Controller {
 
 
     }
-    public function ampvideos()
+    public function ampvideos($page=null)
     {
-        $response = Http::get('https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId=UC99xCarIiulzbP68z2VQPRg&maxResults=50&key=AIzaSyBCEK2zCWga931ug117VbwY9WAH_HaXU64');
+        if($page){
+            $response = Http::get('https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId=UC99xCarIiulzbP68z2VQPRg&maxResults=10&pageToken='.$page.'&key=AIzaSyBCEK2zCWga931ug117VbwY9WAH_HaXU64');
+        }else{
+            $response = Http::get('https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId=UC99xCarIiulzbP68z2VQPRg&maxResults=10&key=AIzaSyBCEK2zCWga931ug117VbwY9WAH_HaXU64');
+        }
 
         $data = $response->json();
         return Voyager::view('amp.videos')->with(compact('data')); 
