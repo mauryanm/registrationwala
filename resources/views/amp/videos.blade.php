@@ -32,7 +32,7 @@
    <section class="text-center">
       <div class="pagination text-center">
         @if(isset($data['prevPageToken']))
-         <a href="{{url('videos/'.$data['prevPageToken'])}}">«</a>
+         <a href="{{url('amp/videos/'.$data['prevPageToken'])}}">«</a>
         @else
         <a href="#" class="disabled">«</a>
         @endif
@@ -43,7 +43,7 @@
          <a href="#">5</a>
          <a href="#">6</a> -->
          @if(isset($data['nextPageToken']))
-         <a href="{{url('videos/'.$data['nextPageToken'])}}">»</a>
+         <a href="{{url('amp/videos/'.$data['nextPageToken'])}}">»</a>
          @else
         <a href="#" class="disabled">«</a>
         @endif
