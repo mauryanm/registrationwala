@@ -52,7 +52,7 @@
             data-param-app_id="536176547433653"
             data-param-text="{{$data->title}}"
             data-param-url="{{url( __('voyager::post.post_slug').$data->category->slug.'/'.$data->service->slug.'/'.$data->slug)}}"
-            data-param-media="{{Voyager::image($data->image)}}"
+            data-param-media="[{{Voyager::image($data->image)}}]"
             aria-label="Share on facebook"
             ></amp-social-share>
       </li>
