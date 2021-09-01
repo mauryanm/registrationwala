@@ -36,13 +36,13 @@
         @else
         <a href="#" class="disabled">«</a>
         @endif
-         <a href="#" class="disabled">Total {{$data['totalResults']}}</a>
+         <a href="#" class="disabled">Total {{$data['pageInfo']['totalResults']}}</a>
          <!-- <a href="#" class="active">2</a>
          <a href="#">3</a>
          <a href="#">4</a>
          <a href="#">5</a>
          <a href="#">6</a> -->
-         @if(isset($data['pageInfo']['nextPageToken']))
+         @if(isset($data['nextPageToken']))
          <a href="{{url('videos/'.$data['nextPageToken'])}}">»</a>
          @else
         <a href="#" class="disabled">«</a>
