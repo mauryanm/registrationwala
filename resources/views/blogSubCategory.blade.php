@@ -45,7 +45,7 @@
             </div>
             @endforeach
             <div class="d-flex justify-content-center mt-5">
-              {{ $posts->links('pagination::bootstrap-4') }}
+              {{ $posts->links('pagination::amp') }}
             </div>
           </div>
           <div class="col-md-4">

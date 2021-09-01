@@ -100,7 +100,7 @@ class AmpWebController extends Controller
 		    }
             $archivelists = $this->archivelist();
 
-    	return Voyager::view('blogCategory')->with(compact('data','wcu','categoryList','categoryPost','archivelists'));
+    	return Voyager::view('amp.blog.category')->with(compact('data','wcu','categoryList','categoryPost','archivelists'));
     }
     public function rwpostservice($category_url,$service_url){
     	$wcu = Choose::where('status',1)->orderBy('created_at','DESC')->get();
@@ -121,7 +121,7 @@ class AmpWebController extends Controller
 		    }
             $archivelists = $this->archivelist();
 
-    	return Voyager::view('blogSubCategory')->with(compact('data','wcu','categoryList','catData','posts','archivelists'));
+    	return Voyager::view('amp.blog.subCategory')->with(compact('data','wcu','categoryList','catData','posts','archivelists'));
     }
     public function rwpost($category_url,$service_url, $url){
 
@@ -146,7 +146,8 @@ class AmpWebController extends Controller
             }
 
     	    $categoryList = $this->categorylist();
-    	    return Voyager::view('blogDetail')->with(compact('data','categoryList'));
+            $archivelists = $this->archivelist();
+    	    return Voyager::view('amp.blog.detail')->with(compact('data','categoryList','archivelists'));
     	}else{
     		abort(404, 'Page not found.');
     	}
@@ -230,16 +231,6 @@ class AmpWebController extends Controller
     }
     public function searchPost(Request $request)
     {
-        // $posts = Voyager::model('Post')
-        //         ->where('title','like',"%{$request->title}%")
-        //         ->select('id','title','slug','publish_date','category_id','service_id')
-        //         ->published()
-        //         ->with('service:title,blog_slug as slug,id')
-        //         ->with('category')
-        //         ->orderBy('publish_date','DESC')
-        //         ->take(10)
-        //         ->get();
-        // return response()->json($posts);
         $posts = Voyager::model('Post')
                 ->where('title','like',"%{$request->title}%")
                 ->select('id','title','slug','service_id','category_id')

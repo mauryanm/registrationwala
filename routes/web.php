@@ -60,9 +60,9 @@ Route::group(['prefix' => 'amp'], function () {
   Route::get('/', 'App\Http\Controllers\HomeController@amp')->name('amp');
   //AM Blog 
   Route::get('/search-amp-post', 'App\Http\Controllers\AmpWebController@searchPost');
-  Route::get('/'.__('voyager::post.post_slug').'{category_url}/{Service_url}/{url}', 'App\Http\Controllers\WebController@rwpost');
-Route::get('/'.__('voyager::post.post_slug').'{category_url}/{Service_url}', 'App\Http\Controllers\WebController@rwpostservice');
-Route::get('/'.__('voyager::post.post_slug').'{category_url}', 'App\Http\Controllers\WebController@rwpostcategory');
+  Route::get('/'.__('voyager::post.post_slug').'{category_url}/{Service_url}/{url}', 'App\Http\Controllers\AmpWebController@rwpost');
+Route::get('/'.__('voyager::post.post_slug').'{category_url}/{Service_url}', 'App\Http\Controllers\AmpWebController@rwpostservice');
+Route::get('/'.__('voyager::post.post_slug').'{category_url}', 'App\Http\Controllers\AmpWebController@rwpostcategory');
 Route::get('/'.__('voyager::post.post_slug'), 'App\Http\Controllers\AmpWebController@rwposts');
 
   Route::get('/copyright-registration/{url}/{city?}', 'App\Http\Controllers\AmpWebController@index');
