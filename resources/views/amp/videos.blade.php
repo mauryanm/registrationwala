@@ -42,7 +42,7 @@
          <a href="#">4</a>
          <a href="#">5</a>
          <a href="#">6</a> -->
-         @if(isset($data['nextPageToken']))
+         @if(isset($data['pageInfo']['nextPageToken']))
          <a href="{{url('videos/'.$data['nextPageToken'])}}">»</a>
          @else
         <a href="#" class="disabled">«</a>
