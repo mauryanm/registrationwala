@@ -554,7 +554,6 @@ p{margin-bottom:1rem}
 .views{border:solid #ccc 1px;margin-top:0;background-color:#ccc;line-height:23px;font-size:15px;display:inline-block;padding:3px 10px;border-radius:5px}
 .views svg{position:relative;top:3px}
 .text-justify{text-align:justify}
-.compresult .i-amphtml-layout-size-defined{overflow-y: auto !important;}
       </style>
    </head>
    <body>
