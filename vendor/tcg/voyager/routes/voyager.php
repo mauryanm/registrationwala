@@ -137,7 +137,7 @@ Route::get('/cities/import', ['uses' => $namespacePrefix.'VoyagerCitiesControlle
             'prefix' => 'compass',
         ], function () use ($namespacePrefix) {
             Route::get('/', ['uses' => $namespacePrefix.'VoyagerCompassController@index',  'as' => 'index']);
-            Route::post('/', ['uses' => $namespacePrefix.'VoyagerCompassController@index',  'as' => 'import']);
+            Route::post('/', ['uses' => $namespacePrefix.'VoyagerCompassController@index',  'as' => 'post']);
         });
 
         event(new RoutingAdminAfter());
