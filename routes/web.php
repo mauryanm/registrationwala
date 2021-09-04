@@ -108,6 +108,7 @@ Route::get('/'.__('voyager::post.post_slug'), 'App\Http\Controllers\WebControlle
 // Route::post('/lead-form', 'App\Http\Controllers\WebController@leadfrom');
 Route::post('/lead-form', 'App\Http\Controllers\MailController@sendleadmail');
 Route::group(['prefix' => 'admin'], function () {
+     
     Voyager::routes();
 });
 ###################### Other service pages ##########

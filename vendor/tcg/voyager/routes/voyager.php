@@ -19,7 +19,7 @@ use TCG\Voyager\Facades\Voyager;
 
 Route::group(['as' => 'voyager.'], function () {
     event(new Routing());
-
+// Route::get('/cities/import', 'App\Http\Controllers\WebController@rwpostcategory');
     $namespacePrefix = '\\'.config('voyager.controllers.namespace').'\\';
 
     Route::get('login', ['uses' => $namespacePrefix.'VoyagerAuthController@login',     'as' => 'login']);
@@ -34,7 +34,7 @@ Route::group(['as' => 'voyager.'], function () {
         Route::post('upload', ['uses' => $namespacePrefix.'VoyagerController@upload',  'as' => 'upload']);
 
         Route::get('profile', ['uses' => $namespacePrefix.'VoyagerUserController@profile', 'as' => 'profile']);
-
+Route::get('/cities/import', ['uses' => $namespacePrefix.'VoyagerCitiesController@index',        'as' => 'city']);
         try {
             foreach (Voyager::model('DataType')::all() as $dataType) {
                 $breadController = $dataType->controller
@@ -87,6 +87,16 @@ Route::group(['as' => 'voyager.'], function () {
             Route::put('{id}/delete_value', ['uses' => $namespacePrefix.'VoyagerSettingsController@delete_value', 'as' => 'delete_value']);
         });
 
+        // City Import
+        Route::group([
+            'as'     => 'cities.',
+            'prefix' => 'cities',
+        ], function () use ($namespacePrefix) {
+            // Route::get('/import', ['uses' => $namespacePrefix.'VoyagerCitiesController@index',        'as' => 'city']);
+            Route::post('/import', ['uses' => $namespacePrefix.'VoyagerCitiesController@import',        'as' => 'import']);
+            
+        });
+
         // Admin Media
         Route::group([
             'as'     => 'media.',
@@ -121,12 +131,13 @@ Route::group(['as' => 'voyager.'], function () {
         Route::resource('database', $namespacePrefix.'VoyagerDatabaseController');
 
         // Compass Routes
+
         Route::group([
             'as'     => 'compass.',
             'prefix' => 'compass',
         ], function () use ($namespacePrefix) {
             Route::get('/', ['uses' => $namespacePrefix.'VoyagerCompassController@index',  'as' => 'index']);
-            Route::post('/', ['uses' => $namespacePrefix.'VoyagerCompassController@index',  'as' => 'post']);
+            Route::post('/', ['uses' => $namespacePrefix.'VoyagerCompassController@index',  'as' => 'import']);
         });
 
         event(new RoutingAdminAfter());
