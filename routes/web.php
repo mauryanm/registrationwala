@@ -57,6 +57,10 @@ Route::namespace('')
 Route::get('/', 'App\Http\Controllers\HomeController@index')->name('/');
 ############### AMP PAGE REDIRECT################
 Route::group(['prefix' => 'amp'], function () {
+  //Leagle doc
+  Route::get('/legal-docs', 'App\Http\Controllers\AmpLegalDocumentsController@index');
+  Route::get('/legal-docs/{url}', 'App\Http\Controllers\AmpLegalDocumentsController@docpages');
+
   Route::get('/', 'App\Http\Controllers\HomeController@amp')->name('amp');
   Route::get('/videos/{page?}', 'App\Http\Controllers\PageController@ampvideos');
   //AM Blog 

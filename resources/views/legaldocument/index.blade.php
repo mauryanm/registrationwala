@@ -53,7 +53,7 @@
       <div class="row">
          <div class="col-md-12">
             <ol class="breadcrumb radius-0 bg-transparent p-0  m-0">
-               <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+               <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
                <li class="breadcrumb-item active" aria-current="page">Legal Document</li>
             </ol>
          </div>
