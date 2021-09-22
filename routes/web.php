@@ -121,6 +121,8 @@ Route::get('/sitemaps/knowledge-base.xml', 'App\Http\Controllers\SitemapControll
 Route::get('/sitemaps/services.xml', 'App\Http\Controllers\SitemapController@service');
 Route::get('/sitemaps/legal-docs.xml', 'App\Http\Controllers\SitemapController@legaldocs');
 Route::get('/RWlocalsitemap.xml', 'App\Http\Controllers\SitemapController@rwlocalsitemap');
+Route::get('/services/sitemap{index}.xml', 'App\Http\Controllers\SitemapController@localsitemap');
+
 // Route::get('/sitemaps', 'App\Http\Controllers\SitemapController@sitemaps');
 ###################### Site Map URL ##########
 Route::get('/copyright-registration/{url}/{city?}', 'App\Http\Controllers\WebController@index');

@@ -43,13 +43,13 @@
       <div class="flex  justify-center center mt2 mb2">
          <div class="flex-auto"> 
             <a href="{{url('/download/'.encrypt($file->download_link))}}"> 
-               <amp-img src="https://www.registrationwala.com/storage/images/document-management.png" width="100" height="100" layout="fixed"></amp-img>
+               <amp-img src="{{Voyager::image('/images/document-management.png') }}" width="100" height="100" layout="fixed" alt="{{ str_replace('.pdf','',$file->original_name) }}"></amp-img>
                <p>{{ str_replace('.pdf','',$file->original_name) }}</p>
             </a>
          </div>
          <div class="flex-auto">
             <a href="{{url('/download/'.encrypt($file->download_link))}}"> 
-               <amp-img src="https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl={{urlencode(url('/download/'.encrypt($file->download_link)))}}&choe=UTF-8" width="100" height="100" layout="fixed"></amp-img>
+               <amp-img src="https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl={{urlencode(url('/download/'.encrypt($file->download_link)))}}&choe=UTF-8" width="100" height="100" layout="fixed" alt="Download"></amp-img>
                <p>Download</p>
             </a>
          </div>

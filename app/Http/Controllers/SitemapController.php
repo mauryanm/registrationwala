@@ -30,13 +30,13 @@ class SitemapController extends Controller
         return response()->view('sitemap.legaldoc', ['legaldocs' => $legaldocs])->header('Content-Type', 'text/xml');
     }
 
-    public function rwlocalsitemap()
-    {
-        $services = Voyager::model('Service')->where('status',1)->select('id','slug','created_at')->get();
-        $cities = Voyager::model('City')->where('status',1)->select('id','slug','created_at')->get();
-        $exept =['songs', 'sound-recording','computer-software','logo-copyright-for-goods','logo-copyright-for-service','artistic-painting','cinematography','book','literature-dramatic','music-notation','phrase-slogan','symbol'];
-        return response()->view('sitemap.rwlocalsitemap', ['services' => $services,'exept'=>$exept,'cities'=>$cities])->header('Content-Type', 'text/xml');
-    }
+    // public function rwlocalsitemap()
+    // {
+    //     $services = Voyager::model('Service')->where('status',1)->select('id','slug','created_at')->get();
+    //     $cities = Voyager::model('City')->where('status',1)->select('id','slug','created_at')->get();
+    //     $exept =['songs', 'sound-recording','computer-software','logo-copyright-for-goods','logo-copyright-for-service','artistic-painting','cinematography','book','literature-dramatic','music-notation','phrase-slogan','symbol'];
+    //     return response()->view('sitemap.rwlocalsitemap', ['services' => $services,'exept'=>$exept,'cities'=>$cities])->header('Content-Type', 'text/xml');
+    // }
     // public function sitemaps()
     // {
     //     $posts = Voyager::model('Category')
@@ -55,4 +55,27 @@ class SitemapController extends Controller
     //         }
     //     $sitemap->endSitemap();
     // }
+
+    public function rwlocalsitemap()
+    {
+        $services = Voyager::model('Service')->where('status',1)->select('id','slug','created_at')->count();
+        $totalindex = ceil($services/20);
+        return response()->view('sitemap.rwlocalsitemap', ['totalindex' => intval($totalindex)])->header('Content-Type', 'text/xml');
+    }
+
+    public function localsitemap($index)
+    {
+        $take = 20;
+        $query = Voyager::model('Service')->where('status',1)->select('id','slug','created_at');
+        $totalindex = ceil($query->count()/$take);
+        $skip = ($index-1)*$take;
+        if((1 <= $index) && ($index <= $totalindex)){
+            $mapservice = $query->orderBy('id','DESC')->skip($skip)->take($take)->get();
+            $cities = Voyager::model('City')->where('status',1)->select('id','slug','created_at')->get();
+            $exept =['songs', 'sound-recording','computer-software','logo-copyright-for-goods','logo-copyright-for-service','artistic-painting','cinematography','book','literature-dramatic','music-notation','phrase-slogan','symbol'];
+            return response()->view('sitemap.localsitemap', ['services' => $mapservice,'exept'=>$exept,'cities'=>$cities])->header('Content-Type', 'text/xml');
+        }else{
+            abort(404);
+        }       
+    }
 }
