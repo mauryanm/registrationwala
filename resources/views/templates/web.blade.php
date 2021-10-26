@@ -2,6 +2,7 @@
 <html lang="en">
  <head>
   <base target="_parent">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>@yield('title',setting('site.title'))</title>
   <meta name="description" content="@yield('description',setting('site.description'))">
@@ -27,7 +28,6 @@
   <meta name="msapplication-starturl" content="/">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="theme-color" content="#e5e5e5">
-  <meta charset="utf-8">
   <link rel="stylesheet" href="{{ asset('/assets/css/bootstrap.min.css') }}">
   <script src="{{ asset('/assets/js/jquery.min.js') }}"></script>
   <script src="{{ asset('/assets/js/popper.min.js') }}"></script>
@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="{{ asset('/assets/css/font-awesome.min.css') }}" crossorigin="anonymous" />
   <link rel='stylesheet' href="{{ asset('/assets/css/owl.carousel.min.css') }}">
   <link rel="stylesheet" href="{{ asset('/assets/css/style.css') }}" crossorigin="anonymous" />
-{!! setting('site.header_script') !!}
+  {!! setting('site.header_script') !!}
  </head>
  <body class="" data-spy="scroll" data-target="#side" @yield("bodyData")>
   @yield('content')
